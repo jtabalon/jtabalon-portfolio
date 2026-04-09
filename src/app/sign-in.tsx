@@ -10,6 +10,7 @@ function ConnectedSignInRoute() {
   const { isLoaded, isSignedIn } = useAuth();
   const params = useLocalSearchParams<{ redirect?: string }>();
   const redirectTo = typeof params.redirect === 'string' ? params.redirect : '/admin';
+  const redirectHref = redirectTo === '/' ? '/' : '/admin';
   const [webSignIn, setWebSignIn] = useState<null | typeof import('@clerk/expo/web').SignIn>(null);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function ConnectedSignInRoute() {
   }, []);
 
   if (isLoaded && isSignedIn) {
-    return <Redirect href={redirectTo} />;
+    return <Redirect href={redirectHref} />;
   }
 
   if (Platform.OS === 'web') {
@@ -49,8 +50,8 @@ function ConnectedSignInRoute() {
             <WebSignIn
               routing="path"
               path="/sign-in"
-              forceRedirectUrl={redirectTo}
-              fallbackRedirectUrl={redirectTo}
+              forceRedirectUrl={redirectHref}
+              fallbackRedirectUrl={redirectHref}
             />
           </Surface>
         </View>
