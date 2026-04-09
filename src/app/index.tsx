@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import * as Linking from 'expo-linking';
 import { Pressable, Text, View } from 'react-native';
@@ -10,16 +11,14 @@ import type { SiteContent, SiteLink } from '@/types/content';
 // To re-wire to Convex later, restore the ConnectedHomeScreen pattern that uses
 // useQuery(api.site.getPublicSiteContent).
 
-function Avatar({ name }: { name: string }) {
-  const initials = name
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toLowerCase() ?? '')
-    .join('');
+function Avatar() {
   return (
-    <View className="h-[72px] w-[72px] items-center justify-center rounded-full border border-hairline bg-graphite">
-      <Text className="font-mono-medium text-base text-paper tracking-tight">{initials}</Text>
+    <View className="h-[72px] w-[72px] overflow-hidden rounded-full border border-hairline bg-paper shadow-paper">
+      <Image
+        source={require('../../assets/images/icon.png')}
+        contentFit="cover"
+        className="h-full w-full"
+      />
     </View>
   );
 }
@@ -59,7 +58,7 @@ function HomeScreenContent({ content }: { content: SiteContent }) {
         <View className="gap-8">
           <View className="flex-row items-center justify-between gap-4">
             <View className="flex-row items-center gap-4">
-              <Avatar name={content.profile.name} />
+              <Avatar />
               <Text className="font-mono text-xs uppercase tracking-whisper text-slate">
                 {content.profile.role}
               </Text>
