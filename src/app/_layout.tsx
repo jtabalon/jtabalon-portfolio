@@ -2,13 +2,13 @@ import {
   Inter_400Regular,
   Inter_500Medium,
   Inter_600SemiBold,
-  useFonts,
 } from '@expo-google-fonts/inter';
 import {
   JetBrainsMono_400Regular,
   JetBrainsMono_500Medium,
 } from '@expo-google-fonts/jetbrains-mono';
 import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

@@ -29,3 +29,7 @@ Create a static web export:
 ```bash
 bun run build:web
 ```
+
+The export command also verifies the initial HTML, search and sharing metadata, structured public identity, discovery files, public images, and canonical redirect configuration.
+
+After a production deployment, complete the [SEO release checklist](./docs/seo-release-checklist.md).

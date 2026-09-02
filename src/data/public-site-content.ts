@@ -1,3 +1,14 @@
+export const publicSiteMetadata = {
+  canonicalUrl: 'https://www.josephtabalonjr.com/',
+  title: 'Joseph Tabalon | Senior Data Scientist',
+  description:
+    'Senior Data Scientist building machine-learning systems from rigorous modeling and evaluation through reliable, secure deployment.',
+  socialPreviewUrl: 'https://www.josephtabalonjr.com/social-preview.png',
+  socialPreviewAlt: 'Joseph Tabalon, Senior Data Scientist',
+  portraitUrl: 'https://www.josephtabalonjr.com/joseph-tabalon.png',
+  githubProfileUrl: 'https://github.com/jtabalon',
+} as const;
+
 export const publicSiteContent = {
   name: 'Joseph Tabalon',
   role: 'Senior Data Scientist',

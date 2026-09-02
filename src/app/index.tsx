@@ -5,7 +5,10 @@ import Head from 'expo-router/head';
 import { Pressable, Text, View } from 'react-native';
 
 import { SiteFrame } from '@/components/site-frame';
-import { publicSiteContent } from '@/data/public-site-content';
+import {
+  publicSiteContent,
+  publicSiteMetadata,
+} from '@/data/public-site-content';
 import { scrollToSection } from '@/lib/scroll-to-section';
 
 function PageSection({
@@ -55,14 +58,52 @@ function PrimaryEmailAction({
 }
 
 export default function HomeRoute() {
+  const profilePageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: publicSiteMetadata.canonicalUrl,
+    name: publicSiteMetadata.title,
+    description: publicSiteMetadata.description,
+    mainEntity: {
+      '@type': 'Person',
+      name: publicSiteContent.name,
+      url: publicSiteMetadata.canonicalUrl,
+      jobTitle: publicSiteContent.role,
+      image: publicSiteMetadata.portraitUrl,
+      sameAs: [
+        publicSiteContent.contact.linkedInHref,
+        publicSiteMetadata.githubProfileUrl,
+      ],
+    },
+  };
+
   return (
     <>
       <Head>
-        <title>Joseph Tabalon | Senior Data Scientist</title>
-        <meta
-          name="description"
-          content="Senior Data Scientist building machine-learning systems from rigorous modeling and evaluation through reliable, secure deployment."
-        />
+        <title>{publicSiteMetadata.title}</title>
+        <meta name="description" content={publicSiteMetadata.description} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={publicSiteMetadata.canonicalUrl} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={publicSiteMetadata.title} />
+        <meta property="og:description" content={publicSiteMetadata.description} />
+        <meta property="og:url" content={publicSiteMetadata.canonicalUrl} />
+        <meta property="og:image" content={publicSiteMetadata.socialPreviewUrl} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={publicSiteMetadata.socialPreviewAlt} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={publicSiteMetadata.title} />
+        <meta name="twitter:description" content={publicSiteMetadata.description} />
+        <meta name="twitter:image" content={publicSiteMetadata.socialPreviewUrl} />
+        <meta name="twitter:image:alt" content={publicSiteMetadata.socialPreviewAlt} />
+
+        <script type="application/ld+json">
+          {JSON.stringify(profilePageStructuredData)}
+        </script>
       </Head>
       <SiteFrame navigation={publicSiteContent.navigation}>
         <View className="gap-20">
