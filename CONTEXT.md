@@ -4,6 +4,54 @@ This context defines the public portfolio's professional communication and inter
 
 ## Language
 
+**Primary reader**:
+A hiring manager assessing Joseph for a senior role focused on production machine learning.
+_Avoid_: Everyone, general audience
+
+**Professional positioning**:
+Joseph's identity as a Senior Data Scientist whose distinguishing capability is taking machine-learning work from modeling through reliable, secure deployment.
+_Avoid_: Generalist technology profile
+
+**Public showcase**:
+The collection of work examples selected for public inspection, initially drawn from already-public research and personal projects whose material is appropriate to publish.
+_Avoid_: Complete work history
+
+**Selected work**:
+The small set of public-safe projects that best supports Joseph's current production-ML positioning, ordered by present relevance rather than chronology.
+_Avoid_: Complete project archive, equal-weight project grid
+
+**Portfolio project**:
+An original, public-safe project deliberately developed to provide inspectable evidence of Joseph's current engineering judgment.
+_Avoid_: Rebranded hiring exercise, inflated demo
+
+**Published work**:
+A compact credibility block for Joseph's peer-reviewed lung-registration research, with only enough context and evidence to support the current professional story.
+_Avoid_: Flagship case study, research retrospective
+
+**Public-safe evidence**:
+A claim, artifact, or result that is both appropriate to publish and specific enough for a hiring manager to inspect or verify.
+_Avoid_: Anonymized restricted work, unsupported claim
+
+**Case study**:
+A focused account of a project's problem, constraints, Joseph's contribution, technical trade-offs, and supporting evidence of results.
+_Avoid_: Project summary, resume bullet
+
+**Contribution statement**:
+A precise account that separates Joseph's confirmed work, publicly verifiable attribution, and team results.
+_Avoid_: Sole-ownership claim, ambiguous team credit
+
+**Career snapshot**:
+A concise public chronology of relevant roles, education, and capabilities that supports the Public showcase without reproducing a full resume.
+_Avoid_: Public resume, complete CV
+
+**Versioned public content**:
+Public-site content reviewed and committed with the application code.
+_Avoid_: Live CMS content, admin-managed homepage
+
+**Security-conscious work**:
+A public-safe description of production ML performed under strict operational and security constraints without exposing clients, systems, data, or sensitive implementation details.
+_Avoid_: Classified-work detail, named government workflow
+
 **Primary contact action**:
 The visually dominant invitation to email Joseph about a senior production-ML role. It appears in both Hero and Contact with the label “Email me.”
 _Avoid_: CTA, primary button
