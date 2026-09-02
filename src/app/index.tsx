@@ -47,7 +47,7 @@ function PrimaryEmailAction({
   return (
     <Link href={href} asChild>
       <Pressable
-        className={`cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:opacity-80 ${ringOffsetClass}`}>
+        className={`motion-primary-contact cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:opacity-80 ${ringOffsetClass}`}>
         <Text className="font-body-semibold text-base text-canvas">{label}</Text>
       </Pressable>
     </Link>
@@ -68,7 +68,7 @@ export default function HomeRoute() {
         <View className="gap-20">
           <View
             nativeID="top"
-            className="gap-7 md:flex-row md:items-center md:justify-between md:gap-12">
+            className="motion-hero-entrance gap-7 md:flex-row md:items-center md:justify-between md:gap-12">
             <View className="order-2 max-w-2xl gap-5 md:order-1 md:flex-1">
               <View className="gap-2">
                 <Text className="font-body-semibold text-base text-accent">
@@ -140,7 +140,8 @@ export default function HomeRoute() {
                     href={link.href}
                     target="_blank"
                     asChild>
-                    <Pressable className="cursor-pointer self-start rounded-sm py-1 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
+                    <Pressable
+                      className="motion-secondary-link cursor-pointer self-start rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                       <Text className="font-body-medium text-sm leading-5 text-ink underline decoration-line underline-offset-4">
                         {link.label}
                       </Text>
@@ -179,7 +180,8 @@ export default function HomeRoute() {
                     </Text>
                     {entry.link ? (
                       <Link href={entry.link.href} asChild>
-                        <Pressable className="cursor-pointer rounded-sm py-1 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
+                        <Pressable
+                          className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                           <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                             {entry.link.label}
                           </Text>
@@ -238,7 +240,8 @@ export default function HomeRoute() {
                   href={publicSiteContent.contact.linkedInHref}
                   target="_blank"
                   asChild>
-                  <Pressable className="cursor-pointer rounded-sm py-1 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
+                  <Pressable
+                    className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                     <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                       {publicSiteContent.contact.linkedInLabel}
                     </Text>
@@ -256,7 +259,7 @@ export default function HomeRoute() {
             </Text>
             <Link href="/#top" asChild>
               <Pressable
-                className="cursor-pointer rounded-sm px-1 py-1 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
+                className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
                 onPress={() => scrollToSection('top')}>
                 <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
                   Back to top
