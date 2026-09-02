@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Resume Atelier",
-    "slug": "resume-atelier",
+    "name": "Joseph Tabalon",
+    "slug": "joseph-tabalon",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -27,7 +27,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#f5f0e7",
           "android": {
             "image": "./assets/images/splash-icon.png",
             "imageWidth": 76
