@@ -26,6 +26,13 @@ assert.match(
   'The exported homepage must contain its hero content before hydration.',
 );
 
+const heroPortrait = findTag('img', 'alt', 'Portrait of Joseph Tabalon');
+assert.equal(
+  readAttribute(heroPortrait, 'src'),
+  '/joseph-tabalon.png',
+  'The initial homepage HTML must contain its portrait.',
+);
+
 const descriptionTag = findTag('meta', 'name', 'description');
 assert.equal(readAttribute(descriptionTag, 'content'), description);
 

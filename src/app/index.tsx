@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
-import { Image } from 'expo-image';
+import { Image as ExpoImage } from 'expo-image';
 import { Link, type Href } from 'expo-router';
 import Head from 'expo-router/head';
-import { Pressable, Text, View } from 'react-native';
+import { Platform, Pressable, Text, View } from 'react-native';
 
 import { SiteFrame } from '@/components/site-frame';
 import {
@@ -54,6 +54,31 @@ function PrimaryEmailAction({
         <Text className="font-body-semibold text-base text-canvas">{label}</Text>
       </Pressable>
     </Link>
+  );
+}
+
+function PortraitImage() {
+  const className = 'h-[148px] w-[148px] md:h-[330px] md:w-[280px]';
+
+  if (Platform.OS === 'web') {
+    return (
+      <img
+        src="/joseph-tabalon.png"
+        alt="Portrait of Joseph Tabalon"
+        width={1024}
+        height={1024}
+        className={`${className} object-cover`}
+      />
+    );
+  }
+
+  return (
+    <ExpoImage
+      source={require('../../assets/images/icon.png')}
+      accessibilityLabel="Portrait of Joseph Tabalon"
+      contentFit="cover"
+      className={className}
+    />
   );
 }
 
@@ -143,12 +168,7 @@ export default function HomeRoute() {
             </View>
 
             <View className="order-1 self-start overflow-hidden rounded-[28px] border border-line bg-panel shadow-soft md:order-2 md:self-center">
-              <Image
-                source={require('../../assets/images/icon.png')}
-                accessibilityLabel="Portrait of Joseph Tabalon"
-                contentFit="cover"
-                className="h-[148px] w-[148px] md:h-[330px] md:w-[280px]"
-              />
+              <PortraitImage />
             </View>
           </View>
 
