@@ -17,7 +17,7 @@ export const publicSiteContent = {
   publishedWork: {
     id: 'work',
     title: 'Published Work',
-    item: {
+    publication: {
       name: 'LungQuant',
       publicationTitle:
         'CNN-based Deformable Registration Facilitates Fast and Accurate Air Trapping Measurements at Inspiratory and Expiratory CT',
@@ -32,6 +32,10 @@ export const publicSiteContent = {
         {
           label: 'Inspect the public GitHub repository',
           href: 'https://github.com/jtabalon/LungQuant',
+        },
+        {
+          label: 'View GitHub profile',
+          href: 'https://github.com/jtabalon',
         },
       ],
     },

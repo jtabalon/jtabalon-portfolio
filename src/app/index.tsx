@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Image } from 'expo-image';
-import { Link } from 'expo-router';
+import { Link, type Href } from 'expo-router';
 import Head from 'expo-router/head';
 import { Pressable, Text, View } from 'react-native';
 
@@ -27,6 +27,30 @@ function PageSection({
       </Text>
       {children}
     </View>
+  );
+}
+
+function PrimaryEmailAction({
+  href,
+  label,
+  surface,
+}: {
+  href: Href;
+  label: string;
+  surface: 'canvas' | 'panel';
+}) {
+  const ringOffsetClass =
+    surface === 'canvas'
+      ? 'focus-visible:ring-offset-canvas'
+      : 'focus-visible:ring-offset-panel';
+
+  return (
+    <Link href={href} asChild>
+      <Pressable
+        className={`cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 active:opacity-80 ${ringOffsetClass}`}>
+        <Text className="font-body-semibold text-base text-canvas">{label}</Text>
+      </Pressable>
+    </Link>
   );
 }
 
@@ -69,13 +93,11 @@ export default function HomeRoute() {
                 <Text className="font-body text-sm text-muted">
                   {publicSiteContent.hero.contactContext}
                 </Text>
-                <Link href={publicSiteContent.hero.emailHref} asChild>
-                  <Pressable className="cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-80">
-                    <Text className="font-body-semibold text-base text-canvas">
-                      {publicSiteContent.hero.emailLabel}
-                    </Text>
-                  </Pressable>
-                </Link>
+                <PrimaryEmailAction
+                  href={publicSiteContent.hero.emailHref}
+                  label={publicSiteContent.hero.emailLabel}
+                  surface="canvas"
+                />
               </View>
             </View>
 
@@ -95,16 +117,16 @@ export default function HomeRoute() {
             <View className="gap-5 rounded-2xl border border-line bg-panel p-5 shadow-soft md:flex-row md:items-start md:justify-between md:gap-10 md:p-7">
               <View className="max-w-3xl flex-1 gap-3">
                 <Text className="font-mono-medium text-xs uppercase text-accent tracking-whisper">
-                  {publicSiteContent.publishedWork.item.name}
+                  {publicSiteContent.publishedWork.publication.name}
                 </Text>
                 <Text className="font-body-semibold text-xl leading-7 text-ink md:text-2xl md:leading-8">
-                  {publicSiteContent.publishedWork.item.publicationTitle}
+                  {publicSiteContent.publishedWork.publication.publicationTitle}
                 </Text>
                 <Text className="font-mono text-xs leading-5 text-muted">
-                  {publicSiteContent.publishedWork.item.publicationMeta}
+                  {publicSiteContent.publishedWork.publication.publicationMeta}
                 </Text>
                 <Text className="max-w-2xl font-body text-[15px] leading-7 text-muted">
-                  {publicSiteContent.publishedWork.item.contribution}
+                  {publicSiteContent.publishedWork.publication.contribution}
                 </Text>
               </View>
 
@@ -112,7 +134,7 @@ export default function HomeRoute() {
                 <Text className="font-body-medium text-xs uppercase text-muted tracking-[0.14em]">
                   Evidence
                 </Text>
-                {publicSiteContent.publishedWork.item.links.map((link) => (
+                {publicSiteContent.publishedWork.publication.links.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -207,13 +229,11 @@ export default function HomeRoute() {
               </View>
 
               <View className="items-start gap-3 md:items-end">
-                <Link href={publicSiteContent.contact.emailHref} asChild>
-                  <Pressable className="cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-80">
-                    <Text className="font-body-semibold text-base text-canvas">
-                      {publicSiteContent.contact.emailLabel}
-                    </Text>
-                  </Pressable>
-                </Link>
+                <PrimaryEmailAction
+                  href={publicSiteContent.contact.emailHref}
+                  label={publicSiteContent.contact.emailLabel}
+                  surface="panel"
+                />
                 <Link
                   href={publicSiteContent.contact.linkedInHref}
                   target="_blank"
