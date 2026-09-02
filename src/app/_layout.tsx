@@ -4,9 +4,9 @@ import { JetBrainsMono_400Regular, JetBrainsMono_500Medium } from '@expo-google-
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import '@/global.css';
-import { AppProviders } from '@/providers/app-providers';
 
 SplashScreen.preventAutoHideAsync().catch(() => undefined);
 
@@ -32,7 +32,7 @@ export default function RootLayout() {
   }
 
   return (
-    <AppProviders>
+    <SafeAreaProvider>
       <Stack
         screenOptions={{
           headerShown: false,
@@ -40,6 +40,6 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: '#f5f0e7' },
         }}
       />
-    </AppProviders>
+    </SafeAreaProvider>
   );
 }
