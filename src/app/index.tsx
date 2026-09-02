@@ -1,4 +1,6 @@
-import { Text, View } from 'react-native';
+import { Image } from 'expo-image';
+import { Link } from 'expo-router';
+import { Pressable, Text, View } from 'react-native';
 
 import { SiteFrame } from '@/components/site-frame';
 import { publicSiteContent } from '@/data/public-site-content';
@@ -7,11 +9,49 @@ export default function HomeRoute() {
   return (
     <SiteFrame navigation={publicSiteContent.navigation}>
       <View className="gap-20">
-        <View className="gap-3">
-          <Text className="font-display-bold text-[46px] leading-[52px] text-ink md:text-[62px] md:leading-[68px]">
-            {publicSiteContent.name}
-          </Text>
-          <Text className="font-body text-lg text-muted">{publicSiteContent.role}</Text>
+        <View className="gap-7 md:flex-row md:items-center md:justify-between md:gap-12">
+          <View className="order-2 max-w-2xl gap-5 md:order-1 md:flex-1">
+            <View className="gap-2">
+              <Text className="font-body-semibold text-base text-accent">
+                {publicSiteContent.role}
+              </Text>
+              <Text
+                accessibilityRole="header"
+                className="font-display-bold text-[46px] leading-[48px] text-ink md:text-[68px] md:leading-[68px]">
+                {publicSiteContent.name}
+              </Text>
+            </View>
+
+            <Text className="max-w-xl font-body-semibold text-[24px] leading-[31px] text-graphite md:text-[30px] md:leading-[38px]">
+              {publicSiteContent.hero.headline}
+            </Text>
+
+            <Text className="max-w-xl font-body text-base leading-7 text-muted md:text-lg md:leading-8">
+              {publicSiteContent.hero.valueProposition}
+            </Text>
+
+            <View className="items-start gap-3 pt-1">
+              <Text className="font-body text-sm text-muted">
+                {publicSiteContent.hero.contactContext}
+              </Text>
+              <Link href={publicSiteContent.hero.emailHref} asChild>
+                <Pressable className="cursor-pointer rounded-lg bg-ink px-5 py-3.5 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-80">
+                  <Text className="font-body-semibold text-base text-paper">
+                    {publicSiteContent.hero.emailLabel}
+                  </Text>
+                </Pressable>
+              </Link>
+            </View>
+          </View>
+
+          <View className="order-1 self-start overflow-hidden rounded-[28px] border border-line bg-panel shadow-paper md:order-2 md:self-center">
+            <Image
+              source={require('../../assets/images/icon.png')}
+              accessibilityLabel="Portrait of Joseph Tabalon"
+              contentFit="cover"
+              className="h-[148px] w-[148px] md:h-[330px] md:w-[280px]"
+            />
+          </View>
         </View>
 
         {publicSiteContent.sections.map((section) => (
