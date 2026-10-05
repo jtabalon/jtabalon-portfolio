@@ -282,7 +282,7 @@ export default function HomeRoute() {
             id={publicSiteContent.contact.id}
             title={publicSiteContent.contact.title}>
             <View className="gap-6 rounded-2xl border border-line bg-panel p-5 shadow-soft md:flex-row md:items-end md:justify-between md:gap-10 md:p-7">
-              <View className="max-w-2xl gap-3">
+              <View className="min-w-0 max-w-2xl gap-3 md:flex-1">
                 <Text className="font-body text-base leading-7 text-muted md:text-lg md:leading-8">
                   {publicSiteContent.contact.description}
                 </Text>
