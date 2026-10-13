@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 
 const indexHtml = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const canonicalUrl = 'https://www.josephtabalonjr.com';
 const description =
   'Senior Data Scientist building machine-learning systems from rigorous modeling and evaluation through reliable, secure deployment.';
 
-function findTag(tagName, key, value) {
-  const tags = indexHtml.match(new RegExp(`<${tagName}\\b[^>]*>`, 'g')) ?? [];
+function findTag(tagName, key, value, html = indexHtml) {
+  const tags = html.match(new RegExp(`<${tagName}\\b[^>]*>`, 'g')) ?? [];
   return tags.find((tag) => tag.includes(`${key}="${value}"`));
 }
 
@@ -142,6 +142,36 @@ await assert.rejects(
   access(new URL('../dist/_sitemap.html', import.meta.url)),
   'Expo’s diagnostic sitemap must not be published.',
 );
+
+const missingPageHtml = await readFile(new URL('../dist/404.html', import.meta.url), 'utf8');
+assert.match(
+  missingPageHtml,
+  /<title[^>]*>Page not found \| Joseph Tabalon<\/title>/,
+  'The missing-page experience must have a useful title before hydration.',
+);
+assert.match(
+  missingPageHtml,
+  /<main\b|\brole="main"/,
+  'The missing-page explanation must have a main landmark.',
+);
+assert.match(
+  missingPageHtml,
+  /<a\b[^>]*href="\/"[^>]*>Return to homepage<\/a>/,
+  'Missing-page recovery must work through a real homepage link without JavaScript.',
+);
+
+const exportDirectory = new URL('../dist/', import.meta.url);
+const exportedPages = (await readdir(exportDirectory, { recursive: true }))
+  .filter((filename) => filename.endsWith('.html') && filename !== 'index.html');
+for (const filename of exportedPages) {
+  const html = await readFile(new URL(filename, exportDirectory), 'utf8');
+  const robots = findTag('meta', 'name', 'robots', html);
+  assert.match(
+    readAttribute(robots, 'content') ?? '',
+    /\bnoindex\b/,
+    `${filename} must remain outside indexing, including when served directly.`,
+  );
+}
 
 function readPngSize(image) {
   assert.deepEqual(
