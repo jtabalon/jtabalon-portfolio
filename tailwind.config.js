@@ -14,11 +14,11 @@ module.exports = {
         wash: '#efe7da',
       },
       fontFamily: {
-        body: ['Inter_400Regular'],
-        'body-medium': ['Inter_500Medium'],
-        'body-semibold': ['Inter_600SemiBold'],
-        mono: ['JetBrainsMono_400Regular'],
-        'mono-medium': ['JetBrainsMono_500Medium'],
+        body: ['Inter_400Regular', 'Arial', 'sans-serif'],
+        'body-medium': ['Inter_500Medium', 'Arial', 'sans-serif'],
+        'body-semibold': ['Inter_600SemiBold', 'Arial', 'sans-serif'],
+        mono: ['JetBrainsMono_400Regular', 'monospace'],
+        'mono-medium': ['JetBrainsMono_500Medium', 'monospace'],
       },
       boxShadow: {
         soft: '0 18px 60px rgba(25, 21, 18, 0.08)',

@@ -29,9 +29,42 @@ assert.match(
 const heroPortrait = findTag('img', 'alt', 'Portrait of Joseph Tabalon');
 assert.equal(
   readAttribute(heroPortrait, 'src'),
-  '/joseph-tabalon.png',
+  '/portraits/joseph-tabalon-640.webp',
   'The initial homepage HTML must contain its portrait.',
 );
+assert.equal(
+  readAttribute(heroPortrait, 'srcSet') ?? readAttribute(heroPortrait, 'srcset'),
+  '/portraits/joseph-tabalon-320.webp 320w, /portraits/joseph-tabalon-640.webp 640w, /portraits/joseph-tabalon-960.webp 960w',
+  'The portrait must offer appropriately sized resources before hydration.',
+);
+assert.equal(readAttribute(heroPortrait, 'sizes'), '(min-width: 768px) 280px, 148px');
+assert.equal(readAttribute(heroPortrait, 'width'), '1024');
+assert.equal(readAttribute(heroPortrait, 'height'), '1024');
+
+const webFonts = [
+  ['Inter_400Regular', 'inter-400-latin.woff2'],
+  ['Inter_500Medium', 'inter-500-latin.woff2'],
+  ['Inter_600SemiBold', 'inter-600-latin.woff2'],
+  ['JetBrainsMono_400Regular', 'jetbrains-mono-400-latin.woff2'],
+  ['JetBrainsMono_500Medium', 'jetbrains-mono-500-latin.woff2'],
+];
+let fontBytes = 0;
+for (const [family, filename] of webFonts) {
+  const href = `/fonts/${filename}`;
+  assert.ok(
+    indexHtml.includes(`font-family:"${family}";src:url("${href}");font-display:swap`),
+    `${family} must be available without JavaScript and allow readable fallback text.`,
+  );
+  const preload = findTag('link', 'href', href);
+  assert.equal(readAttribute(preload, 'rel'), 'preload');
+  assert.equal(readAttribute(preload, 'as'), 'font');
+  const font = await readFile(new URL(`../dist${href}`, import.meta.url));
+  assert.equal(font.toString('ascii', 0, 4), 'wOF2', `${filename} must be WOFF2.`);
+  assert.equal(font.readUInt32BE(8), font.length, 'WOFF2 length must match its header.');
+  fontBytes += font.length;
+}
+assert.ok(fontBytes < 150 * 1024, 'Keep combined web-font delivery below 150 KiB.');
+assert.doesNotMatch(indexHtml, /\.ttf\b/, 'The web page must not preload native TTF resources.');
 
 const descriptionTag = findTag('meta', 'name', 'description');
 assert.equal(readAttribute(descriptionTag, 'content'), description);
@@ -130,6 +163,42 @@ assert.deepEqual(readPngSize(socialPreview), { width: 1200, height: 630 });
 
 const portrait = await readFile(new URL('../dist/joseph-tabalon.png', import.meta.url));
 assert.deepEqual(readPngSize(portrait), { width: 1024, height: 1024 });
+
+function readWebpSize(image) {
+  assert.equal(image.toString('ascii', 0, 4), 'RIFF');
+  assert.equal(image.toString('ascii', 8, 12), 'WEBP');
+  for (let offset = 12; offset + 8 <= image.length;) {
+    const chunk = image.toString('ascii', offset, offset + 4);
+    const length = image.readUInt32LE(offset + 4);
+    const data = offset + 8;
+    assert.ok(data + length <= image.length, 'WebP chunks must fit in the file.');
+    if (chunk === 'VP8 ') {
+      assert.equal(image.toString('hex', data + 3, data + 6), '9d012a');
+      return {
+        width: image.readUInt16LE(data + 6) & 0x3fff,
+        height: image.readUInt16LE(data + 8) & 0x3fff,
+      };
+    }
+    if (chunk === 'VP8L') {
+      assert.equal(image[data], 0x2f);
+      const bits = image.readUInt32LE(data + 1);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === 'VP8X') {
+      return { width: image.readUIntLE(data + 4, 3) + 1, height: image.readUIntLE(data + 7, 3) + 1 };
+    }
+    offset = data + length + (length % 2);
+  }
+  assert.fail('The responsive portrait must contain WebP image dimensions.');
+}
+
+for (const width of [320, 640, 960]) {
+  const image = await readFile(
+    new URL(`../dist/portraits/joseph-tabalon-${width}.webp`, import.meta.url),
+  );
+  assert.deepEqual(readWebpSize(image), { width, height: width });
+  assert.ok(image.length < 200 * 1024, 'Responsive portrait resources must stay below 200 KiB.');
+}
 
 const vercelConfig = JSON.parse(
   await readFile(new URL('../vercel.json', import.meta.url), 'utf8'),
