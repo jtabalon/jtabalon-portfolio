@@ -1,0 +1,179 @@
+{
+  "sourceRevision": "2511ba6ba41fb3c69ae681acd852ec4279df875a",
+  "observedAt": "2026-10-23T16:27:59.544Z",
+  "browser": "156.0.8078.48",
+  "resources": [
+    {
+      "path": "/portraits/joseph-tabalon-320.webp",
+      "status": 200,
+      "type": "image/webp",
+      "decodedBytes": 20508,
+      "sha256": "a599e38a4e4ec70ec1b20ce27e005dac62387c36fc7b6f720ca7760380fbd434"
+    },
+    {
+      "path": "/portraits/joseph-tabalon-640.webp",
+      "status": 200,
+      "type": "image/webp",
+      "decodedBytes": 54844,
+      "sha256": "9ea690e5ca6c47bc4c7032c07e36c281e6113e6e2019064d69de44fe0fed1f33"
+    },
+    {
+      "path": "/portraits/joseph-tabalon-960.webp",
+      "status": 200,
+      "type": "image/webp",
+      "decodedBytes": 106850,
+      "sha256": "05ae5bd361c64eb10c6955f3a2587cc358f376e76c2c2282b0dfb3805ecdd2f2"
+    },
+    {
+      "path": "/fonts/inter-400-latin.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "decodedBytes": 31564,
+      "sha256": "54bbfcad161fa584f6345eb428ad574bb8899fc0ba11dc57822da0b4005770dc"
+    },
+    {
+      "path": "/fonts/inter-500-latin.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "decodedBytes": 32304,
+      "sha256": "58ab07f3e3329051a439c1f5cf85a31d72942541eb5ccaa5103d912fbb3cfb9c"
+    },
+    {
+      "path": "/fonts/inter-600-latin.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "decodedBytes": 32620,
+      "sha256": "13678715315de636e0172025ae99f3ad4f13155e06f09347467711e330c39ff7"
+    },
+    {
+      "path": "/fonts/jetbrains-mono-400-latin.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "decodedBytes": 21600,
+      "sha256": "1cdaf4a41e43cf513f7b04230af1f69800a775b84af8310b7f671c671a674e1f"
+    },
+    {
+      "path": "/fonts/jetbrains-mono-500-latin.woff2",
+      "status": 200,
+      "type": "font/woff2",
+      "decodedBytes": 22336,
+      "sha256": "cc04ce9cc78fcc6a2ef6a4d256f9a0eebfa66a85e363d8e37a84faaf414a5b7d"
+    },
+    {
+      "path": "/joseph-tabalon.png",
+      "status": 200,
+      "type": "image/png",
+      "decodedBytes": 1555683,
+      "sha256": "6c0b756325cd7c2ca23dba489565ec1d6e95de16ad031f47dcdbd7a854d2595f"
+    },
+    {
+      "path": "/social-preview.png",
+      "status": 200,
+      "type": "image/png",
+      "decodedBytes": 293126,
+      "sha256": "5bbb62a75574ecd3ef718428b0ff5261ea4d53e3fd9954fa2af2493b62bbca35"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "type": "text/plain; charset=utf-8",
+      "decodedBytes": 77,
+      "sha256": "0af0875395b98ebd8a88b630d1f86e930507f44dc466fbc9a0cb89536d11e4ea"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "type": "application/xml",
+      "decodedBytes": 175,
+      "sha256": "f81e2c36d2457f02ed00240441e7aea71a99df878d07f5ac3e378741a91231a0"
+    }
+  ],
+  "initialHTML": {
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "sha256": "5dd651ac251b2995c9408386a8e8a267a0bd0b0b9a8ace8863769ba562f22d5a",
+    "canonical": "https://www.josephtabalonjr.com/",
+    "fontPreloads": 5,
+    "mailLinks": 2,
+    "rawResponsiveImage": true,
+    "noJavaScript": {
+      "image": {
+        "complete": true,
+        "naturalWidth": 148,
+        "src": "/portraits/joseph-tabalon-640.webp",
+        "width": 148,
+        "height": 148
+      },
+      "headings": [
+        "Joseph Tabalon",
+        "Published Work",
+        "Career Snapshot",
+        "About",
+        "Contact"
+      ],
+      "landmarks": [
+        {
+          "tag": "header",
+          "count": 1
+        },
+        {
+          "tag": "nav",
+          "count": 1
+        },
+        {
+          "tag": "main",
+          "count": 1
+        },
+        {
+          "tag": "footer",
+          "count": 1
+        }
+      ],
+      "overflow": false
+    }
+  },
+  "localNavigationFollowup": {
+    "measuredRevision": "6f0c3658d7ca7fe9a30d94f46e3916d76fc033ec",
+    "finalSourceRevision": "6dfb007d86e6dfac964ffb8576b1c429ffba3055",
+    "compressors": {
+      "gzipLevel": 6,
+      "brotliQuality": 11
+    },
+    "measured6f": {
+      "bundle": "entry-606695d801b1a13a67addfa00501b1cb.js",
+      "raw": 1132866,
+      "gzip": 307806,
+      "brotli": 244484,
+      "sha256": "b8dd30a829f6b4a5aa370a98e9e269999dd27f1568356e5e82f8bb18a8de3319"
+    },
+    "final": {
+      "bundle": "entry-fee4b682ae2497b800e92d1ef7294e64.js",
+      "raw": 1133266,
+      "gzip": 308101,
+      "brotli": 244603,
+      "sha256": "c9fcc3b4e834eaf425eee60b772d779ba91f7b2cdfc7951c6c391805aa4e9c5a"
+    },
+    "delta": {
+      "raw": 400,
+      "gzip": 295,
+      "brotli": 119
+    },
+    "limitation": "Byte-only follow-up. Matched Lighthouse timing remains pinned to measured 6f revision."
+  },
+  "independentFirefox": {
+    "sourceRevision": "6dfb007d86e6dfac964ffb8576b1c429ffba3055",
+    "command": "NAVIGATION_BROWSER=firefox bun tests/navigation.mjs",
+    "groupsPassed": 8,
+    "exitCode": 0,
+    "scope": [
+      "390,820,1440: reduced and normal motion",
+      "no JavaScript",
+      "modified clicks on macOS"
+    ]
+  },
+  "limits": [
+    "No Lighthouse timing was rerun or attributed to this final navigation guard.",
+    "This is a protected preview; production verification remains required.",
+    "No authentication URL, state, cookie or token is included."
+  ]
+}
