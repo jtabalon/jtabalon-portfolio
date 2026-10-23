@@ -24,6 +24,8 @@ try {
     for (const width of [320, 390, 768, 820, 912, 1024, 1440]) {
       const name = `contact-${width}-${scale * 100}pct`;
       const page = await browser.newPage({ viewport: { width, height: 1000 }, reducedMotion: 'reduce' });
+      const applicationErrors = [];
+      page.on('pageerror', (error) => applicationErrors.push(error.message));
       try {
         await page.goto(server.url.href);
         await page.evaluate(() => document.fonts.ready);
@@ -80,6 +82,7 @@ try {
         assert(await linkedIn.evaluate(el => el === document.activeElement), 'LinkedIn follows Email me in keyboard order');
         await page.keyboard.press('Shift+Tab');
         assert(await email.evaluate(el => el === document.activeElement), 'Email me is keyboard reachable');
+        assert.deepEqual(applicationErrors, [], 'Contact interaction must not throw application errors');
         console.log(`PASS ${name}`);
       } catch (error) {
         failures++;

@@ -6,8 +6,8 @@ The public experience is a single page at `/`. Its content is versioned with the
 
 ## Local workflow
 
-Use Node 24.x and Bun 1.3.10 or newer. The dependency refresh was verified on
-Node 24.14; the release build logs its exact Node and Bun versions.
+Use Node 24.x and Bun 1.3.10 or newer. Node 24.14 satisfies the current dependency
+engine ranges; the release build logs its exact Node and Bun versions.
 
 Install dependencies:
 
