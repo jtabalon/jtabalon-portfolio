@@ -1,11 +1,14 @@
 import assert from 'node:assert/strict';
 import { mkdir, readdir } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
-import { chromium } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 
 import { serveExport } from './helpers/serve-export.mjs';
 
 const exportRoot = resolve('dist');
+const browserName = process.env.ERROR_BROWSER ?? 'chromium';
+const browserType = { chromium, firefox, webkit }[browserName];
+assert(browserType, 'ERROR_BROWSER must be chromium, firefox, or webkit');
 const artifactDirectory = process.env.BROWSER_ARTIFACT_DIR;
 if (artifactDirectory) {
   for (const directory of ['dist', 'public']) {
@@ -73,7 +76,7 @@ try {
     }
   }
 
-  browser = await chromium.launch();
+  browser = await browserType.launch();
   for (const javaScriptEnabled of [true, false]) {
     for (const width of [320, 390, 768, 1440]) {
       const page = await browser.newPage({
