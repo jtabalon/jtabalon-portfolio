@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
-import { Link, type Href } from 'expo-router';
+import { useEffect, type ReactNode } from 'react';
+import { Link, useLocalSearchParams, type Href } from 'expo-router';
 import Head from 'expo-router/head';
-import { Pressable, Text, View } from 'react-native';
+import { Platform, Pressable, Text, View } from 'react-native';
 
 import { PortraitImage } from '@/components/portrait-image';
 import { SiteFrame } from '@/components/site-frame';
@@ -77,6 +77,16 @@ function SiteFooter() {
 }
 
 export default function HomeRoute() {
+  const { '#': fragment } = useLocalSearchParams<{ '#': string }>();
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !fragment) return;
+    // The router commits during history navigation, before the browser finishes
+    // restoring focus. Run on the next frame so that restoration cannot undo it.
+    const frame = requestAnimationFrame(() => scrollToSection(fragment));
+    return () => cancelAnimationFrame(frame);
+  }, [fragment]);
+
   const profilePageStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',

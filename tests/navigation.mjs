@@ -10,11 +10,28 @@ assert(browserType, 'NAVIGATION_BROWSER must be chromium, firefox, or webkit');
 let browser;
 
 async function load(page, hash = '') {
+  // A direct fragment load starts a new document, rather than mutating the hash
+  // of the previous scenario's already-hydrated route.
+  await page.goto('about:blank');
   await page.goto(`${server.url.href}${hash}`, { waitUntil: 'networkidle' });
-  await page.evaluate(() => document.fonts.ready);
+  assert.equal(await page.evaluate(() => document.fonts.status), 'loaded', 'Font requests have settled before navigation checks');
 }
 
-async function checkDestination(page, id, nextLink) {
+async function enterFirefoxScroller(page) {
+  if (engine !== 'firefox') return;
+  // Firefox exposes overflow scrollers to the keyboard without an explicit
+  // tabindex. Preserve that native affordance before asserting link order.
+  await page.keyboard.press('Tab');
+  assert(await page.evaluate(() => {
+    const element = document.activeElement;
+    return element.tagName === 'DIV'
+      && !element.hasAttribute('tabindex')
+      && element.scrollHeight > element.clientHeight
+      && getComputedStyle(element).overflowY === 'auto';
+  }), 'Firefox retains its native keyboard-focusable scroll container');
+}
+
+async function checkDestination(page, id, nextLink, { keyboard = true } = {}) {
   const section = page.locator(`#${id}`);
   const heading = section.getByRole('heading').first();
   await page.waitForFunction(expected => location.hash === `#${expected}`, id);
@@ -22,10 +39,12 @@ async function checkDestination(page, id, nextLink) {
   assert.equal(await heading.getAttribute('tabindex'), '-1', `${id}: heading stays outside sequential Tab order`);
   const bounds = await heading.boundingBox();
   assert(bounds && bounds.y >= 0 && bounds.y < page.viewportSize().height, `${id}: focused heading is visible`);
-  assert(await heading.evaluate(el => {
-    const css = getComputedStyle(el);
-    return css.outlineStyle !== 'none' && parseFloat(css.outlineWidth) >= 2;
-  }), `${id}: keyboard destination has a visible focus indicator`);
+  if (keyboard) {
+    assert(await heading.evaluate(el => {
+      const css = getComputedStyle(el);
+      return css.outlineStyle !== 'none' && parseFloat(css.outlineWidth) >= 2;
+    }), `${id}: keyboard destination has a visible focus indicator`);
+  }
   await page.keyboard.press('Tab');
   assert(await nextLink.evaluate(el => el === document.activeElement), `${id}: next Tab continues in document order`);
   assert.equal(await heading.getAttribute('tabindex'), null, `${id}: temporary focusability is removed on blur`);
@@ -44,6 +63,7 @@ try {
           const nav = page.getByRole('navigation');
           const link = nav.getByRole('link').nth(index);
           assert.equal(await link.getAttribute('href'), `/#${id}`);
+          await enterFirefoxScroller(page);
           for (let tab = 0; tab <= index; tab++) await page.keyboard.press('Tab');
           assert(await link.evaluate(el => el === document.activeElement), `${id}: reachable from initial Tab order`);
           await page.keyboard.press('Enter');
@@ -78,6 +98,41 @@ try {
         }
 
         if (width === 390 && reducedMotion === 'reduce') {
+          await load(page, '#work');
+          // Native fragment changes (such as editing the address bar) and browser
+          // history must survive the router's update of the current document.
+          await page.evaluate(() => { location.hash = '#about'; });
+          await page.waitForFunction(() => {
+            const heading = document.querySelector('#about h2');
+            const bounds = heading.getBoundingClientRect();
+            return bounds.top >= 0 && bounds.top < innerHeight;
+          });
+          await checkDestination(page, 'about', page.locator('#contact').getByRole('link', { name: 'Email me', exact: true }));
+
+          await page.evaluate(() => { location.hash = '#contact'; });
+          await page.waitForFunction(() => document.querySelector('#contact h2') === document.activeElement);
+          await checkDestination(page, 'contact', page.locator('#contact').getByRole('link', { name: 'Email me', exact: true }));
+          await page.evaluate(() => { history.back(); });
+          await page.waitForFunction(() => location.hash === '#about' && document.querySelector('#about h2') === document.activeElement);
+          await checkDestination(page, 'about', page.locator('#contact').getByRole('link', { name: 'Email me', exact: true }));
+          await page.evaluate(() => { history.forward(); });
+          await page.waitForFunction(() => location.hash === '#contact' && document.querySelector('#contact h2') === document.activeElement);
+          await checkDestination(page, 'contact', page.locator('#contact').getByRole('link', { name: 'Email me', exact: true }));
+          await page.getByRole('navigation').getByRole('link', { name: 'Contact', exact: true }).click();
+          await checkDestination(page, 'contact', page.locator('#contact').getByRole('link', { name: 'Email me', exact: true }), { keyboard: false });
+
+          for (const [label, id] of [
+            ['Work', 'work'], ['About', 'about'], ['Contact', 'contact'],
+            ['View the published work', 'work'], ['Back to top', 'top'],
+          ]) {
+            await load(page);
+            await page.getByRole('link', { name: label, exact: true }).click();
+            const nextLink = id === 'work'
+              ? page.locator('#work').getByRole('link').first()
+              : page.locator(id === 'top' ? '#top' : '#contact').getByRole('link', { name: 'Email me', exact: true });
+            await checkDestination(page, id, nextLink, { keyboard: false });
+          }
+
           await load(page);
           const controls = [
             ...await page.getByRole('navigation').getByRole('link').all(),
@@ -88,6 +143,7 @@ try {
             page.locator('#contact').getByRole('link', { name: 'LinkedIn', exact: true }),
             backToTop,
           ];
+          await enterFirefoxScroller(page);
           for (const control of controls) {
             await page.keyboard.press('Tab');
             assert(await control.evaluate(el => el === document.activeElement), `Normal Tab order reaches ${await control.innerText()}`);
@@ -135,6 +191,7 @@ try {
       assert(bounds && bounds.y >= 0 && bounds.y < noJS.viewportSize().height, `${id}: direct fragment load remains usable without JavaScript`);
     }
     await load(noJS);
+    await enterFirefoxScroller(noJS);
     for (let tab = 0; tab < 3; tab++) await noJS.keyboard.press('Tab');
     await noJS.keyboard.press('Enter');
     await noJS.keyboard.press('Tab');
