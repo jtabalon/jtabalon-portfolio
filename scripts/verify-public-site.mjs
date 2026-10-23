@@ -12,8 +12,20 @@ function findTag(tagName, key, value, html = indexHtml) {
 }
 
 function readAttribute(tag, attribute) {
-  return tag?.match(new RegExp(`${attribute}="([^"]*)"`))?.[1];
+  return tag?.match(new RegExp(`(?:^|\\s)${attribute}\\s*=\\s*(["'])(.*?)\\1`, 'is'))?.[2];
 }
+
+function robotsDirectives(html) {
+  return (html.match(/<meta\b[^>]*>/gi) ?? [])
+    .filter(tag => readAttribute(tag, 'name')?.toLowerCase() === 'robots')
+    .flatMap(tag => (readAttribute(tag, 'content') ?? '').toLowerCase().split(/[\s,]+/))
+    .filter(Boolean);
+}
+
+assert.ok(
+  !robotsDirectives(indexHtml).some(directive => ['noindex', 'none'].includes(directive)),
+  'The homepage must remain indexable in its initial HTML.',
+);
 
 assert.match(
   indexHtml,
@@ -144,6 +156,11 @@ await assert.rejects(
 );
 
 const missingPageHtml = await readFile(new URL('../dist/404.html', import.meta.url), 'utf8');
+assert.equal(
+  missingPageHtml,
+  await readFile(new URL('../dist/+not-found.html', import.meta.url), 'utf8'),
+  'The hosting fallback must match the exported recovery document after normalization.',
+);
 assert.match(
   missingPageHtml,
   /<title[^>]*>Page not found \| Joseph Tabalon<\/title>/,
@@ -161,14 +178,18 @@ assert.match(
 );
 
 const exportDirectory = new URL('../dist/', import.meta.url);
-const exportedPages = (await readdir(exportDirectory, { recursive: true }))
-  .filter((filename) => filename.endsWith('.html') && filename !== 'index.html');
+const htmlPages = (await readdir(exportDirectory, { recursive: true }))
+  .filter(filename => /\.html?$/i.test(filename));
+assert.deepEqual(
+  htmlPages.sort(),
+  ['+not-found.html', '404.html', 'index.html'],
+  'Only the homepage and its generated recovery aliases belong in the static export; reject stale routes.',
+);
+const exportedPages = htmlPages.filter(filename => filename !== 'index.html');
 for (const filename of exportedPages) {
   const html = await readFile(new URL(filename, exportDirectory), 'utf8');
-  const robots = findTag('meta', 'name', 'robots', html);
-  assert.match(
-    readAttribute(robots, 'content') ?? '',
-    /\bnoindex\b/,
+  assert.ok(
+    robotsDirectives(html).includes('noindex'),
     `${filename} must remain outside indexing, including when served directly.`,
   );
 }

@@ -30,7 +30,10 @@ function assertMissingPage(response, html, pathname) {
     `${pathname} must return an HTML error document`);
   assert.match(html, /<title[^>]*>Page not found \| Joseph Tabalon<\/title>/,
     `${pathname} must have a useful missing-page title before hydration`);
-  assert.match(html, /<meta\b[^>]*name="robots"[^>]*content="[^"]*\bnoindex\b/,
+  const robots = (html.match(/<meta\b[^>]*>/gi) ?? [])
+    .filter(tag => /\sname\s*=\s*(["'])robots\1/i.test(tag))
+    .flatMap(tag => (tag.match(/\scontent\s*=\s*(["'])(.*?)\1/is)?.[2] ?? '').toLowerCase().split(/[\s,]+/));
+  assert(robots.includes('noindex'),
     `${pathname} must remain outside indexing`);
   assert.match(html, /<a\b[^>]*href="\/"[^>]*>[\s\S]*?Return to homepage[\s\S]*?<\/a>/,
     `${pathname} must have a real homepage recovery link`);

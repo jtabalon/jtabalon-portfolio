@@ -33,7 +33,7 @@ Create a static web export:
 bun run build:web
 ```
 
-The export command also verifies the initial HTML, search and sharing metadata, structured public identity, discovery files, public images, and canonical redirect configuration.
+The export command also verifies the initial HTML, search and sharing metadata, structured public identity, discovery files, public images, and canonical redirect configuration. It rejects a non-indexable homepage, malformed error indexing directives, unintended HTML routes, and recovery aliases that differ from the normalized fallback.
 
 After a production deployment, complete the [SEO release checklist](./docs/seo-release-checklist.md).
 
@@ -73,8 +73,9 @@ prominence, Secondary link presentation, hit targets, and keyboard order. Text
 sizes and line heights are doubled without widening the viewport; this is a
 Contact text-reflow simulation, not browser zoom or a whole-site accessibility audit.
 
-The other suites cover responsive portrait selection, readable content when fonts
-fail or JavaScript is disabled, useful HTTP 404 recovery, page landmarks, and
+The other suites cover responsive portrait selection, reading and contact while
+fonts are pending or fail, reserved portrait layout when its image is missing,
+JavaScript-disabled access, useful HTTP 404 recovery, page landmarks, and
 section focus through ordinary links, fragments, and browser history. Each suite
 fails on its captured application exceptions.
 
