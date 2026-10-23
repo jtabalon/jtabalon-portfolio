@@ -14,7 +14,13 @@ The current [Vercel custom-404 guide](https://vercel.com/kb/guide/custom-404-pag
 - The 320-pixel and desktop screenshots were visually inspected, including the visible recovery-link focus ring. Screenshots remain local under `output/playwright/missing-page/` and are excluded from the export and commit.
 - A controlled local failure temporarily removed `dist/404.html`. The regression correctly failed with exit 1 because the missing path no longer returned the useful HTML document. The fallback was restored, and export verification passed again.
 
-The browser check waits for document fonts and idle loading before beginning keyboard navigation. Its trial pointer check occurs after initial Tab focus, because scrolling an element into view can change the browser's sequential-focus starting point. The test does not add synthetic focus to the recovery link.
+The browser check waits for idle loading, then inspects the synchronous font-set status before beginning keyboard navigation. It avoids awaiting `document.fonts.ready` across no-JavaScript browser contexts, which can leave an evaluation pending in some engines. Its trial pointer check occurs after initial Tab focus, because scrolling an element into view can change the browser's sequential-focus starting point. The test does not add synthetic focus to the recovery link.
+
+## WebKit follow-up
+
+Running the same exported-site checks with Playwright's WebKit engine reproduced a recovery difference: its default macOS Tab mode skipped the plain text anchor, whereas the homepage's Pressable-backed links remained in ordinary Tab order. The recovery link now uses the same `Link asChild` plus `Pressable` shape as the homepage, retaining its real `/` anchor and text-only Secondary link presentation. Its generated anchor has `tabindex="0"`, and no JavaScript event is required for recovery.
+
+After this change, WebKit reaches and activates the recovery link using Tab and Enter. Chromium's eight enabled/disabled-JavaScript scenarios continue to pass. WebKit's subsequent console check also exposed a separate NativeWind stylesheet-initialization exception, recorded and repaired separately; reaching the homepage is not by itself reported as a clean WebKit application run.
 
 ## Hosted verification
 

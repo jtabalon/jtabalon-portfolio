@@ -29,7 +29,7 @@ function assertMissingPage(response, html, pathname) {
     `${pathname} must have a useful missing-page title before hydration`);
   assert.match(html, /<meta\b[^>]*name="robots"[^>]*content="[^"]*\bnoindex\b/,
     `${pathname} must remain outside indexing`);
-  assert.match(html, /<a\b[^>]*href="\/"[^>]*>Return to homepage<\/a>/,
+  assert.match(html, /<a\b[^>]*href="\/"[^>]*>[\s\S]*?Return to homepage[\s\S]*?<\/a>/,
     `${pathname} must have a real homepage recovery link`);
 }
 
@@ -85,8 +85,9 @@ try {
       try {
         const response = await page.goto(new URL('/__missing-page-regression__/nested?source=browser', baseUrl).href);
         assert.equal(response.status(), 404);
-        await page.evaluate(() => document.fonts.ready);
         await page.waitForLoadState('networkidle');
+        assert.equal(await page.evaluate(() => document.fonts.status), 'loaded',
+          'Fonts settle before keyboard verification');
         await page.getByRole('heading', { name: 'Page not found', level: 1, exact: true }).waitFor();
         assert.equal(await page.getByRole('main').count(), 1, 'The error explanation has one main landmark');
         const recovery = page.getByRole('link', { name: 'Return to homepage', exact: true });

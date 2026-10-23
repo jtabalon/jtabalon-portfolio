@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import Head from 'expo-router/head';
-import { ScrollView, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { publicSiteContent } from '@/data/public-site-content';
@@ -33,10 +33,12 @@ export default function NotFoundRoute() {
                 homepage to view my work or get in touch.
               </Text>
               <View className="items-start pt-2">
-                <Link
-                  href="/"
-                  className="rounded-md py-2 font-body-medium text-base text-ink underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas">
-                  Return to homepage
+                <Link href="/" asChild>
+                  <Pressable className="cursor-pointer rounded-md py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas">
+                    <Text className="font-body-medium text-base text-ink underline">
+                      Return to homepage
+                    </Text>
+                  </Pressable>
                 </Link>
               </View>
             </View>

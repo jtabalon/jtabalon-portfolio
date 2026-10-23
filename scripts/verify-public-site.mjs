@@ -156,7 +156,7 @@ assert.match(
 );
 assert.match(
   missingPageHtml,
-  /<a\b[^>]*href="\/"[^>]*>Return to homepage<\/a>/,
+  /<a\b[^>]*href="\/"[^>]*>[\s\S]*?Return to homepage[\s\S]*?<\/a>/,
   'Missing-page recovery must work through a real homepage link without JavaScript.',
 );
 
