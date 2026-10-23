@@ -1,19 +1,31 @@
 import assert from 'node:assert/strict';
-import { access, readFile } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 
 const indexHtml = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const canonicalUrl = 'https://www.josephtabalonjr.com';
 const description =
   'Senior Data Scientist building machine-learning systems from rigorous modeling and evaluation through reliable, secure deployment.';
 
-function findTag(tagName, key, value) {
-  const tags = indexHtml.match(new RegExp(`<${tagName}\\b[^>]*>`, 'g')) ?? [];
+function findTag(tagName, key, value, html = indexHtml) {
+  const tags = html.match(new RegExp(`<${tagName}\\b[^>]*>`, 'g')) ?? [];
   return tags.find((tag) => tag.includes(`${key}="${value}"`));
 }
 
 function readAttribute(tag, attribute) {
-  return tag?.match(new RegExp(`${attribute}="([^"]*)"`))?.[1];
+  return tag?.match(new RegExp(`(?:^|\\s)${attribute}\\s*=\\s*(["'])(.*?)\\1`, 'is'))?.[2];
 }
+
+function robotsDirectives(html) {
+  return (html.match(/<meta\b[^>]*>/gi) ?? [])
+    .filter(tag => readAttribute(tag, 'name')?.toLowerCase() === 'robots')
+    .flatMap(tag => (readAttribute(tag, 'content') ?? '').toLowerCase().split(/[\s,]+/))
+    .filter(Boolean);
+}
+
+assert.ok(
+  !robotsDirectives(indexHtml).some(directive => ['noindex', 'none'].includes(directive)),
+  'The homepage must remain indexable in its initial HTML.',
+);
 
 assert.match(
   indexHtml,
@@ -29,9 +41,56 @@ assert.match(
 const heroPortrait = findTag('img', 'alt', 'Portrait of Joseph Tabalon');
 assert.equal(
   readAttribute(heroPortrait, 'src'),
-  '/joseph-tabalon.png',
+  '/portraits/joseph-tabalon-640.webp',
   'The initial homepage HTML must contain its portrait.',
 );
+assert.equal(
+  readAttribute(heroPortrait, 'srcSet') ?? readAttribute(heroPortrait, 'srcset'),
+  '/portraits/joseph-tabalon-320.webp 320w, /portraits/joseph-tabalon-640.webp 640w, /portraits/joseph-tabalon-960.webp 960w',
+  'The portrait must offer appropriately sized resources before hydration.',
+);
+assert.equal(readAttribute(heroPortrait, 'sizes'), '(min-width: 768px) 280px, 148px');
+assert.equal(readAttribute(heroPortrait, 'width'), '1024');
+assert.equal(readAttribute(heroPortrait, 'height'), '1024');
+
+for (const href of [
+  'https://doi.org/10.1148/ryai.2021210211',
+  'https://github.com/jtabalon/LungQuant',
+  'https://github.com/jtabalon',
+  'https://www.linkedin.com/in/josephtabalonjr',
+]) {
+  const link = findTag('a', 'href', href);
+  assert.equal(readAttribute(link, 'target'), '_blank',
+    `${href} must preserve the declared new-tab behavior before hydration.`);
+  const relationships = (readAttribute(link, 'rel') ?? '').toLowerCase().split(/\s+/);
+  assert(relationships.includes('noopener') && relationships.includes('noreferrer'),
+    `${href} must isolate its new browsing context.`);
+}
+
+const webFonts = [
+  ['Inter_400Regular', 'inter-400-latin.woff2'],
+  ['Inter_500Medium', 'inter-500-latin.woff2'],
+  ['Inter_600SemiBold', 'inter-600-latin.woff2'],
+  ['JetBrainsMono_400Regular', 'jetbrains-mono-400-latin.woff2'],
+  ['JetBrainsMono_500Medium', 'jetbrains-mono-500-latin.woff2'],
+];
+let fontBytes = 0;
+for (const [family, filename] of webFonts) {
+  const href = `/fonts/${filename}`;
+  assert.ok(
+    indexHtml.includes(`font-family:"${family}";src:url("${href}");font-display:swap`),
+    `${family} must be available without JavaScript and allow readable fallback text.`,
+  );
+  const preload = findTag('link', 'href', href);
+  assert.equal(readAttribute(preload, 'rel'), 'preload');
+  assert.equal(readAttribute(preload, 'as'), 'font');
+  const font = await readFile(new URL(`../dist${href}`, import.meta.url));
+  assert.equal(font.toString('ascii', 0, 4), 'wOF2', `${filename} must be WOFF2.`);
+  assert.equal(font.readUInt32BE(8), font.length, 'WOFF2 length must match its header.');
+  fontBytes += font.length;
+}
+assert.ok(fontBytes < 150 * 1024, 'Keep combined web-font delivery below 150 KiB.');
+assert.doesNotMatch(indexHtml, /\.ttf\b/, 'The web page must not preload native TTF resources.');
 
 const descriptionTag = findTag('meta', 'name', 'description');
 assert.equal(readAttribute(descriptionTag, 'content'), description);
@@ -110,6 +169,45 @@ await assert.rejects(
   'Expo’s diagnostic sitemap must not be published.',
 );
 
+const missingPageHtml = await readFile(new URL('../dist/404.html', import.meta.url), 'utf8');
+assert.equal(
+  missingPageHtml,
+  await readFile(new URL('../dist/+not-found.html', import.meta.url), 'utf8'),
+  'The hosting fallback must match the exported recovery document after normalization.',
+);
+assert.match(
+  missingPageHtml,
+  /<title[^>]*>Page not found \| Joseph Tabalon<\/title>/,
+  'The missing-page experience must have a useful title before hydration.',
+);
+assert.match(
+  missingPageHtml,
+  /<main\b|\brole="main"/,
+  'The missing-page explanation must have a main landmark.',
+);
+assert.match(
+  missingPageHtml,
+  /<a\b[^>]*href="\/"[^>]*>[\s\S]*?Return to homepage[\s\S]*?<\/a>/,
+  'Missing-page recovery must work through a real homepage link without JavaScript.',
+);
+
+const exportDirectory = new URL('../dist/', import.meta.url);
+const htmlPages = (await readdir(exportDirectory, { recursive: true }))
+  .filter(filename => /\.html?$/i.test(filename));
+assert.deepEqual(
+  htmlPages.sort(),
+  ['+not-found.html', '404.html', 'index.html'],
+  'Only the homepage and its generated recovery aliases belong in the static export; reject stale routes.',
+);
+const exportedPages = htmlPages.filter(filename => filename !== 'index.html');
+for (const filename of exportedPages) {
+  const html = await readFile(new URL(filename, exportDirectory), 'utf8');
+  assert.ok(
+    robotsDirectives(html).includes('noindex'),
+    `${filename} must remain outside indexing, including when served directly.`,
+  );
+}
+
 function readPngSize(image) {
   assert.deepEqual(
     [...image.subarray(0, 8)],
@@ -130,6 +228,42 @@ assert.deepEqual(readPngSize(socialPreview), { width: 1200, height: 630 });
 
 const portrait = await readFile(new URL('../dist/joseph-tabalon.png', import.meta.url));
 assert.deepEqual(readPngSize(portrait), { width: 1024, height: 1024 });
+
+function readWebpSize(image) {
+  assert.equal(image.toString('ascii', 0, 4), 'RIFF');
+  assert.equal(image.toString('ascii', 8, 12), 'WEBP');
+  for (let offset = 12; offset + 8 <= image.length;) {
+    const chunk = image.toString('ascii', offset, offset + 4);
+    const length = image.readUInt32LE(offset + 4);
+    const data = offset + 8;
+    assert.ok(data + length <= image.length, 'WebP chunks must fit in the file.');
+    if (chunk === 'VP8 ') {
+      assert.equal(image.toString('hex', data + 3, data + 6), '9d012a');
+      return {
+        width: image.readUInt16LE(data + 6) & 0x3fff,
+        height: image.readUInt16LE(data + 8) & 0x3fff,
+      };
+    }
+    if (chunk === 'VP8L') {
+      assert.equal(image[data], 0x2f);
+      const bits = image.readUInt32LE(data + 1);
+      return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === 'VP8X') {
+      return { width: image.readUIntLE(data + 4, 3) + 1, height: image.readUIntLE(data + 7, 3) + 1 };
+    }
+    offset = data + length + (length % 2);
+  }
+  assert.fail('The responsive portrait must contain WebP image dimensions.');
+}
+
+for (const width of [320, 640, 960]) {
+  const image = await readFile(
+    new URL(`../dist/portraits/joseph-tabalon-${width}.webp`, import.meta.url),
+  );
+  assert.deepEqual(readWebpSize(image), { width, height: width });
+  assert.ok(image.length < 200 * 1024, 'Responsive portrait resources must stay below 200 KiB.');
+}
 
 const vercelConfig = JSON.parse(
   await readFile(new URL('../vercel.json', import.meta.url), 'utf8'),
