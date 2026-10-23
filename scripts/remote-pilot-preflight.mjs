@@ -37,7 +37,7 @@ const tools = [
 ];
 function run(command, arguments_) {
   return spawnSync(command, arguments_, {
-    encoding: 'utf8', timeout: timeoutMs, maxBuffer: 8192,
+    encoding: 'utf8', timeout: timeoutMs, killSignal: 'SIGKILL', maxBuffer: 8192,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
 }
