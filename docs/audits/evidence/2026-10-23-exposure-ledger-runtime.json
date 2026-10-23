@@ -1,0 +1,210 @@
+{
+  "assessmentRuns": [
+    {
+      "assessmentRunId": "a5c9d9b6-6182-458e-9af3-22458836a705",
+      "assetSnapshotId": null,
+      "case": "normal",
+      "errorCode": "unsupported_environment_marker",
+      "errorMessage": "selected dependency data has a marker that depends on fields not pinned by the Environment Profile: implementation_name",
+      "events": [
+        {
+          "occurredAt": "2026-10-23T16:01:02.477256+00:00",
+          "sequence": 1,
+          "status": "queued",
+          "type": "assessment.queued"
+        },
+        {
+          "occurredAt": "2026-10-23T16:01:02.523025+00:00",
+          "sequence": 2,
+          "status": "running",
+          "type": "assessment.started"
+        },
+        {
+          "code": "unsupported_environment_marker",
+          "occurredAt": "2026-10-23T16:01:02.946830+00:00",
+          "sequence": 3,
+          "status": "failed",
+          "type": "assessment.failed"
+        }
+      ],
+      "exposureCount": 0,
+      "httpStatus": 201,
+      "mode": "repository",
+      "observerWallSeconds": 2.225,
+      "policy": {
+        "actionLevel": "A1",
+        "assistanceClass": "C1",
+        "result": "allowed",
+        "ruleVersion": "assessment-request-v1",
+        "standardVersion": "0.1"
+      },
+      "request": {
+        "commit": "a6d20b9914cb8ea3ffb9a09748c619efd894f585",
+        "environmentProfile": {
+          "architecture": "arm64",
+          "operatingSystem": "macos",
+          "pythonVersion": "3.12.12",
+          "selectedExtras": []
+        },
+        "lockfilePath": "uv.lock",
+        "mode": "repository",
+        "projectRoot": "apps/api",
+        "repository": "https://github.com/jtabalon/exposure-ledger"
+      },
+      "revisionCount": 0,
+      "status": "failed",
+      "synthetic": false,
+      "workerCompletedAt": "2026-10-23T16:01:02.946830Z",
+      "workerIntervalSeconds": 0.423805,
+      "workerStartedAt": "2026-10-23T16:01:02.523025Z"
+    },
+    {
+      "assessmentRunId": "ab28d03b-aba0-4925-8874-d098704cbb0e",
+      "assetSnapshotId": null,
+      "case": "failure",
+      "errorCode": "synthetic_worker_failure",
+      "errorMessage": "Synthetic worker failure requested for contract verification.",
+      "events": [
+        {
+          "occurredAt": "2026-10-23T16:00:55.623154+00:00",
+          "sequence": 1,
+          "status": "queued",
+          "type": "assessment.queued"
+        },
+        {
+          "occurredAt": "2026-10-23T16:00:55.703343+00:00",
+          "sequence": 2,
+          "status": "running",
+          "type": "assessment.started"
+        },
+        {
+          "code": "synthetic_worker_failure",
+          "occurredAt": "2026-10-23T16:00:55.716668+00:00",
+          "sequence": 3,
+          "status": "failed",
+          "type": "assessment.failed"
+        }
+      ],
+      "exposureCount": 0,
+      "httpStatus": 201,
+      "mode": "synthetic",
+      "observerWallSeconds": 2.194,
+      "policy": {
+        "actionLevel": "A1",
+        "assistanceClass": "C1",
+        "result": "allowed",
+        "ruleVersion": "assessment-request-v1",
+        "standardVersion": "0.1"
+      },
+      "request": {
+        "mode": "synthetic",
+        "scenario": "worker_failure"
+      },
+      "revisionCount": 0,
+      "status": "failed",
+      "synthetic": true,
+      "workerCompletedAt": "2026-10-23T16:00:55.716668Z",
+      "workerIntervalSeconds": 0.013325,
+      "workerStartedAt": "2026-10-23T16:00:55.703343Z"
+    }
+  ],
+  "candidateRepository": "https://github.com/jtabalon/exposure-ledger",
+  "candidateRevision": "a6d20b9914cb8ea3ffb9a09748c619efd894f585",
+  "cleanup": {
+    "apiStopped": true,
+    "candidateSourceUnchanged": true,
+    "dockerDaemonLeftRunning": true,
+    "dockerDesktopStartedForThisAttempt": true,
+    "ownedDatabaseContainerNetworkAndVolumeRemoved": true,
+    "ownedGenerationModelUnloaded": true,
+    "preexistingDockerContainersResumedAutomaticallyAndLeftUntouched": true,
+    "workerStopped": true
+  },
+  "datePacific": "2026-10-23",
+  "environment": {
+    "architecture": "arm64",
+    "dockerCompose": "5.5.0",
+    "dockerServer": "20.10.12",
+    "ollama": "0.40.6",
+    "operatingSystem": "Darwin",
+    "python": "3.12.12",
+    "uv": "0.9.26"
+  },
+  "health": {
+    "embeddings": {
+      "code": null,
+      "message": "The explicitly configured local embedding artifact is ready.",
+      "setup": null,
+      "space": {
+        "artifactDigest": "sha256:ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "dimensions": 1024,
+        "identity": "sha256:2dd6532b5275a6e8025ed290dbb8f9c3f10f3dfd71c4429a8b3fc376550454d2",
+        "modelArtifact": "qwen3-embedding:0.6b",
+        "normalizer": "l2-v1",
+        "passageConstructionVersion": "source-aware-passage-v1",
+        "provider": "ollama-local",
+        "retrievalInstruction": "Represent this cybersecurity query for evidence passage retrieval: "
+      },
+      "status": "ready"
+    },
+    "generation": {
+      "code": null,
+      "message": "The explicitly configured local generation artifact is ready.",
+      "model": {
+        "artifactDigest": "sha256:17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+        "modelArtifact": "gpt-oss:20b",
+        "provider": "ollama-local"
+      },
+      "setup": null,
+      "status": "ready"
+    },
+    "status": "ok"
+  },
+  "limitations": [
+    "Normal repository Assessment rejected before creating an Asset Snapshot, Exposure, or Investigation Revision.",
+    "Synthetic worker-failure case does not invoke generation or demonstrate semantic abstention.",
+    "No candidate source or feature changes; no model downloads, paid providers, or new accounts."
+  ],
+  "realModelContract": {
+    "command": "make check-real-model",
+    "observations": [
+      {
+        "model_artifact": "gpt-oss:20b",
+        "outcome": "ready",
+        "phase": "readiness",
+        "prompt_version": "claims-recommendation-follow-up-v4-gptoss-low",
+        "wall_seconds": 0.019
+      },
+      {
+        "artifact_digest": "sha256:17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+        "budget_seconds": 120,
+        "generation_wall_seconds": 14.434,
+        "model_artifact": "gpt-oss:20b",
+        "outcome": "contract_passed",
+        "phase": "cold_candidate",
+        "prompt_version": "claims-recommendation-follow-up-v4-gptoss-low",
+        "residency_before": "unloaded"
+      },
+      {
+        "artifact_digest": "sha256:17052f91a42e97930aa6e28a6c6c06a983e6a58dbb00434885a0cf5313e376f7",
+        "budget_seconds": 120,
+        "generation_wall_seconds": 5.061,
+        "model_artifact": "gpt-oss:20b",
+        "outcome": "contract_passed",
+        "phase": "warm_candidate",
+        "prompt_version": "claims-recommendation-follow-up-v4-gptoss-low",
+        "residency_before": "loaded"
+      }
+    ],
+    "requestContract": {
+      "format": "application JSON Schema",
+      "promptVersion": "claims-recommendation-follow-up-v4-gptoss-low",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "think": "low"
+    },
+    "result": "1 passed in 19.94s",
+    "scope": "Controlled-passage structured-generation and citation-validation contract; not an end-to-end repository Investigation or general quality evaluation."
+  }
+}
