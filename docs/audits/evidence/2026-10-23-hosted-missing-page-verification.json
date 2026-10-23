@@ -1,0 +1,185 @@
+{
+  "revision": "6f0c3658d7ca7fe9a30d94f46e3916d76fc033ec",
+  "origin": "https://jtabalon-portfolio-vercel-a4ow05e1u-jtabalons-projects.vercel.app",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/__worker3_missing__",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/__worker3_missing__/nested?source=hour&value=two",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/admin",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/blog",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/sign-in",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/_sitemap",
+      "status": 404,
+      "noindex": true,
+      "homepageAnchor": true
+    },
+    {
+      "path": "/+not-found",
+      "initialStatus": 200,
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/+not-found.html",
+      "initialStatus": 308,
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/404",
+      "initialStatus": 200,
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/404.html",
+      "initialStatus": 308,
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain; charset=utf-8"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml"
+    },
+    {
+      "path": "/joseph-tabalon.png",
+      "status": 200,
+      "contentType": "image/png"
+    },
+    {
+      "path": "/social-preview.png",
+      "status": 200,
+      "contentType": "image/png"
+    },
+    {
+      "path": "/portraits/joseph-tabalon-320.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 20508
+    },
+    {
+      "path": "/portraits/joseph-tabalon-640.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 54844
+    },
+    {
+      "path": "/portraits/joseph-tabalon-960.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 106850
+    },
+    {
+      "path": "/fonts/inter-400-latin.woff2",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 31564
+    },
+    {
+      "path": "/fonts/inter-500-latin.woff2",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 32304
+    },
+    {
+      "path": "/fonts/inter-600-latin.woff2",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 32620
+    },
+    {
+      "path": "/fonts/jetbrains-mono-400-latin.woff2",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 21600
+    },
+    {
+      "path": "/fonts/jetbrains-mono-500-latin.woff2",
+      "status": 200,
+      "contentType": "font/woff2",
+      "bytes": 22336
+    }
+  ],
+  "browser": [
+    {
+      "width": 390,
+      "javaScriptEnabled": true,
+      "status": 404,
+      "keyboardRecovery": true,
+      "applicationErrors": []
+    },
+    {
+      "width": 1440,
+      "javaScriptEnabled": true,
+      "status": 404,
+      "keyboardRecovery": true,
+      "applicationErrors": []
+    },
+    {
+      "width": 390,
+      "javaScriptEnabled": false,
+      "status": 404,
+      "keyboardRecovery": true,
+      "applicationErrors": []
+    },
+    {
+      "width": 1440,
+      "javaScriptEnabled": false,
+      "status": 404,
+      "keyboardRecovery": true,
+      "applicationErrors": []
+    }
+  ],
+  "limitations": [
+    "Immutable protected preview verification; production is unchanged.",
+    "Homepage section focus is outside this pass because a later correction is in progress."
+  ],
+  "canonicalRedirect": {
+    "status": 308,
+    "location": "https://www.josephtabalonjr.com/__worker3_missing__/nested?source=hour&term=machine%20learning&value=two",
+    "preservesPathAndQuery": true
+  },
+  "outcome": "passed",
+  "datePacific": "2026-10-23",
+  "tools": {
+    "playwright": "1.58.2",
+    "browser": "Chromium 145.0.7632.6",
+    "node": "25.4.0"
+  }
+}
