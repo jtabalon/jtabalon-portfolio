@@ -215,7 +215,10 @@ try {
   // Alternate-window interactions get their own contexts: WebKit can retain
   // native window/menu input state after modified clicks, contaminating later
   // ordinary mouse delivery even when the original page is brought forward.
-  for (const modifier of ['Meta', 'Control', 'Shift']) {
+  // macOS uses Meta for new tabs and Control for native context menus. Other
+  // host platforms use Control; Meta can perform ordinary navigation there.
+  const modifiers = process.platform === 'darwin' ? ['Meta', 'Control', 'Shift'] : ['Control', 'Shift'];
+  for (const modifier of modifiers) {
     for (const label of ['Contact', 'View the published work', 'Back to top']) {
       const context = await browser.newContext({ viewport: { width: 390, height: 1000 }, reducedMotion: 'reduce' });
       const page = await context.newPage();
