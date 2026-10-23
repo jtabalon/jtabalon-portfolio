@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
     "check": "bun run typecheck && bun run lint",
-    "test:browser": "bun tests/contact.mjs"
+    "test:browser": "bun scripts/test-browser.mjs",
+    "verify:release": "EXPO_NO_DOTENV=1 bun run check && EXPO_NO_DOTENV=1 bun run build:web && bunx playwright install --only-shell chromium && bun run test:browser"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",

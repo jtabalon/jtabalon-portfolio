@@ -34,6 +34,21 @@ The export command also verifies the initial HTML, search and sharing metadata, 
 
 After a production deployment, complete the [SEO release checklist](./docs/seo-release-checklist.md).
 
+## Release verification
+
+Run the same command that gates the Vercel build:
+
+```bash
+bun run verify:release
+```
+
+It runs type checking, lint, a static export with local environment-file loading
+disabled, export verification, and the exported-site browser regressions. It
+installs the Chromium headless shell required by the pinned Playwright version.
+Every step must succeed before Vercel can publish the build; a separate GitHub
+workflow is not required for this gate. Performance reports remain review evidence
+and do not impose a laboratory-score threshold.
+
 ## Exported-site browser regression
 
 After building, install Chromium once and run the browser checks:
@@ -43,7 +58,8 @@ bunx playwright install chromium
 bun run test:browser
 ```
 
-The command serves `dist` on an ephemeral localhost port and closes the server and
+The command discovers the browser suites in `tests/*.mjs`, serves `dist` on an
+ephemeral localhost port, and closes the server and
 browser afterward. The first regression checks Contact text and links against the
 card and viewport at 320, 390, 768, 820, 912, 1024, and 1440 CSS pixels, at normal
 and 200% Contact text sizes. It also checks link destinations, filled Email me
