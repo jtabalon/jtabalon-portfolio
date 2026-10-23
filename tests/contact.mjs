@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 import { chromium } from 'playwright';
+import { serveExport } from './helpers/serve-export.mjs';
 
 const root = resolve('dist');
 assert(await Bun.file(resolve(root, 'index.html')).exists(), 'Run bun run build:web first');
@@ -14,17 +15,7 @@ if (artifacts) {
   }
   await mkdir(artifacts, { recursive: true });
 }
-const server = Bun.serve({
-  hostname: '127.0.0.1',
-  port: 0,
-  async fetch(request) {
-    const pathname = decodeURIComponent(new URL(request.url).pathname);
-    const path = resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
-    if (!path.startsWith(root + sep)) return new Response('Not found', { status: 404 });
-    const file = Bun.file(path);
-    return await file.exists() ? new Response(file) : new Response('Not found', { status: 404 });
-  },
-});
+const server = serveExport();
 let browser;
 let failures = 0;
 try {

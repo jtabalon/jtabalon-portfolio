@@ -25,7 +25,7 @@ function PageSection({
       <Text
         accessibilityRole="header"
         aria-level={2}
-        className="font-body-semibold text-[26px] leading-[32px] text-ink tracking-tight">
+        className="section-focus-target font-body-semibold text-[26px] leading-[32px] text-ink tracking-tight">
         {title}
       </Text>
       {children}
@@ -84,6 +84,25 @@ function PortraitImage() {
   );
 }
 
+function SiteFooter() {
+  return (
+    <View className="flex-row items-center justify-between gap-4 border-t border-line pb-2 pt-5">
+      <Text className="shrink font-body text-xs text-muted">
+        Joseph Tabalon · Senior Data Scientist
+      </Text>
+      <Link href="/#top" asChild>
+        <Pressable
+          className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
+          onPress={() => scrollToSection('top')}>
+          <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
+            Back to top
+          </Text>
+        </Pressable>
+      </Link>
+    </View>
+  );
+}
+
 export default function HomeRoute() {
   const profilePageStructuredData = {
     '@context': 'https://schema.org',
@@ -132,7 +151,7 @@ export default function HomeRoute() {
           {JSON.stringify(profilePageStructuredData)}
         </script>
       </Head>
-      <SiteFrame navigation={publicSiteContent.navigation}>
+      <SiteFrame navigation={publicSiteContent.navigation} footer={<SiteFooter />}>
         <View className="gap-20">
           <View
             nativeID="top"
@@ -144,7 +163,8 @@ export default function HomeRoute() {
                 </Text>
                 <Text
                   accessibilityRole="header"
-                  className="font-body-semibold text-[44px] leading-[48px] text-ink tracking-[-0.045em] md:text-[64px] md:leading-[68px]">
+                  aria-level={1}
+                  className="section-focus-target font-body-semibold text-[44px] leading-[48px] text-ink tracking-[-0.045em] md:text-[64px] md:leading-[68px]">
                   {publicSiteContent.name}
                 </Text>
               </View>
@@ -244,7 +264,8 @@ export default function HomeRoute() {
                     {entry.link ? (
                       <Link href={entry.link.href} asChild>
                         <Pressable
-                          className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
+                          className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60"
+                          onPress={() => scrollToSection(publicSiteContent.publishedWork.id)}>
                           <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                             {entry.link.label}
                           </Text>
@@ -313,23 +334,6 @@ export default function HomeRoute() {
               </View>
             </View>
           </PageSection>
-
-          <View
-            role="contentinfo"
-            className="flex-row items-center justify-between gap-4 border-t border-line pb-2 pt-5">
-            <Text className="shrink font-body text-xs text-muted">
-              Joseph Tabalon · Senior Data Scientist
-            </Text>
-            <Link href="/#top" asChild>
-              <Pressable
-                className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
-                onPress={() => scrollToSection('top')}>
-                <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
-                  Back to top
-                </Text>
-              </Pressable>
-            </Link>
-          </View>
         </View>
       </SiteFrame>
     </>
