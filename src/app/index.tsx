@@ -11,6 +11,12 @@ import {
 } from '@/data/public-site-content';
 import { scrollToSection } from '@/lib/scroll-to-section';
 
+// Expo Link's asChild target is a DOM prop; RN Web Pressable forwards it via hrefAttrs.
+const externalLinkWebProps = Platform.select({
+  web: { hrefAttrs: { target: '_blank', rel: 'noopener noreferrer' } },
+  default: {},
+});
+
 function PageSection({
   children,
   id,
@@ -207,6 +213,7 @@ export default function HomeRoute() {
                     target="_blank"
                     asChild>
                     <Pressable
+                      {...externalLinkWebProps}
                       className="motion-secondary-link cursor-pointer self-start rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                       <Text className="font-body-medium text-sm leading-5 text-ink underline decoration-line underline-offset-4">
                         {link.label}
@@ -308,6 +315,7 @@ export default function HomeRoute() {
                   target="_blank"
                   asChild>
                   <Pressable
+                    {...externalLinkWebProps}
                     className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                     <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                       {publicSiteContent.contact.linkedInLabel}

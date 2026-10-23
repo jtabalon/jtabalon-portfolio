@@ -68,12 +68,13 @@ try {
           }
           const links = [...card.querySelectorAll('a')];
           for (const link of links) inside(link.getBoundingClientRect(), link.textContent);
-          const [primary, secondary] = links;
-          if (getComputedStyle(primary).backgroundColor === 'rgba(0, 0, 0, 0)') errors.push('Primary contact action lost its filled surface');
-          if (getComputedStyle(secondary).backgroundColor !== 'rgba(0, 0, 0, 0)') errors.push('Secondary link gained a filled surface');
           return errors;
         });
         assert.deepEqual(issues, []);
+        assert.notEqual(await email.evaluate(el => getComputedStyle(el).backgroundColor),
+          'rgba(0, 0, 0, 0)', 'Email me retains its filled primary surface');
+        assert.equal(await linkedIn.evaluate(el => getComputedStyle(el).backgroundColor),
+          'rgba(0, 0, 0, 0)', 'LinkedIn retains its unfilled secondary surface');
         // Trial clicks check hit targets without opening an email client or profile.
         await email.click({ trial: true, timeout: 3000 });
         await linkedIn.click({ trial: true, timeout: 3000 });

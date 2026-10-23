@@ -76,7 +76,10 @@ Contact text-reflow simulation, not browser zoom or a whole-site accessibility a
 The other suites cover responsive portrait selection, reading and contact while
 fonts are pending or fail, reserved portrait layout when its image is missing,
 JavaScript-disabled access, useful HTTP 404 recovery, page landmarks, and
-section focus through ordinary links, fragments, and browser history. Each suite
+section focus through ordinary links, fragments, and browser history. External
+evidence links must open their declared isolated tabs without changing the portfolio;
+the browser regression intercepts those destinations rather than depending on
+third-party service availability. Each suite
 fails on its captured application exceptions.
 
 Chromium is the release gate. Additional navigation and recovery checks can be run

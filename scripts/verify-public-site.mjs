@@ -53,6 +53,20 @@ assert.equal(readAttribute(heroPortrait, 'sizes'), '(min-width: 768px) 280px, 14
 assert.equal(readAttribute(heroPortrait, 'width'), '1024');
 assert.equal(readAttribute(heroPortrait, 'height'), '1024');
 
+for (const href of [
+  'https://doi.org/10.1148/ryai.2021210211',
+  'https://github.com/jtabalon/LungQuant',
+  'https://github.com/jtabalon',
+  'https://www.linkedin.com/in/josephtabalonjr',
+]) {
+  const link = findTag('a', 'href', href);
+  assert.equal(readAttribute(link, 'target'), '_blank',
+    `${href} must preserve the declared new-tab behavior before hydration.`);
+  const relationships = (readAttribute(link, 'rel') ?? '').toLowerCase().split(/\s+/);
+  assert(relationships.includes('noopener') && relationships.includes('noreferrer'),
+    `${href} must isolate its new browsing context.`);
+}
+
 const webFonts = [
   ['Inter_400Regular', 'inter-400-latin.woff2'],
   ['Inter_500Medium', 'inter-500-latin.woff2'],

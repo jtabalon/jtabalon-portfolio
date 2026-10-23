@@ -232,8 +232,24 @@ try {
         await source.focus();
         const originalUrl = page.url();
         const originalBounds = await page.getByRole('main').boundingBox();
-        // These links only open another copy of this local homepage.
-        await source.click({ modifiers: [modifier] });
+        // macOS Control opens a native context menu. Other modifiers here must
+        // create another local page; unchanged original state alone would also
+        // pass if a handler silently canceled the browser's default action.
+        const opensPage = process.platform !== 'darwin' || modifier !== 'Control';
+        const expectedUrl = new URL(await source.getAttribute('href'), originalUrl).href;
+        const [popup] = await Promise.all([
+          opensPage ? context.waitForEvent('page', { timeout: 5000 }) : Promise.resolve(null),
+          source.click({ modifiers: [modifier] }),
+        ]);
+        if (popup) {
+          await popup.waitForURL(expectedUrl, { waitUntil: 'domcontentloaded', timeout: 5000 });
+          assert.equal(popup.url(), expectedUrl, `${modifier}-${label}: new page reaches the linked fragment`);
+          await popup.close();
+          await page.bringToFront();
+          await page.waitForFunction(() => new Promise(resolve =>
+            requestAnimationFrame(() => requestAnimationFrame(() => resolve(true)))),
+          undefined, { timeout: 5000 });
+        }
         assert.equal(page.url(), originalUrl, `${modifier}-${label}: current URL stays unchanged`);
         assert(await source.evaluate(el => el === document.activeElement), `${modifier}-${label}: current focus stays on the source link`);
         const bounds = await page.getByRole('main').boundingBox();
