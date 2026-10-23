@@ -86,7 +86,8 @@ try {
       page.on('pageerror', error => applicationErrors.push(error.message));
       const name = `error-${width}-${javaScriptEnabled ? 'js' : 'no-js'}`;
       try {
-        const response = await page.goto(new URL('/__missing-page-regression__/nested?source=browser', baseUrl).href);
+        const missingUrl = new URL('/__missing-page-regression__/nested?source=browser', baseUrl).href;
+        const response = await page.goto(missingUrl);
         assert.equal(response.status(), 404);
         await page.waitForLoadState('networkidle');
         assert.equal(await page.evaluate(() => document.fonts.status), 'loaded',
@@ -100,8 +101,12 @@ try {
         await page.keyboard.press('Tab');
         assert(await recovery.evaluate(element => element === document.activeElement),
           'The homepage recovery link is keyboard reachable');
-        await recovery.click({ trial: true });
         if (artifactDirectory) await page.screenshot({ path: resolve(artifactDirectory, `${name}.png`) });
+        assert.equal(page.url(), missingUrl, 'Keyboard recovery must start on the missing page');
+        assert.equal(await page.title(), 'Page not found | Joseph Tabalon',
+          'The missing-page title remains until keyboard activation');
+        assert(await recovery.evaluate(element => element === document.activeElement),
+          'The recovery link retains focus immediately before Enter');
         await page.keyboard.press('Enter');
         await page.waitForURL(new URL('/', baseUrl).href);
         await page.waitForFunction(() => document.title === 'Joseph Tabalon | Senior Data Scientist');
