@@ -57,6 +57,8 @@ try {
       const page = await browser.newPage({ viewport: { width, height: 1000 }, reducedMotion });
       page.setDefaultTimeout(5000);
       page.setDefaultNavigationTimeout(10000);
+      const applicationErrors = [];
+      page.on('pageerror', error => applicationErrors.push(error.message));
       try {
         for (const [index, id] of ['work', 'about', 'contact'].entries()) {
           await load(page);
@@ -159,6 +161,7 @@ try {
           const bounds = await heading.boundingBox();
           assert(bounds && bounds.y >= 0 && bounds.y < page.viewportSize().height, `${id}: direct fragment load reaches destination`);
         }
+        assert.deepEqual(applicationErrors, [], 'Section navigation must not throw application errors');
         console.log(`PASS navigation-${width}-${reducedMotion}`);
       } finally {
         await page.close();
@@ -169,6 +172,8 @@ try {
   const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 1000 } });
   noJS.setDefaultTimeout(5000);
   noJS.setDefaultNavigationTimeout(10000);
+  const applicationErrors = [];
+  noJS.on('pageerror', error => applicationErrors.push(error.message));
   try {
     await load(noJS);
     assert(await noJS.getByRole('heading', { name: 'Joseph Tabalon', exact: true }).isVisible(), 'Initial professional content remains without JavaScript');
@@ -196,6 +201,7 @@ try {
     await noJS.keyboard.press('Enter');
     await noJS.keyboard.press('Tab');
     assert(await noJS.locator('#contact').getByRole('link', { name: 'Email me', exact: true }).evaluate(el => el === document.activeElement), 'Native no-JavaScript fragment navigation also continues Tab at Contact');
+    assert.deepEqual(applicationErrors, [], 'Navigation without JavaScript must not throw application errors');
     console.log('PASS navigation-no-javascript');
   } finally {
     await noJS.close();

@@ -36,7 +36,7 @@ NAVIGATION_BROWSER=firefox bun tests/navigation.mjs
 NAVIGATION_BROWSER=webkit bun tests/navigation.mjs
 ```
 
-The normal release command continues to use Chromium. Its runner discovers `tests/navigation.mjs` automatically.
+The normal release command continues to use Chromium. Its runner discovers `tests/navigation.mjs` automatically. Each browser context also checks for uncaught application errors so asynchronous dependency failures cannot hide behind successful focus assertions. Navigation checks assert settled font status after network idle rather than waiting on an unbounded font promise with JavaScript disabled.
 
 ## Accessibility scan and limits
 
