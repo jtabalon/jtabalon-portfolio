@@ -45,6 +45,9 @@ bun run verify:release
 It runs type checking, lint, a static export with local environment-file loading
 disabled, export verification, and the exported-site browser regressions. It
 installs the Chromium headless shell required by the pinned Playwright version.
+On Vercel it also installs the NSS/NSPR libraries missing from the build image.
+Other Linux hosts need Playwright's system prerequisites installed once with
+`bunx playwright install --with-deps chromium`.
 Every step must succeed before Vercel can publish the build; a separate GitHub
 workflow is not required for this gate. Performance reports remain review evidence
 and do not impose a laboratory-score threshold.
