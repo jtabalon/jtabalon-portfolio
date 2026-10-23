@@ -1,9 +1,12 @@
 import assert from 'node:assert/strict';
-import { chromium } from 'playwright';
+import { chromium, firefox, webkit } from 'playwright';
 import { serveExport } from './helpers/serve-export.mjs';
 
 assert(await Bun.file('dist/index.html').exists(), 'Run bun run build:web first');
 const server = serveExport();
+const engine = process.env.NAVIGATION_BROWSER ?? 'chromium';
+const browserType = { chromium, firefox, webkit }[engine];
+assert(browserType, 'NAVIGATION_BROWSER must be chromium, firefox, or webkit');
 let browser;
 
 async function load(page, hash = '') {
@@ -29,7 +32,7 @@ async function checkDestination(page, id, nextLink) {
 }
 
 try {
-  browser = await chromium.launch();
+  browser = await browserType.launch();
   for (const width of [390, 820, 1440]) {
     for (const reducedMotion of ['reduce', 'no-preference']) {
       const page = await browser.newPage({ viewport: { width, height: 1000 }, reducedMotion });
