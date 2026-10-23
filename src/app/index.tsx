@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { Image as ExpoImage } from 'expo-image';
 import { Link, type Href } from 'expo-router';
 import Head from 'expo-router/head';
-import { Platform, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
+import { PortraitImage } from '@/components/portrait-image';
 import { SiteFrame } from '@/components/site-frame';
 import {
   publicSiteContent,
@@ -54,33 +54,6 @@ function PrimaryEmailAction({
         <Text className="font-body-semibold text-base text-canvas">{label}</Text>
       </Pressable>
     </Link>
-  );
-}
-
-function PortraitImage() {
-  const className = 'h-[148px] w-[148px] md:h-[330px] md:w-[280px]';
-
-  if (Platform.OS === 'web') {
-    return (
-      <img
-        src="/portraits/joseph-tabalon-640.webp"
-        srcSet="/portraits/joseph-tabalon-320.webp 320w, /portraits/joseph-tabalon-640.webp 640w, /portraits/joseph-tabalon-960.webp 960w"
-        sizes="(min-width: 768px) 280px, 148px"
-        alt="Portrait of Joseph Tabalon"
-        width={1024}
-        height={1024}
-        className={`${className} object-cover`}
-      />
-    );
-  }
-
-  return (
-    <ExpoImage
-      source={require('../../assets/images/icon.png')}
-      accessibilityLabel="Portrait of Joseph Tabalon"
-      contentFit="cover"
-      className={className}
-    />
   );
 }
 
