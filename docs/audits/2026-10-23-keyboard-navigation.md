@@ -45,8 +45,20 @@ Full axe-core 4.13.0 scans of the combined exported site report:
 | Document | Viewports | Violations | Incomplete checks | Passed rules per scan |
 | --- | --- | --- | --- | --- |
 | Homepage | 390×844, 1440×844 | 0 | 0 | 36 |
-| Missing-page response | 390×844, 1440×844 | 0 | 0 | 27 |
+| Missing-page response | 390×844, 1440×844 | 0 | 0 | 28 |
 
 The scans used all default rules, with normal fonts loaded and reduced motion requested. The previous landmark-region finding is absent. The local missing-page shim returned HTTP 404 for the scanned error document; this verifies its content and structure, not the production host's routing configuration.
 
 Raw axe JSON, screenshots, throwaway diagnostic scripts, and CLI snapshots are local artifacts under `output/playwright/` and `.playwright-cli/`; they are excluded from the implementation commit. The evidence is browser automation and visual/keyboard inspection, not a full screen-reader session or a WCAG conformance claim. Playwright WebKit is not physical Safari/iOS. Native app builds, physical devices, and deployed behavior were not verified in this lane. Deployed navigation verification remains required before closing #10.
+
+## Final integration and focus ownership
+
+The final source group at `6f0c365` includes refreshed Expo dependencies, platform-specific portrait components, the WebKit stylesheet-startup correction, and the keyboard-accessible missing-page link. A fresh frozen installation, type/lint checks, export, all three navigation engines, and the four full axe scans passed against that exact source tree. The error-page scan now passes 28 rules after its recovery-link change; the initial recovery implementation passed 27.
+
+Small exploratory checks in all three engines exercised unknown fragments, invalid percent encoding, an encoded NUL, percent-encoded About, and several valid/invalid fragments changed in one task. The homepage and contact links remained usable, no application errors occurred, encoded About focused its heading, and rapid changes finished at Contact with the next Tab reaching its email action. These probes are local diagnostic artifacts rather than a new permanent test suite.
+
+A later combined-suite run exposed an intermittent duplicate-focus race at 1440 pixels. A focused Chromium reproduction failed on the second of two attempts: the immediate handler focused About at 526.7 ms, Tab occurred at 533.0 ms, then the route callback focused About again at 536.6 ms. The reader therefore lost the following contact link. The permanent regression now verifies that focus remains on the next control across two animation frames.
+
+Changed-hash activations now leave focus to the committed route. Repeated-hash activations own their focus request because no parameter change occurs; they run after browser click processing and discard obsolete destinations. The same event guard leaves Meta, Control, Shift, and alternate-button handling to the browser. A Meta-Contact regression failed before this guard because the original page's focus moved to Contact. Separate phone/reduced-motion contexts check the current page's URL, reading position, and focused source for all three modifier keys across navigation, Career Snapshot, and Back to top. Only another local homepage can open during these checks. Every case closes its context after inspection. A differential WebKit trace showed that reusing a page after the modifier loop could suppress later mouse events entirely; removing only that loop restored ordinary clicks, so the permanent checks isolate native menu/window input state.
+
+The focused 1440-pixel Chromium check completed 30 attempts without a failure after changed-hash focus had a single owner. Instrumentation recorded exactly one About focus call per activation. This focus-ownership/modified-click adjustment follows the matched performance measurement of `6f0c365`; those laboratory timings describe the measured revision rather than a new timing claim for the small later guard.

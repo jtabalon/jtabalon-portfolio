@@ -18,7 +18,7 @@ function NavLink({ label, targetId }: { label: string; targetId: string }) {
     <Link href={href} asChild>
       <Pressable
         className="cursor-pointer rounded-md px-2 py-2 hover:bg-wash focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-70 md:px-3"
-        onPress={() => scrollToSection(targetId)}>
+        onPress={(event) => scrollToSection(targetId, event)}>
         <Text className="font-body-medium text-[13px] text-muted md:text-sm">
           {label}
         </Text>

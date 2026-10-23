@@ -34,7 +34,10 @@ async function enterFirefoxScroller(page) {
 async function checkDestination(page, id, nextLink, { keyboard = true } = {}) {
   const section = page.locator(`#${id}`);
   const heading = section.getByRole('heading').first();
-  await page.waitForFunction(expected => location.hash === `#${expected}`, id);
+  await page.waitForFunction(expected => {
+    const heading = document.getElementById(expected)?.querySelector('h1, h2');
+    return location.hash === `#${expected}` && heading === document.activeElement;
+  }, id);
   assert(await heading.evaluate(el => el === document.activeElement), `${id}: destination heading receives focus`);
   assert.equal(await heading.getAttribute('tabindex'), '-1', `${id}: heading stays outside sequential Tab order`);
   const bounds = await heading.boundingBox();
@@ -46,6 +49,9 @@ async function checkDestination(page, id, nextLink, { keyboard = true } = {}) {
     }), `${id}: keyboard destination has a visible focus indicator`);
   }
   await page.keyboard.press('Tab');
+  // Crossing a paint catches delayed navigation work that would otherwise steal
+  // focus back after an apparently successful next Tab.
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   assert(await nextLink.evaluate(el => el === document.activeElement), `${id}: next Tab continues in document order`);
   assert.equal(await heading.getAttribute('tabindex'), null, `${id}: temporary focusability is removed on blur`);
 }
@@ -206,6 +212,37 @@ try {
   } finally {
     await noJS.close();
   }
+  // Alternate-window interactions get their own contexts: WebKit can retain
+  // native window/menu input state after modified clicks, contaminating later
+  // ordinary mouse delivery even when the original page is brought forward.
+  for (const modifier of ['Meta', 'Control', 'Shift']) {
+    for (const label of ['Contact', 'View the published work', 'Back to top']) {
+      const context = await browser.newContext({ viewport: { width: 390, height: 1000 }, reducedMotion: 'reduce' });
+      const page = await context.newPage();
+      page.setDefaultTimeout(5000);
+      page.setDefaultNavigationTimeout(10000);
+      const applicationErrors = [];
+      page.on('pageerror', error => applicationErrors.push(error.message));
+      try {
+        await load(page);
+        const source = page.getByRole('link', { name: label, exact: true });
+        await source.focus();
+        const originalUrl = page.url();
+        const originalBounds = await page.getByRole('main').boundingBox();
+        // These links only open another copy of this local homepage.
+        await source.click({ modifiers: [modifier] });
+        assert.equal(page.url(), originalUrl, `${modifier}-${label}: current URL stays unchanged`);
+        assert(await source.evaluate(el => el === document.activeElement), `${modifier}-${label}: current focus stays on the source link`);
+        const bounds = await page.getByRole('main').boundingBox();
+        assert(Math.abs(bounds.y - originalBounds.y) < 1, `${modifier}-${label}: current reading position stays unchanged`);
+        assert.deepEqual(applicationErrors, [], 'Modified section links must not throw application errors');
+      } finally {
+        await page.keyboard.press('Escape');
+        await context.close();
+      }
+    }
+  }
+  console.log('PASS navigation-modified-clicks');
 } finally {
   await browser?.close();
   server.stop(true);

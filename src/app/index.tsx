@@ -66,7 +66,7 @@ function SiteFooter() {
       <Link href="/#top" asChild>
         <Pressable
           className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
-          onPress={() => scrollToSection('top')}>
+          onPress={(event) => scrollToSection('top', event)}>
           <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
             Back to top
           </Text>
@@ -81,8 +81,8 @@ export default function HomeRoute() {
 
   useEffect(() => {
     if (Platform.OS !== 'web' || !fragment) return;
-    // The router commits during history navigation, before the browser finishes
-    // restoring focus. Run on the next frame so that restoration cannot undo it.
+    // Fragment changes can replace the route DOM. Focus its committed heading
+    // after the browser completes history restoration, cancelling stale work.
     const frame = requestAnimationFrame(() => scrollToSection(fragment));
     return () => cancelAnimationFrame(frame);
   }, [fragment]);
@@ -248,7 +248,7 @@ export default function HomeRoute() {
                       <Link href={entry.link.href} asChild>
                         <Pressable
                           className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60"
-                          onPress={() => scrollToSection(publicSiteContent.publishedWork.id)}>
+                          onPress={(event) => scrollToSection(publicSiteContent.publishedWork.id, event)}>
                           <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                             {entry.link.label}
                           </Text>
