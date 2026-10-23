@@ -4052,5 +4052,28 @@
         "17.7.3"
       ]
     }
-  ]
+  ],
+  "installedManifestValidation": {
+    "installedPackageManifests": 971,
+    "lockedActivePackageManifests": 963,
+    "staleUnusedPackageManifestsExcluded": 8,
+    "nodeEngineMismatches": {
+      "24.0.0": [
+        {
+          "name": "eslint-plugin-expo",
+          "version": "1.2.1",
+          "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+        }
+      ],
+      "24.14.0": [],
+      "25.4.0": [
+        {
+          "name": "eslint-plugin-expo",
+          "version": "1.2.1",
+          "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+        }
+      ]
+    },
+    "installedDependencyRangeMismatches": []
+  }
 }
