@@ -34,7 +34,8 @@ try {
     }
     try {
       await page.goto(server.url.href, { waitUntil: 'networkidle' });
-      await page.evaluate(() => document.fonts.ready);
+      assert.equal(await page.evaluate(() => document.fonts.status), 'loaded',
+        `${name}: font requests have settled after idle loading`);
       if (blockFonts) {
         // Expo's font observer rejects after 12 seconds. Reading must remain
         // usable both during loading and after that failure has settled.
