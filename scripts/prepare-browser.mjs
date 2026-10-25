@@ -17,6 +17,7 @@ if (process.platform === 'linux' && process.env.VERCEL === '1') {
 }
 
 run(process.execPath, [
+  '--no-env-file',
   fileURLToPath(new URL('../node_modules/playwright/cli.js', import.meta.url)),
   'install', '--only-shell', 'chromium',
 ]);

@@ -8,14 +8,17 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export --platform web && node scripts/prepare-public-export.mjs && bun run verify:web",
+    "build:web": "expo export --platform web && node scripts/prepare-public-export.mjs && bun --no-env-file run verify:web",
     "verify:web": "node scripts/verify-public-site.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "check": "bun run typecheck && bun run lint",
-    "test:browser": "bun scripts/test-browser.mjs",
-    "prepare:browser": "bun scripts/prepare-browser.mjs",
-    "verify:release": "EXPO_NO_DOTENV=1 bun run check && EXPO_NO_DOTENV=1 bun run build:web && bun run prepare:browser && bun run test:browser"
+    "check": "node scripts/verify-node.mjs && bun --no-env-file run typecheck && bun --no-env-file run lint",
+    "test:browser": "bun --no-env-file scripts/test-browser.mjs",
+    "prepare:browser": "bun --no-env-file scripts/prepare-browser.mjs",
+    "verify:release": "EXPO_NO_DOTENV=1 bun --no-env-file run check && EXPO_NO_DOTENV=1 bun --no-env-file run build:web && bun --no-env-file run prepare:browser && bun --no-env-file run test:browser"
+  },
+  "engines": {
+    "node": ">=24.3.0 <25"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",

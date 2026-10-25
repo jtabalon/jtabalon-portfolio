@@ -14,7 +14,7 @@ The asset suite also gains one standard-density mobile case. It requires the bro
 
 ## Evidence boundaries
 
-The [original reviewer handoff](2026-10-23-sprint-handoff.md) now distinguishes the five-suite `2986fd5` gate from earlier four-suite previews and their hosted HTTP/resource evidence. Those historical results retain their original revisions. The baseline was rechecked locally on Node 24.22.1/Bun 1.3.10 with local environment-file loading disabled: all five existing browser suites passed.
+The [original reviewer handoff](2026-10-23-sprint-handoff.md) now distinguishes the five-suite `2986fd5` gate from earlier four-suite previews and their hosted HTTP/resource evidence. Those historical results retain their original revisions. The baseline was rechecked locally on Node 24.22.1/Bun 1.3.10 with Expo's environment-file loader disabled: all five existing browser suites passed. The [continued release-check review](2026-10-24-release-check-review.md) subsequently identified and corrected Bun's separate automatic loading; this earlier flag alone did not establish complete environment-file isolation.
 
 The two workers independently reviewed the application/test changes against repository standards and the issue requirements. Both reported zero unresolved findings in their assigned scope. This is review within the current Codex team; it does not establish the independent-provider or remote-device pilot required by #16.
 

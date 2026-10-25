@@ -1,0 +1,145 @@
+{
+  "baselineRevision": "454d86321888684de9439a4c3ad18b34511b430c",
+  "runtime": {
+    "node": "24.22.1",
+    "bun": "1.3.10",
+    "platform": "darwin/arm64"
+  },
+  "pngFixture": {
+    "oldVerifierExit": 0,
+    "oldAssetSuiteExit": 0,
+    "newSocialRejectionExit": 1,
+    "newIdentityRejectionExit": 1,
+    "actualPublicImagesModified": false
+  },
+  "runnerFixture": {
+    "oldRejectsIsolationContract": true,
+    "correctedPasses": true,
+    "unrelatedEnvironmentPreserved": true
+  },
+  "runtimeBoundaries": [
+    {
+      "simulatedVersion": "22.13.0",
+      "accepted": false,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "24.2.99",
+      "accepted": false,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "24.3.0",
+      "accepted": true,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "24.22.1",
+      "accepted": true,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "24.30.0",
+      "accepted": true,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "24.3.0-rc.1",
+      "accepted": false,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "25.0.0",
+      "accepted": false,
+      "matchesDeclaredEngine": true
+    },
+    {
+      "simulatedVersion": "26.0.0",
+      "accepted": false,
+      "matchesDeclaredEngine": true
+    }
+  ],
+  "dotenvStages": [
+    {
+      "stage": "typecheck",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "lint",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "export",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "prepare-export",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "verify-web",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "browser-prepare-child",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    },
+    {
+      "stage": "browser-suite-child",
+      "markerPresent": false,
+      "configuredValuePreserved": true
+    }
+  ],
+  "installerLimitation": "Bun1.3.10 installer loaded marker with either --no-env-file placement; original frozen-install command retained. Isolation claim covers release runtime steps only.",
+  "releaseGate": {
+    "command": "CI=1 bun --no-env-file run verify:release",
+    "deliberatelyInvalidHostedOriginsSet": true,
+    "exitCode": 0,
+    "suites": 6,
+    "assetScenarios": 7,
+    "publicPngResourcesDecoded": 2,
+    "reflowCases": 4
+  },
+  "exportComparison": {
+    "filesBefore": 39,
+    "filesAfter": 39,
+    "changed": [],
+    "allExportBytesUnchanged": true
+  },
+  "logSha256": {
+    "png-old-verifier.log": "a7151aa73bfc06e0a4ac4d304d73fca5c9c87940c6db1e299646f24a28d7fee4",
+    "png-old-assets.log": "99003e536b6f95520c6f7ea610dfa3fe58c45dea8c003cc49b1e8cb9efea7fa3",
+    "png-new-social-rejection.log": "b126ce8f1b8a41f7b4f3572d21155d07e3ee49387e0355452b57ed9266ad859c",
+    "png-new-identity-rejection.log": "e5478b9cfb8984c502ef4046ce7ee0630723960d6e617d5ebfc4070eb91054fd",
+    "runner-old-env.log": "49f5e97877a38028970c3f8d1265372c87a071b1f9d029f158c26db9e2cf3135",
+    "runner-new-env.log": "42a016f48a2d306a526346448f13f0957c6f391667969b56d835573a118da115",
+    "dotenv-legacy.log": "f9715a192bbd486fc63fc651c788736ba9dd3394f461c05d7c0bcf862a60bd6a",
+    "dotenv-entry-only.log": "f9715a192bbd486fc63fc651c788736ba9dd3394f461c05d7c0bcf862a60bd6a",
+    "dotenv-isolated.log": "b4031008b5a16cd2da7840a6b5dc6dabcc6776ec39c9337bd327034063e208d1",
+    "release-env-fixture.log": "39e8f26d70237f5b71bb89e7bc0f226f3b834df82f2292b15c112050c9099ddf",
+    "installer-global-flag.log": "bfbcf5049e39e1fb38489e64ab012e6d79146d9da4c89927c79cdcb28d9ea856",
+    "installer-subcommand-flag.log": "b63d00f4dcd2251e81f154a3dbecf36889ffb89314b3b84c43eb94ed2705cc7d",
+    "node25-check-rejection.log": "060a68eee37667078170af5ede97dca311f022da1b89a9907e24b77dc57361a8",
+    "restored-frozen-install.log": "45ed4be4a80a25d4193ab0c8dbecd4b2c4adc75d6074e306d8668c77215d2215",
+    "final-release.log": "fd3e22bfabbbb8e67212f62682d4c59269a58ccee3dd0e544e372989ee8a4736"
+  },
+  "sourceSha256": {
+    "package.json": "4d2a6045506842784a5123ecd4107e02fbf3a74be1782a81990c09db8756054f",
+    "vercel.json": "b01c7fb0baa502f8f9a9425885a7047fd3c8898b46657ac1199cd393809d6a91",
+    "scripts/verify-node.mjs": "9fcbe8c19efd3ba85f7c9fba0a3a4a8e581f2a1fb814f42d7b083dd6d38b070c",
+    "scripts/test-browser.mjs": "05b88e4a5d63d48b8a22db1b7b5578c1bceb32c52d16e3f41ed9e53d1a79f3c8",
+    "scripts/prepare-browser.mjs": "9ce7b7eef41fbce94e3491ad860e0590d9564f19c3d8aa4a8755f0fa21f8ff9f",
+    "tests/assets.mjs": "7fe34f2a4fa52a2251c1ceb1a25cc06c04db964d4a3db2ba9f5ce278324ec5c2"
+  },
+  "limits": [
+    "No production publication or production-dependent issue closure.",
+    "No screen-reader or remote-device claim.",
+    "Eight runtime boundary cases are simulated version strings, not eight installed Node releases."
+  ]
+}

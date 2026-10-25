@@ -11,11 +11,18 @@ const tests = (await readdir(testsDirectory, { withFileTypes: true }))
 
 assert(tests.length > 0, 'No exported-site browser regressions were found.');
 
+// The shared release gate must test this checkout's export. Hosted recovery
+// checks opt in by running tests/errors.mjs directly with their target origins.
+const localEnvironment = { ...process.env };
+delete localEnvironment.SITE_BASE_URL;
+delete localEnvironment.SITE_APEX_URL;
+
 for (const test of tests) {
   console.log(`\nRunning ${test}`);
-  const result = spawnSync(process.execPath, [fileURLToPath(new URL(test, testsDirectory))], {
+  const result = spawnSync(process.execPath, ['--no-env-file', fileURLToPath(new URL(test, testsDirectory))], {
     stdio: 'inherit',
     timeout: 180_000,
+    env: localEnvironment,
   });
   if (result.error) throw result.error;
   if (result.status !== 0) {

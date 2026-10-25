@@ -21,7 +21,7 @@ try {
   browser = await chromium.launch();
   for (const scenario of [
     { name: 'mobile-standard-density', width: 390, deviceScaleFactor: 1,
-      expectedPortrait: '/portraits/joseph-tabalon-320.webp' },
+      expectedPortrait: '/portraits/joseph-tabalon-320.webp', checkPublicImages: true },
     { name: 'mobile-high-density', width: 390, deviceScaleFactor: 3 },
     { name: 'desktop-high-density', width: 1440, deviceScaleFactor: 3 },
     { name: 'without-javascript', width: 390, deviceScaleFactor: 3, javaScriptEnabled: false },
@@ -30,7 +30,7 @@ try {
     { name: 'missing-portrait-without-javascript', width: 390, deviceScaleFactor: 3,
       javaScriptEnabled: false, missingPortrait: true },
   ]) {
-    const { name, width, deviceScaleFactor, expectedPortrait, javaScriptEnabled = true,
+    const { name, width, deviceScaleFactor, expectedPortrait, checkPublicImages = false, javaScriptEnabled = true,
       fontMode, missingPortrait = false } = scenario;
     const page = await browser.newPage({
       viewport: { width, height: 1000 }, deviceScaleFactor, javaScriptEnabled,
@@ -126,6 +126,29 @@ try {
       }
       assert(image.renderedWidth > 0 && image.renderedHeight > 0,
         `${name}: the portrait has a visible layout`);
+      if (checkPublicImages) {
+        // These public images support sharing and machine-readable identity,
+        // rather than the displayed portrait. Header dimensions alone cannot
+        // establish that their pixel data is usable by a browser.
+        const decoded = await page.evaluate(async () => {
+          const images = [];
+          for (const path of ['/social-preview.png', '/joseph-tabalon.png']) {
+            const image = new Image();
+            image.src = path;
+            try {
+              await image.decode();
+            } catch {
+              throw new Error(`${path} must decode as a public image`);
+            }
+            images.push({ path, width: image.naturalWidth, height: image.naturalHeight });
+          }
+          return images;
+        });
+        assert.deepEqual(decoded, [
+          { path: '/social-preview.png', width: 1200, height: 630 },
+          { path: '/joseph-tabalon.png', width: 1024, height: 1024 },
+        ], 'Social preview and Public identity images must decode at their intended dimensions');
+      }
       await assertReadingAndContact(page, name);
       assert.deepEqual(applicationErrors, [], `${name}: the page has no application exceptions`);
       console.log(`PASS assets-${name} (${image.source})`
