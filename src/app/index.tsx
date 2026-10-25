@@ -1,15 +1,25 @@
-import type { ReactNode } from 'react';
-import { Image as ExpoImage } from 'expo-image';
-import { Link, type Href } from 'expo-router';
+import { useEffect, useState, type ReactNode } from 'react';
+import { Link, useLocalSearchParams, type Href } from 'expo-router';
 import Head from 'expo-router/head';
 import { Platform, Pressable, Text, View } from 'react-native';
 
+import { PortraitImage } from '@/components/portrait-image';
 import { SiteFrame } from '@/components/site-frame';
 import {
   publicSiteContent,
   publicSiteMetadata,
 } from '@/data/public-site-content';
 import { scrollToSection } from '@/lib/scroll-to-section';
+
+// Expo Link's asChild target is a DOM prop; RN Web Pressable forwards it via hrefAttrs.
+const externalLinkWebProps = Platform.select({
+  web: { hrefAttrs: { target: '_blank', rel: 'noopener noreferrer' } },
+  default: {},
+});
+
+// Route restoration may remount the homepage within the same document. Effects
+// never run during static rendering, so initial HTML and hydration still arrive.
+let hasShownHeroArrival = false;
 
 function PageSection({
   children,
@@ -25,7 +35,7 @@ function PageSection({
       <Text
         accessibilityRole="header"
         aria-level={2}
-        className="font-body-semibold text-[26px] leading-[32px] text-ink tracking-tight">
+        className="section-focus-target font-body-semibold text-[26px] leading-[32px] text-ink tracking-tight">
         {title}
       </Text>
       {children}
@@ -57,32 +67,41 @@ function PrimaryEmailAction({
   );
 }
 
-function PortraitImage() {
-  const className = 'h-[148px] w-[148px] md:h-[330px] md:w-[280px]';
-
-  if (Platform.OS === 'web') {
-    return (
-      <img
-        src="/joseph-tabalon.png"
-        alt="Portrait of Joseph Tabalon"
-        width={1024}
-        height={1024}
-        className={`${className} object-cover`}
-      />
-    );
-  }
-
+function SiteFooter() {
   return (
-    <ExpoImage
-      source={require('../../assets/images/icon.png')}
-      accessibilityLabel="Portrait of Joseph Tabalon"
-      contentFit="cover"
-      className={className}
-    />
+    <View className="flex-row items-center justify-between gap-4 border-t border-line pb-2 pt-5">
+      <Text className="shrink font-body text-xs text-muted">
+        Joseph Tabalon · Senior Data Scientist
+      </Text>
+      <Link href="/#top" asChild>
+        <Pressable
+          className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
+          onPress={(event) => scrollToSection('top', event)}>
+          <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
+            Back to top
+          </Text>
+        </Pressable>
+      </Link>
+    </View>
   );
 }
 
 export default function HomeRoute() {
+  const [showHeroArrival] = useState(() => !hasShownHeroArrival);
+  const { '#': fragment } = useLocalSearchParams<{ '#': string }>();
+
+  useEffect(() => {
+    if (Platform.OS === 'web') hasShownHeroArrival = true;
+  }, []);
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !fragment) return;
+    // Fragment changes can replace the route DOM. Focus its committed heading
+    // after the browser completes history restoration, cancelling stale work.
+    const frame = requestAnimationFrame(() => scrollToSection(fragment));
+    return () => cancelAnimationFrame(frame);
+  }, [fragment]);
+
   const profilePageStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
@@ -130,11 +149,11 @@ export default function HomeRoute() {
           {JSON.stringify(profilePageStructuredData)}
         </script>
       </Head>
-      <SiteFrame navigation={publicSiteContent.navigation}>
+      <SiteFrame navigation={publicSiteContent.navigation} footer={<SiteFooter />}>
         <View className="gap-20">
           <View
             nativeID="top"
-            className="motion-hero-entrance gap-7 md:flex-row md:items-center md:justify-between md:gap-12">
+            className={`${showHeroArrival ? 'motion-hero-entrance ' : ''}gap-7 md:flex-row md:items-center md:justify-between md:gap-12`}>
             <View className="order-2 max-w-2xl gap-5 md:order-1 md:flex-1">
               <View className="gap-2">
                 <Text className="font-body-semibold text-base text-accent">
@@ -142,7 +161,8 @@ export default function HomeRoute() {
                 </Text>
                 <Text
                   accessibilityRole="header"
-                  className="font-body-semibold text-[44px] leading-[48px] text-ink tracking-[-0.045em] md:text-[64px] md:leading-[68px]">
+                  aria-level={1}
+                  className="section-focus-target font-body-semibold text-[44px] leading-[48px] text-ink tracking-[-0.045em] md:text-[64px] md:leading-[68px]">
                   {publicSiteContent.name}
                 </Text>
               </View>
@@ -202,6 +222,7 @@ export default function HomeRoute() {
                     target="_blank"
                     asChild>
                     <Pressable
+                      {...externalLinkWebProps}
                       className="motion-secondary-link cursor-pointer self-start rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                       <Text className="font-body-medium text-sm leading-5 text-ink underline decoration-line underline-offset-4">
                         {link.label}
@@ -242,7 +263,8 @@ export default function HomeRoute() {
                     {entry.link ? (
                       <Link href={entry.link.href} asChild>
                         <Pressable
-                          className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
+                          className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60"
+                          onPress={(event) => scrollToSection(publicSiteContent.publishedWork.id, event)}>
                           <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                             {entry.link.label}
                           </Text>
@@ -282,7 +304,7 @@ export default function HomeRoute() {
             id={publicSiteContent.contact.id}
             title={publicSiteContent.contact.title}>
             <View className="gap-6 rounded-2xl border border-line bg-panel p-5 shadow-soft md:flex-row md:items-end md:justify-between md:gap-10 md:p-7">
-              <View className="max-w-2xl gap-3">
+              <View className="min-w-0 max-w-2xl gap-3 md:flex-1">
                 <Text className="font-body text-base leading-7 text-muted md:text-lg md:leading-8">
                   {publicSiteContent.contact.description}
                 </Text>
@@ -302,6 +324,7 @@ export default function HomeRoute() {
                   target="_blank"
                   asChild>
                   <Pressable
+                    {...externalLinkWebProps}
                     className="motion-secondary-link cursor-pointer rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-panel active:opacity-60">
                     <Text className="font-body-medium text-sm text-ink underline decoration-line underline-offset-4">
                       {publicSiteContent.contact.linkedInLabel}
@@ -311,23 +334,6 @@ export default function HomeRoute() {
               </View>
             </View>
           </PageSection>
-
-          <View
-            role="contentinfo"
-            className="flex-row items-center justify-between gap-4 border-t border-line pb-2 pt-5">
-            <Text className="shrink font-body text-xs text-muted">
-              Joseph Tabalon · Senior Data Scientist
-            </Text>
-            <Link href="/#top" asChild>
-              <Pressable
-                className="motion-secondary-link cursor-pointer rounded-sm px-1 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-60"
-                onPress={() => scrollToSection('top')}>
-                <Text className="font-body-medium text-xs text-ink underline decoration-line underline-offset-4">
-                  Back to top
-                </Text>
-              </Pressable>
-            </Link>
-          </View>
         </View>
       </SiteFrame>
     </>

@@ -1,0 +1,261 @@
+{
+  "baselineRevision": "df58408b81fa2d78c5a4d029ad7cfbb60ed6c3e8",
+  "audit": {
+    "command": "bun audit --json",
+    "bunVersion": "1.3.10",
+    "exitCode": 1,
+    "capturedAtUtc": "2026-10-25T05:01:22.537650+00:00",
+    "clientDate": "2026-10-24",
+    "rawEntries": 4,
+    "distinctAdvisoryUrls": 4,
+    "affectedPackageNames": 4,
+    "severityCounts": {
+      "critical": 0,
+      "high": 2,
+      "moderate": 2,
+      "low": 0
+    },
+    "reports": [
+      {
+        "package": "decode-uri-component",
+        "installedVersion": "0.2.2",
+        "url": "https://github.com/advisories/GHSA-vcc3-ghjq-m6fr",
+        "severity": "moderate",
+        "vulnerableVersions": "<=0.4.2"
+      },
+      {
+        "package": "node-forge",
+        "installedVersion": "1.4.0",
+        "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+        "severity": "high",
+        "vulnerableVersions": "<=1.4.0"
+      },
+      {
+        "package": "postcss-selector-parser",
+        "installedVersion": "6.1.5",
+        "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+        "severity": "moderate",
+        "vulnerableVersions": "<7.1.6"
+      },
+      {
+        "package": "zod",
+        "installedVersion": "3.25.76",
+        "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+        "severity": "high",
+        "vulnerableVersions": "<4.6.6"
+      }
+    ],
+    "stdoutSha256": "53f7d160ed48ff64d8463e421a27f666cbff677bafe67188e74c2d3b85520c0b",
+    "stderrSha256": "d2aa14c2d2462ba018c0e0c27f49a30c884c38d8f7f094b9f777e8d3a9ae806f"
+  },
+  "lockfileSha256": "67db05a14ee144335d610a61613e2d9ce2be0877ffe737570b586d3b50db85a5",
+  "installedOwners": [
+    {
+      "package": "expo",
+      "version": "55.0.32",
+      "dependencies": {
+        "@expo/cli": "55.0.37"
+      },
+      "manifestSha256": "e0a4faff3c78d276b2dbaf9af7173870e149df158cc1d517f5f1a2a3176af17a"
+    },
+    {
+      "package": "@expo/cli",
+      "version": "55.0.37",
+      "dependencies": {
+        "@expo/code-signing-certificates": "^0.0.6",
+        "node-forge": "^1.3.3",
+        "zod": "^3.25.76"
+      },
+      "manifestSha256": "4e46a1d14fe26682da46ce2720812abaedcf4c19ebe04cf36c4acd8fe9ecdb2d"
+    },
+    {
+      "package": "@expo/code-signing-certificates",
+      "version": "0.0.6",
+      "dependencies": {
+        "node-forge": "^1.3.3"
+      },
+      "manifestSha256": "9c1d8eab30090d4241bacad2e64507e2ab69e44bb730cbd97578945f5155b328"
+    },
+    {
+      "package": "expo-router",
+      "version": "55.0.18",
+      "dependencies": {
+        "query-string": "^7.1.3"
+      },
+      "manifestSha256": "7db2e2689448c7f50d426050ada464b025932e14f0cba56e110cb0e3c6f9a8ca"
+    },
+    {
+      "package": "query-string",
+      "version": "7.1.3",
+      "dependencies": {
+        "decode-uri-component": "^0.2.2"
+      },
+      "manifestSha256": "4e806a521ebf91707fe03761008e20e07413080485aac67f467d079999374512"
+    },
+    {
+      "package": "tailwindcss",
+      "version": "3.4.19",
+      "dependencies": {
+        "postcss-nested": "^6.2.0",
+        "postcss-selector-parser": "^6.1.2"
+      },
+      "manifestSha256": "969a9400c6b59a0c5b3dd8ac7d083613fedf78a258cef37938c36cf452ca9349"
+    },
+    {
+      "package": "postcss-nested",
+      "version": "6.2.0",
+      "dependencies": {
+        "postcss-selector-parser": "^6.1.1"
+      },
+      "manifestSha256": "c3a095ba7eb31614fe553cc0bfb6bcf843b1856bd9d9ed8569234d6b12b07d99"
+    }
+  ],
+  "registry": {
+    "retrievedAtUtc": "2026-10-25T05:00:57.725197+00:00",
+    "stableRangeMethod": "Three-part stable versions; explicit lower-inclusive/upper-exclusive bounds corresponding to listed caret/tilde owner ranges; no prereleases.",
+    "packages": [
+      {
+        "package": "node-forge",
+        "ownerRange": "^1.3.3",
+        "latestTag": "1.4.0",
+        "newestStableWithinOwnerRange": "1.4.0",
+        "selectedPublishedAt": "2026-03-24T21:44:34.668Z",
+        "selectedDependencies": {},
+        "registryUrl": "https://registry.npmjs.org/node-forge",
+        "registryDocumentSha256": "e3de9b1da86bb0b8a133a8ebcc3a95c5c736bd2bbb189831ebed136d8ce296ed"
+      },
+      {
+        "package": "decode-uri-component",
+        "ownerRange": "^0.2.2",
+        "latestTag": "0.5.1",
+        "newestStableWithinOwnerRange": "0.2.2",
+        "selectedPublishedAt": "2022-12-01T18:22:59.105Z",
+        "selectedDependencies": {},
+        "registryUrl": "https://registry.npmjs.org/decode-uri-component",
+        "registryDocumentSha256": "1cb7d7c209e58d34e785467cc30ed0fdb6f079456b9d99ee65a1cd8ee16b7474"
+      },
+      {
+        "package": "postcss-selector-parser",
+        "ownerRange": "^6.1.2",
+        "latestTag": "7.1.7",
+        "newestStableWithinOwnerRange": "6.1.5",
+        "selectedPublishedAt": "2026-10-19T15:02:08.894Z",
+        "selectedDependencies": {},
+        "registryUrl": "https://registry.npmjs.org/postcss-selector-parser",
+        "registryDocumentSha256": "838a6ed7221ec07b7c424c762b9af136a7271e8dd913049f8744da15f6281848"
+      },
+      {
+        "package": "postcss-selector-parser",
+        "ownerRange": "^6.1.1",
+        "latestTag": "7.1.7",
+        "newestStableWithinOwnerRange": "6.1.5",
+        "selectedPublishedAt": "2026-10-19T15:02:08.894Z",
+        "selectedDependencies": {},
+        "registryUrl": "https://registry.npmjs.org/postcss-selector-parser",
+        "registryDocumentSha256": "838a6ed7221ec07b7c424c762b9af136a7271e8dd913049f8744da15f6281848"
+      },
+      {
+        "package": "expo",
+        "ownerRange": "~55.0.32",
+        "latestTag": "58.0.19",
+        "newestStableWithinOwnerRange": "55.0.32",
+        "selectedPublishedAt": "2026-10-21T15:16:09.028Z",
+        "selectedDependencies": {
+          "@expo/cli": "55.0.37"
+        },
+        "registryUrl": "https://registry.npmjs.org/expo",
+        "registryDocumentSha256": "80a6791e13f7364f87dd301415827046eae021d0f38fa0ac70dd47d5f63fe7b4"
+      },
+      {
+        "package": "expo-router",
+        "ownerRange": "~55.0.18",
+        "latestTag": "58.0.26",
+        "newestStableWithinOwnerRange": "55.0.18",
+        "selectedPublishedAt": "2026-08-17T14:16:42.409Z",
+        "selectedDependencies": {
+          "query-string": "^7.1.3"
+        },
+        "registryUrl": "https://registry.npmjs.org/expo-router",
+        "registryDocumentSha256": "b1f88b249184af130c9f58461745269c38d2ee587d79bcd62220778edbfeb779"
+      },
+      {
+        "package": "query-string",
+        "ownerRange": "^7.1.3",
+        "latestTag": "10.0.0",
+        "newestStableWithinOwnerRange": "7.1.3",
+        "selectedPublishedAt": "2022-12-02T17:45:39.131Z",
+        "selectedDependencies": {
+          "decode-uri-component": "^0.2.2"
+        },
+        "registryUrl": "https://registry.npmjs.org/query-string",
+        "registryDocumentSha256": "169ede05d625c65f38b3e8de442961082410e9869fbaec94b60b03241eab0d8d"
+      },
+      {
+        "package": "tailwindcss",
+        "ownerRange": "^3.4.17",
+        "latestTag": "4.3.3",
+        "newestStableWithinOwnerRange": "3.4.19",
+        "selectedPublishedAt": "2025-12-10T18:40:42.410Z",
+        "selectedDependencies": {
+          "postcss-nested": "^6.2.0",
+          "postcss-selector-parser": "^6.1.2"
+        },
+        "registryUrl": "https://registry.npmjs.org/tailwindcss",
+        "registryDocumentSha256": "c38c7663c3a95b647c8a53c2c675b8734ee3447952e4ed6ab3a5cd2946ef4c31"
+      },
+      {
+        "package": "postcss-nested",
+        "ownerRange": "^6.2.0",
+        "latestTag": "9.0.1",
+        "newestStableWithinOwnerRange": "6.2.0",
+        "selectedPublishedAt": "2024-07-19T21:50:46.661Z",
+        "selectedDependencies": {
+          "postcss-selector-parser": "^6.1.1"
+        },
+        "registryUrl": "https://registry.npmjs.org/postcss-nested",
+        "registryDocumentSha256": "18ef1171c43290ac7ca19a1f31afc43b85137f806ae0a7489279fcce44f1ca31"
+      }
+    ]
+  },
+  "zodRegistry": {
+    "retrievedAtUtc": "2026-10-25T05:02:33.128965+00:00",
+    "registryUrl": "https://registry.npmjs.org/zod",
+    "registryDocumentSha256": "e96328b2e5019efc4071ecf6d04b565bde83669a387130496c36770f2f051017",
+    "ranges": [
+      {
+        "range": "^3.25.76",
+        "newestStableMatching": "3.25.76",
+        "latestTag": "4.6.7",
+        "selectedPublishedAt": "2025-07-08T09:10:18.684Z"
+      },
+      {
+        "range": "^3.22.4 || ^4.0.0",
+        "newestStableMatching": "4.6.7",
+        "latestTag": "4.6.7",
+        "selectedPublishedAt": "2026-10-12T16:29:37.778Z"
+      }
+    ],
+    "latestDependencies": {}
+  },
+  "zodContext": {
+    "activeLockedPath": [
+      "expo@55.0.32",
+      "@expo/cli@55.0.37",
+      "zod@3.25.76"
+    ],
+    "installedSourceFiles": [
+      "@expo/cli/build/src/start/server/DevToolsPlugin.schema.js",
+      "@expo/cli/build/src/start/server/createMCPDevToolsExtensionSchema.js",
+      "@expo/cli/build/src/start/server/DevToolsPluginCliExtensionResults.js"
+    ],
+    "observedValidationCall": "DevToolsPluginOutputSchema.safeParse(JSON.parse(txt))",
+    "classification": "Observed development-tooling use; no exploit-path validation performed."
+  },
+  "dependencyChanges": false,
+  "limits": [
+    "Fresh audit reports are not independent production vulnerability counts.",
+    "No complete reachability or bundled-dependency exclusion is claimed.",
+    "The Oct23 61-to3 comparison retains its original feed/revision boundary.",
+    "Production publication and production-dependent issue closure were not performed."
+  ]
+}

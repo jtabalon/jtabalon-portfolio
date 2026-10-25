@@ -1,0 +1,177 @@
+{
+  "baselineRevision": "2986fd5dc16d964ed093cf34e55c31f1f18ff85f",
+  "localRuntime": {
+    "node": "24.22.1",
+    "bun": "1.3.10",
+    "platform": "darwin/arm64"
+  },
+  "releaseCommand": "EXPO_NO_DOTENV=1 CI=1 bun run verify:release",
+  "baselineRelease": {
+    "exitCode": 0,
+    "browserSuites": 5,
+    "logSha256": "0b644cfb771508e58ec7445635074bd45e4ab24211cf4b0513909bda4565d44d"
+  },
+  "regressionAgainstOldExport": {
+    "exitCode": 1,
+    "failingCase": "reflow-320-200pct",
+    "logSha256": "b9e95c0155ab09bce9817ddb3956201430d8e12d1bedf7ef187c20ab14f6fc0d"
+  },
+  "candidateRelease": {
+    "exitCode": 0,
+    "browserSuites": 6,
+    "assetScenarios": 7,
+    "reflowCases": 4,
+    "logSha256": "726d40deace0655a6a3e16c365e52301344db6fc81f8a57d993d6fdc2502a638"
+  },
+  "reflowSimulation": {
+    "before": [
+      {
+        "case": "reflow-320-100pct",
+        "documentScrollWidth": 320,
+        "issues": []
+      },
+      {
+        "case": "reflow-320-200pct",
+        "documentScrollWidth": 320,
+        "issues": [
+          {
+            "text": "Contact",
+            "bounds": {
+              "left": 299.765625,
+              "right": 397.78125,
+              "top": 36.5,
+              "bottom": 67.5,
+              "width": 98.015625,
+              "height": 31
+            },
+            "kind": "text-outside-viewport"
+          },
+          {
+            "text": "Contact",
+            "bounds": {
+              "left": 299.765625,
+              "right": 397.78125,
+              "top": 36.5,
+              "bottom": 67.5,
+              "width": 98.015625,
+              "height": 31
+            },
+            "kind": "text-clipped-by-ancestor",
+            "ancestor": {
+              "tag": "DIV",
+              "role": null,
+              "overflowX": "hidden",
+              "bounds": {
+                "left": 0,
+                "right": 320,
+                "top": 0,
+                "bottom": 1000,
+                "width": 320,
+                "height": 1000
+              }
+            }
+          },
+          {
+            "name": "Contact",
+            "href": "/#contact",
+            "bounds": {
+              "left": 291.765625,
+              "right": 405.78125,
+              "top": 28.5,
+              "bottom": 75.5,
+              "width": 114.015625,
+              "height": 47
+            },
+            "kind": "link-outside-viewport"
+          }
+        ]
+      },
+      {
+        "case": "reflow-390-200pct",
+        "documentScrollWidth": 390,
+        "issues": [
+          {
+            "text": "Contact",
+            "bounds": {
+              "left": 299.765625,
+              "right": 397.78125,
+              "top": 36.5,
+              "bottom": 67.5,
+              "width": 98.015625,
+              "height": 31
+            },
+            "kind": "text-outside-viewport"
+          },
+          {
+            "text": "Contact",
+            "bounds": {
+              "left": 299.765625,
+              "right": 397.78125,
+              "top": 36.5,
+              "bottom": 67.5,
+              "width": 98.015625,
+              "height": 31
+            },
+            "kind": "text-clipped-by-ancestor",
+            "ancestor": {
+              "tag": "DIV",
+              "role": null,
+              "overflowX": "hidden",
+              "bounds": {
+                "left": 0,
+                "right": 390,
+                "top": 0,
+                "bottom": 1000,
+                "width": 390,
+                "height": 1000
+              }
+            }
+          },
+          {
+            "name": "Contact",
+            "href": "/#contact",
+            "bounds": {
+              "left": 291.765625,
+              "right": 405.78125,
+              "top": 28.5,
+              "bottom": 75.5,
+              "width": 114.015625,
+              "height": 47
+            },
+            "kind": "link-outside-viewport"
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "case": "reflow-320-100pct",
+        "documentScrollWidth": 320,
+        "issues": []
+      },
+      {
+        "case": "reflow-320-200pct",
+        "documentScrollWidth": 320,
+        "issues": []
+      },
+      {
+        "case": "reflow-390-200pct",
+        "documentScrollWidth": 390,
+        "issues": []
+      }
+    ]
+  },
+  "normal320Screenshot": {
+    "byteIdentical": true,
+    "sha256": "cf83f4f5caed001cbcda8634ac44946ef7d3bf0ae88926c9e37e620d8f246396"
+  },
+  "sourceSha256": {
+    "src/components/site-frame.tsx": "b1a9dbda116a38d7bf6a2db416e4aea695d4b517500f6c513a4828c7e3f0be1d",
+    "tests/reflow.mjs": "5a0eb99da3a48c4f5426268871ee76e6eb83ab1b4bcc0cb8126518baaa371902",
+    "tests/assets.mjs": "27e8dc9a3478e2f7d16d6f2ece4d8251c9e9ee0813da6028becea3570a0c553e"
+  },
+  "limits": [
+    "Text-reflow simulation, not genuine browser zoom or general accessibility conformance.",
+    "Local browser and team review do not establish production or remote-device pilot validation."
+  ]
+}

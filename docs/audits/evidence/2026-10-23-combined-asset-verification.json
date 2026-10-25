@@ -1,0 +1,783 @@
+{
+  "datePacific": "2026-10-23",
+  "baselineRevision": "dcf0a72b1955903613ab8e2f91cf86537be0ba5a",
+  "candidateRevision": "6f0c3658d7ca7fe9a30d94f46e3916d76fc033ec",
+  "localBundles": {
+    "baseline": "entry-e39deea479043a9f756d0523260415e9.js",
+    "candidate": "entry-606695d801b1a13a67addfa00501b1cb.js"
+  },
+  "tools": {
+    "bun": "1.3.10",
+    "node": "25.4.0",
+    "lighthouse": "13.4.1",
+    "systemChrome": "156.0.8078.48",
+    "playwright": "1.58.2"
+  },
+  "conditions": {
+    "server": "Same localhost HTTP/1.1 server, gzip text/TTF, native WebP/WOFF2 encoding, no-store",
+    "browser": "New Chrome process/default storage reset per Lighthouse run",
+    "mobile": {
+      "viewport": [
+        412,
+        823
+      ],
+      "dpr": 1.75,
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "cpuSlowdown": 4
+    },
+    "desktop": {
+      "viewport": [
+        1350,
+        940
+      ],
+      "dpr": 1,
+      "rttMs": 40,
+      "throughputKbps": 10240,
+      "cpuSlowdown": 1
+    },
+    "coordination": "Other project browsers/builds/inference paused during selected samples; shared machine and active swap remain limitations",
+    "selectedStages": [
+      "release-baseline",
+      "release-candidate"
+    ],
+    "excludedPreliminaryStage": "final-baseline overlapped independent browser tests"
+  },
+  "lighthouseSamples": [
+    {
+      "stage": "release-baseline",
+      "form": "mobile",
+      "n": 1,
+      "fcp": 816.1279,
+      "lcp": 4641.1278999999995,
+      "tbt": 44.5,
+      "cls": 0,
+      "total": 2502098,
+      "portrait": 1555861,
+      "fonts": 604145,
+      "js": 314503,
+      "lcpElement": "Published Work"
+    },
+    {
+      "stage": "release-baseline",
+      "form": "mobile",
+      "n": 2,
+      "fcp": 804.4100000000001,
+      "lcp": 4629.41,
+      "tbt": 41,
+      "cls": 0,
+      "total": 2502098,
+      "portrait": 1555861,
+      "fonts": 604145,
+      "js": 314503,
+      "lcpElement": "Published Work"
+    },
+    {
+      "stage": "release-baseline",
+      "form": "desktop",
+      "n": 1,
+      "fcp": 267.36990000000003,
+      "lcp": 907.3699,
+      "tbt": 0,
+      "cls": 0,
+      "total": 2502098,
+      "portrait": 1555861,
+      "fonts": 604145,
+      "js": 314503,
+      "lcpElement": "CNN-based Deformable Registration Facilitates Fast and Accurate Air Trapping Me\u2026"
+    },
+    {
+      "stage": "release-baseline",
+      "form": "desktop",
+      "n": 2,
+      "fcp": 249.647,
+      "lcp": 889.6469999999999,
+      "tbt": 0,
+      "cls": 0,
+      "total": 2502098,
+      "portrait": 1555861,
+      "fonts": 604145,
+      "js": 314503,
+      "lcpElement": "CNN-based Deformable Registration Facilitates Fast and Accurate Air Trapping Me\u2026"
+    },
+    {
+      "stage": "release-candidate",
+      "form": "mobile",
+      "n": 1,
+      "fcp": 754.7958000000001,
+      "lcp": 1729.7958,
+      "tbt": 41,
+      "cls": 0,
+      "total": 497739,
+      "portrait": 20685,
+      "fonts": 141309,
+      "js": 308058,
+      "lcpElement": "Published Work"
+    },
+    {
+      "stage": "release-candidate",
+      "form": "mobile",
+      "n": 2,
+      "fcp": 761.8461,
+      "lcp": 1736.8461000000002,
+      "tbt": 40,
+      "cls": 0,
+      "total": 497739,
+      "portrait": 20685,
+      "fonts": 141309,
+      "js": 308058,
+      "lcpElement": "Published Work"
+    },
+    {
+      "stage": "release-candidate",
+      "form": "desktop",
+      "n": 1,
+      "fcp": 204.4436,
+      "lcp": 384.44359999999995,
+      "tbt": 0,
+      "cls": 0,
+      "total": 497739,
+      "portrait": 20685,
+      "fonts": 141309,
+      "js": 308058,
+      "lcpElement": "CNN-based Deformable Registration Facilitates Fast and Accurate Air Trapping Me\u2026"
+    },
+    {
+      "stage": "release-candidate",
+      "form": "desktop",
+      "n": 2,
+      "fcp": 208.2933,
+      "lcp": 388.29329999999993,
+      "tbt": 0,
+      "cls": 0,
+      "total": 497739,
+      "portrait": 20685,
+      "fonts": 141309,
+      "js": 308058,
+      "lcpElement": "CNN-based Deformable Registration Facilitates Fast and Accurate Air Trapping Me\u2026"
+    }
+  ],
+  "localBrowser": {
+    "normalViewportDensityPairs": [
+      [
+        320,
+        844,
+        1
+      ],
+      [
+        390,
+        844,
+        3
+      ],
+      [
+        768,
+        1000,
+        2
+      ],
+      [
+        1440,
+        1000,
+        1
+      ],
+      [
+        1440,
+        1000,
+        3
+      ]
+    ],
+    "matchingPortraitNameWorkAndHeroEmailBounds": true,
+    "additionalCases": [
+      "no-javascript",
+      "font-abort",
+      "font-404"
+    ],
+    "failedFontCountPerFailureCase": 5,
+    "failureWaitSeconds": 12.5,
+    "assetCasesResult": "pass",
+    "typeLintExportResult": "pass",
+    "sharedNavigationResultAtCandidate": "About next-Tab assertion failed in the 1440 group; follow-up tracked separately"
+  },
+  "preview": {
+    "sourceRevision": "6f0c3658d7ca7fe9a30d94f46e3916d76fc033ec",
+    "observedAt": "2026-10-23T16:10:19.069Z",
+    "browser": "156.0.8078.48",
+    "resources": [
+      {
+        "path": "/portraits/joseph-tabalon-320.webp",
+        "status": 200,
+        "type": "image/webp",
+        "decodedBytes": 20508,
+        "sha256": "a599e38a4e4ec70ec1b20ce27e005dac62387c36fc7b6f720ca7760380fbd434",
+        "contentEncoding": null
+      },
+      {
+        "path": "/portraits/joseph-tabalon-640.webp",
+        "status": 200,
+        "type": "image/webp",
+        "decodedBytes": 54844,
+        "sha256": "9ea690e5ca6c47bc4c7032c07e36c281e6113e6e2019064d69de44fe0fed1f33",
+        "contentEncoding": null
+      },
+      {
+        "path": "/portraits/joseph-tabalon-960.webp",
+        "status": 200,
+        "type": "image/webp",
+        "decodedBytes": 106850,
+        "sha256": "05ae5bd361c64eb10c6955f3a2587cc358f376e76c2c2282b0dfb3805ecdd2f2",
+        "contentEncoding": null
+      },
+      {
+        "path": "/fonts/inter-400-latin.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "decodedBytes": 31564,
+        "sha256": "54bbfcad161fa584f6345eb428ad574bb8899fc0ba11dc57822da0b4005770dc",
+        "contentEncoding": null
+      },
+      {
+        "path": "/fonts/inter-500-latin.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "decodedBytes": 32304,
+        "sha256": "58ab07f3e3329051a439c1f5cf85a31d72942541eb5ccaa5103d912fbb3cfb9c",
+        "contentEncoding": null
+      },
+      {
+        "path": "/fonts/inter-600-latin.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "decodedBytes": 32620,
+        "sha256": "13678715315de636e0172025ae99f3ad4f13155e06f09347467711e330c39ff7",
+        "contentEncoding": null
+      },
+      {
+        "path": "/fonts/jetbrains-mono-400-latin.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "decodedBytes": 21600,
+        "sha256": "1cdaf4a41e43cf513f7b04230af1f69800a775b84af8310b7f671c671a674e1f",
+        "contentEncoding": null
+      },
+      {
+        "path": "/fonts/jetbrains-mono-500-latin.woff2",
+        "status": 200,
+        "type": "font/woff2",
+        "decodedBytes": 22336,
+        "sha256": "cc04ce9cc78fcc6a2ef6a4d256f9a0eebfa66a85e363d8e37a84faaf414a5b7d",
+        "contentEncoding": null
+      },
+      {
+        "path": "/joseph-tabalon.png",
+        "status": 200,
+        "type": "image/png",
+        "decodedBytes": 1555683,
+        "sha256": "6c0b756325cd7c2ca23dba489565ec1d6e95de16ad031f47dcdbd7a854d2595f",
+        "contentEncoding": null
+      },
+      {
+        "path": "/social-preview.png",
+        "status": 200,
+        "type": "image/png",
+        "decodedBytes": 293126,
+        "sha256": "5bbb62a75574ecd3ef718428b0ff5261ea4d53e3fd9954fa2af2493b62bbca35",
+        "contentEncoding": null
+      },
+      {
+        "path": "/robots.txt",
+        "status": 200,
+        "type": "text/plain; charset=utf-8",
+        "decodedBytes": 77,
+        "sha256": "0af0875395b98ebd8a88b630d1f86e930507f44dc466fbc9a0cb89536d11e4ea",
+        "contentEncoding": null
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "type": "application/xml",
+        "decodedBytes": 175,
+        "sha256": "f81e2c36d2457f02ed00240441e7aea71a99df878d07f5ac3e378741a91231a0",
+        "contentEncoding": null
+      }
+    ],
+    "decodedPortraits": [
+      {
+        "resourceWidth": 320,
+        "width": 320,
+        "height": 320
+      },
+      {
+        "resourceWidth": 640,
+        "width": 640,
+        "height": 640
+      },
+      {
+        "resourceWidth": 960,
+        "width": 960,
+        "height": 960
+      }
+    ],
+    "scenarios": [
+      {
+        "name": "mobile-3x",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 3,
+        "failedFonts": 0,
+        "image": {
+          "complete": true,
+          "decodedWidth": 148,
+          "source": "/portraits/joseph-tabalon-640.webp",
+          "renderedWidth": 148,
+          "renderedHeight": 148
+        },
+        "fontFaces": [
+          {
+            "family": "Inter_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_500Medium",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_600SemiBold",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_500Medium",
+            "status": "loaded"
+          }
+        ],
+        "overflow": false,
+        "applicationErrors": []
+      },
+      {
+        "name": "desktop-3x",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "dpr": 3,
+        "failedFonts": 0,
+        "image": {
+          "complete": true,
+          "decodedWidth": 280,
+          "source": "/portraits/joseph-tabalon-960.webp",
+          "renderedWidth": 280,
+          "renderedHeight": 330
+        },
+        "fontFaces": [
+          {
+            "family": "Inter_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_500Medium",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_600SemiBold",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_500Medium",
+            "status": "loaded"
+          }
+        ],
+        "overflow": false,
+        "applicationErrors": []
+      },
+      {
+        "name": "no-javascript",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 3,
+        "failedFonts": 0,
+        "image": {
+          "complete": true,
+          "decodedWidth": 148,
+          "source": "/portraits/joseph-tabalon-640.webp",
+          "renderedWidth": 148,
+          "renderedHeight": 148
+        },
+        "fontFaces": [
+          {
+            "family": "Inter_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_500Medium",
+            "status": "loaded"
+          },
+          {
+            "family": "Inter_600SemiBold",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_400Regular",
+            "status": "loaded"
+          },
+          {
+            "family": "JetBrainsMono_500Medium",
+            "status": "loaded"
+          }
+        ],
+        "overflow": false,
+        "applicationErrors": []
+      },
+      {
+        "name": "font-abort",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 3,
+        "failedFonts": 5,
+        "image": {
+          "complete": true,
+          "decodedWidth": 148,
+          "source": "/portraits/joseph-tabalon-640.webp",
+          "renderedWidth": 148,
+          "renderedHeight": 148
+        },
+        "fontFaces": [
+          {
+            "family": "Inter_400Regular",
+            "status": "error"
+          },
+          {
+            "family": "Inter_500Medium",
+            "status": "error"
+          },
+          {
+            "family": "Inter_600SemiBold",
+            "status": "error"
+          },
+          {
+            "family": "JetBrainsMono_400Regular",
+            "status": "error"
+          },
+          {
+            "family": "JetBrainsMono_500Medium",
+            "status": "error"
+          }
+        ],
+        "overflow": false,
+        "applicationErrors": []
+      },
+      {
+        "name": "font-404",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "dpr": 3,
+        "failedFonts": 5,
+        "image": {
+          "complete": true,
+          "decodedWidth": 148,
+          "source": "/portraits/joseph-tabalon-640.webp",
+          "renderedWidth": 148,
+          "renderedHeight": 148
+        },
+        "fontFaces": [
+          {
+            "family": "Inter_400Regular",
+            "status": "error"
+          },
+          {
+            "family": "Inter_500Medium",
+            "status": "error"
+          },
+          {
+            "family": "Inter_600SemiBold",
+            "status": "error"
+          },
+          {
+            "family": "JetBrainsMono_400Regular",
+            "status": "error"
+          },
+          {
+            "family": "JetBrainsMono_500Medium",
+            "status": "error"
+          }
+        ],
+        "overflow": false,
+        "applicationErrors": []
+      }
+    ],
+    "deliveryObservations": [
+      {
+        "width": 390,
+        "height": 844,
+        "dpr": 3,
+        "observedAt": "2026-10-23T16:13:26.187Z",
+        "navigation": {
+          "path": "/",
+          "transferSize": 9778,
+          "encodedBodySize": 9478,
+          "decodedBodySize": 35056
+        },
+        "resources": [
+          {
+            "path": "/portraits/joseph-tabalon-640.webp",
+            "transferSize": 55144,
+            "encodedBodySize": 54844,
+            "decodedBodySize": 54844
+          },
+          {
+            "path": "/fonts/inter-400-latin.woff2",
+            "transferSize": 31864,
+            "encodedBodySize": 31564,
+            "decodedBodySize": 31564
+          },
+          {
+            "path": "/fonts/inter-600-latin.woff2",
+            "transferSize": 32920,
+            "encodedBodySize": 32620,
+            "decodedBodySize": 32620
+          },
+          {
+            "path": "/fonts/inter-500-latin.woff2",
+            "transferSize": 32604,
+            "encodedBodySize": 32304,
+            "decodedBodySize": 32304
+          },
+          {
+            "path": "/fonts/jetbrains-mono-500-latin.woff2",
+            "transferSize": 22636,
+            "encodedBodySize": 22336,
+            "decodedBodySize": 22336
+          },
+          {
+            "path": "/fonts/jetbrains-mono-400-latin.woff2",
+            "transferSize": 21900,
+            "encodedBodySize": 21600,
+            "decodedBodySize": 21600
+          },
+          {
+            "path": "/_expo/static/css/web-5dce62c597dc6c0aa9503084c19ab5d4.css",
+            "transferSize": 3862,
+            "encodedBodySize": 3562,
+            "decodedBodySize": 14645
+          },
+          {
+            "path": "/_expo/static/js/web/entry-cc93e4a9b8a7fe3e7b1a1d396b3d74f3.js",
+            "transferSize": 306412,
+            "encodedBodySize": 306112,
+            "decodedBodySize": 1132972
+          },
+          {
+            "path": "/favicon.ico",
+            "transferSize": 12448,
+            "encodedBodySize": 12148,
+            "decodedBodySize": 14510
+          }
+        ],
+        "totalTransferBytes": 529568,
+        "totalEncodedBodyBytes": 526568,
+        "totalDecodedBodyBytes": 1392451,
+        "responseHeaders": [
+          {
+            "path": "/",
+            "status": 200,
+            "type": "text/html; charset=utf-8",
+            "encoding": "br"
+          },
+          {
+            "path": "/portraits/joseph-tabalon-640.webp",
+            "status": 200,
+            "type": "image/webp",
+            "encoding": null
+          },
+          {
+            "path": "/_expo/static/css/web-5dce62c597dc6c0aa9503084c19ab5d4.css",
+            "status": 200,
+            "type": "text/css; charset=utf-8",
+            "encoding": "br"
+          },
+          {
+            "path": "/fonts/inter-600-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/inter-500-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/jetbrains-mono-500-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/inter-400-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/jetbrains-mono-400-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/_expo/static/js/web/entry-cc93e4a9b8a7fe3e7b1a1d396b3d74f3.js",
+            "status": 200,
+            "type": "application/javascript; charset=utf-8",
+            "encoding": "br"
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "height": 1000,
+        "dpr": 3,
+        "observedAt": "2026-10-23T16:13:27.040Z",
+        "navigation": {
+          "path": "/",
+          "transferSize": 9778,
+          "encodedBodySize": 9478,
+          "decodedBodySize": 35056
+        },
+        "resources": [
+          {
+            "path": "/portraits/joseph-tabalon-960.webp",
+            "transferSize": 107150,
+            "encodedBodySize": 106850,
+            "decodedBodySize": 106850
+          },
+          {
+            "path": "/fonts/inter-400-latin.woff2",
+            "transferSize": 31864,
+            "encodedBodySize": 31564,
+            "decodedBodySize": 31564
+          },
+          {
+            "path": "/fonts/inter-500-latin.woff2",
+            "transferSize": 32604,
+            "encodedBodySize": 32304,
+            "decodedBodySize": 32304
+          },
+          {
+            "path": "/fonts/jetbrains-mono-500-latin.woff2",
+            "transferSize": 22636,
+            "encodedBodySize": 22336,
+            "decodedBodySize": 22336
+          },
+          {
+            "path": "/fonts/inter-600-latin.woff2",
+            "transferSize": 32920,
+            "encodedBodySize": 32620,
+            "decodedBodySize": 32620
+          },
+          {
+            "path": "/fonts/jetbrains-mono-400-latin.woff2",
+            "transferSize": 21900,
+            "encodedBodySize": 21600,
+            "decodedBodySize": 21600
+          },
+          {
+            "path": "/_expo/static/css/web-5dce62c597dc6c0aa9503084c19ab5d4.css",
+            "transferSize": 3862,
+            "encodedBodySize": 3562,
+            "decodedBodySize": 14645
+          },
+          {
+            "path": "/_expo/static/js/web/entry-cc93e4a9b8a7fe3e7b1a1d396b3d74f3.js",
+            "transferSize": 306412,
+            "encodedBodySize": 306112,
+            "decodedBodySize": 1132972
+          },
+          {
+            "path": "/favicon.ico",
+            "transferSize": 12448,
+            "encodedBodySize": 12148,
+            "decodedBodySize": 14510
+          }
+        ],
+        "totalTransferBytes": 581574,
+        "totalEncodedBodyBytes": 578574,
+        "totalDecodedBodyBytes": 1444457,
+        "responseHeaders": [
+          {
+            "path": "/",
+            "status": 200,
+            "type": "text/html; charset=utf-8",
+            "encoding": "br"
+          },
+          {
+            "path": "/portraits/joseph-tabalon-960.webp",
+            "status": 200,
+            "type": "image/webp",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/jetbrains-mono-500-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/inter-600-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/jetbrains-mono-400-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/_expo/static/css/web-5dce62c597dc6c0aa9503084c19ab5d4.css",
+            "status": 200,
+            "type": "text/css; charset=utf-8",
+            "encoding": "br"
+          },
+          {
+            "path": "/fonts/inter-400-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/fonts/inter-500-latin.woff2",
+            "status": 200,
+            "type": "font/woff2",
+            "encoding": null
+          },
+          {
+            "path": "/_expo/static/js/web/entry-cc93e4a9b8a7fe3e7b1a1d396b3d74f3.js",
+            "status": 200,
+            "type": "application/javascript; charset=utf-8",
+            "encoding": "br"
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Local lab observations are not field Core Web Vitals or production verification.",
+    "Hosted resource delivery uses CDN Brotli, 3x density, a separate deployment bundle and network; it is not a matched Lighthouse comparison.",
+    "No credentials, authenticated URLs, browser storage state, generated model content or screenshots are included."
+  ]
+}

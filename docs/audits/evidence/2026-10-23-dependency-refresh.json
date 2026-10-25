@@ -1,0 +1,4087 @@
+{
+  "datePacific": "2026-10-23",
+  "baselineCommit": "a4ed4687fad640e2db7f0f276f8fd1ea9ab99b05",
+  "tools": {
+    "bun": "1.3.10",
+    "node": "v25.4.0",
+    "playwright": "1.58.2"
+  },
+  "lockfileSha256": {
+    "before": "6bc0adfb8c40f5f35071cd18275ecdaeab5d060a0b9484cb83ca5034d6091333",
+    "after": "67db05a14ee144335d610a61613e2d9ce2be0877ffe737570b586d3b50db85a5"
+  },
+  "before": {
+    "summary": {
+      "packageNames": 18,
+      "rawAdvisoryEntries": 61,
+      "distinctAdvisoryUrls": 50,
+      "severity": {
+        "low": 2,
+        "moderate": 15,
+        "high": 43,
+        "critical": 1
+      }
+    },
+    "audit": {
+      "@babel/core": [
+        {
+          "id": 1123528,
+          "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8",
+          "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
+          "severity": "low",
+          "vulnerable_versions": "<=7.29.0",
+          "cwe": [
+            "CWE-22",
+            "CWE-200"
+          ],
+          "cvss": {
+            "score": 3.2,
+            "vectorString": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:L/I:N/A:N"
+          }
+        }
+      ],
+      "@humanfs/node": [
+        {
+          "id": 1158499,
+          "url": "https://github.com/advisories/GHSA-p498-v437-472g",
+          "title": "humanfs: Recursive copy follows symlinked files and copies data from outside the source tree",
+          "severity": "moderate",
+          "vulnerable_versions": "<0.16.8",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        }
+      ],
+      "@xmldom/xmldom": [
+        {
+          "id": 1158518,
+          "url": "https://github.com/advisories/GHSA-6gmq-8vp8-gcm6",
+          "title": "xmldom: XML fragment injection via invalid EntityReference.nodeName during requireWellFormed serialization",
+          "severity": "moderate",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-116"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1117894,
+          "url": "https://github.com/advisories/GHSA-2v35-w6hq-6mfw",
+          "title": "xmldom: Uncontrolled recursion in XML serialization leads to DoS",
+          "severity": "high",
+          "vulnerable_versions": "<0.8.13",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1117897,
+          "url": "https://github.com/advisories/GHSA-f6ww-3ggp-fr8h",
+          "title": "xmldom has XML injection through unvalidated DocumentType serialization",
+          "severity": "high",
+          "vulnerable_versions": "<0.8.13",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1117900,
+          "url": "https://github.com/advisories/GHSA-x6wf-f3px-wcqx",
+          "title": "xmldom has XML node injection through unvalidated processing instruction serialization",
+          "severity": "high",
+          "vulnerable_versions": "<0.8.13",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1117903,
+          "url": "https://github.com/advisories/GHSA-j759-j44w-7fr8",
+          "title": "xmldom has XML node injection through unvalidated comment serialization",
+          "severity": "high",
+          "vulnerable_versions": "<0.8.13",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193689,
+          "url": "https://github.com/advisories/GHSA-w2rr-34g9-rvrj",
+          "title": "xmldom: Element name injection via createElement() bypasses requireWellFormed",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.13",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193692,
+          "url": "https://github.com/advisories/GHSA-4w3w-2rp5-g8jm",
+          "title": "xmldom: Attribute name injection via setAttribute() bypasses requireWellFormed",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.13",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193696,
+          "url": "https://github.com/advisories/GHSA-c7q8-3ch8-vqpv",
+          "title": "xmldom: Processing Instruction Target Injection Bypasses requireWellFormed",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193700,
+          "url": "https://github.com/advisories/GHSA-27p8-2357-5qqv",
+          "title": "xmldom: DocType `name` Injection Bypasses requireWellFormed",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-91"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193705,
+          "url": "https://github.com/advisories/GHSA-6h8r-xr42-gp59",
+          "title": "xmldom: Parser silently accepts a not-well-formed end tag whose name is followed by a line break and trailing content",
+          "severity": "moderate",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-1286"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193708,
+          "url": "https://github.com/advisories/GHSA-8344-3jmq-59r6",
+          "title": "xmldom: Quadratic-time attribute deduplication",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193709,
+          "url": "https://github.com/advisories/GHSA-x4fp-j954-r2f4",
+          "title": "xmldom: End-tag Whitespace-Trim Regex ReDoS \u2014 quadratic backtracking in the 0.8.x end-tag parser",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-400",
+            "CWE-1333"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193712,
+          "url": "https://github.com/advisories/GHSA-965w-775f-mr7g",
+          "title": "xmldom: Quadratic-memory consumption",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1193715,
+          "url": "https://github.com/advisories/GHSA-93r5-fhx6-vmg9",
+          "title": "xmldom: Quadratic-time parsing via the malformed-input recovery path \u2014 `parseElementStartPart` re-scan and `normalize()` adjacent-text merge",
+          "severity": "high",
+          "vulnerable_versions": ">=0.7.0 <=0.8.14",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        }
+      ],
+      "baseline-browser-mapping": [
+        {
+          "id": 1193686,
+          "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv",
+          "title": "baseline-browser-mapping process termination on invalid input causes denial of service",
+          "severity": "moderate",
+          "vulnerable_versions": ">=2.0.0 <2.11.0",
+          "cwe": [
+            "CWE-705"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        }
+      ],
+      "brace-expansion": [
+        {
+          "id": 1120311,
+          "url": "https://github.com/advisories/GHSA-jxxr-4gwj-5jf2",
+          "title": "brace-expansion: Large numeric range defeats documented `max` DoS protection",
+          "severity": "moderate",
+          "vulnerable_versions": ">=5.0.0 <5.0.6",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 6.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1130588,
+          "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+          "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
+          "severity": "high",
+          "vulnerable_versions": "<1.1.17",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1130591,
+          "url": "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+          "title": "brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <5.0.8",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1130734,
+          "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+          "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <5.0.9",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1130737,
+          "url": "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+          "title": "brace-expansion: DoS via unbounded intermediate arrays, bypassing the CVE-2026-14257 mitigation",
+          "severity": "high",
+          "vulnerable_versions": "<1.1.18",
+          "cwe": [
+            "CWE-400",
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1123897,
+          "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+          "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
+          "severity": "high",
+          "vulnerable_versions": "<1.1.16",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1123898,
+          "url": "https://github.com/advisories/GHSA-3jxr-9vmj-r5cp",
+          "title": "brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups",
+          "severity": "high",
+          "vulnerable_versions": ">=3.0.0 <5.0.7",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1240107,
+          "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+          "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <5.0.11",
+          "cwe": [
+            "CWE-400",
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1240108,
+          "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+          "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
+          "severity": "high",
+          "vulnerable_versions": "<1.1.19",
+          "cwe": [
+            "CWE-400",
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1240111,
+          "url": "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p",
+          "title": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <5.0.10",
+          "cwe": [
+            "CWE-400",
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1240100,
+          "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+          "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
+          "severity": "moderate",
+          "vulnerable_versions": "<1.1.21",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1240103,
+          "url": "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+          "title": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
+          "severity": "moderate",
+          "vulnerable_versions": ">=4.0.0 <5.0.12",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1240104,
+          "url": "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+          "title": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
+          "severity": "high",
+          "vulnerable_versions": "<1.1.20",
+          "cwe": [
+            "CWE-400",
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "browserslist": [
+        {
+          "id": 1153171,
+          "url": "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+          "title": "Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM",
+          "severity": "high",
+          "vulnerable_versions": "<=4.28.6",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1153172,
+          "url": "https://github.com/advisories/GHSA-73wf-gq98-2v4g",
+          "title": "Browserslist: Uncaught crash / prototype write via untrusted browserslist-stats.json custom stats (normalizeStats)",
+          "severity": "high",
+          "vulnerable_versions": "<=4.28.6",
+          "cwe": [
+            "CWE-248",
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "compression": [
+        {
+          "id": 1241221,
+          "url": "https://github.com/advisories/GHSA-vc2v-76pw-4v95",
+          "title": "compression vulnerable to Denial of Service via memory leak on premature response close",
+          "severity": "high",
+          "vulnerable_versions": "<1.8.2",
+          "cwe": [
+            "CWE-401",
+            "CWE-459"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "decode-uri-component": [
+        {
+          "id": 1147955,
+          "url": "https://github.com/advisories/GHSA-vcc3-ghjq-m6fr",
+          "title": "decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input",
+          "severity": "moderate",
+          "vulnerable_versions": "<=0.4.2",
+          "cwe": [
+            "CWE-400",
+            "CWE-405",
+            "CWE-407",
+            "CWE-1176"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        }
+      ],
+      "image-size": [
+        {
+          "id": 1239765,
+          "url": "https://github.com/advisories/GHSA-5p2g-fcmc-qvqq",
+          "title": "image-size: JXL and HEIF parsers allow denial of service through infinite loops",
+          "severity": "high",
+          "vulnerable_versions": ">=1.2.0 <=2.0.2",
+          "cwe": [
+            "CWE-835"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1239766,
+          "url": "https://github.com/advisories/GHSA-w3rx-r6r6-pgpr",
+          "title": "image-size: ICNS parser allows denial of service through an infinite loop",
+          "severity": "high",
+          "vulnerable_versions": ">=0.6.3 <=2.0.2",
+          "cwe": [
+            "CWE-835"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "js-yaml": [
+        {
+          "id": 1121859,
+          "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+          "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
+          "severity": "moderate",
+          "vulnerable_versions": "<3.15.0",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1121860,
+          "url": "https://github.com/advisories/GHSA-h67p-54hq-rp68",
+          "title": "JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases",
+          "severity": "moderate",
+          "vulnerable_versions": ">=4.0.0 <=4.1.1",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1123911,
+          "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+          "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <4.3.0",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1123912,
+          "url": "https://github.com/advisories/GHSA-52cp-r559-cp3m",
+          "title": "js-yaml: YAML merge-key chains can force quadratic CPU consumption",
+          "severity": "high",
+          "vulnerable_versions": ">=3.0.0 <3.15.0",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1138114,
+          "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+          "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported",
+          "severity": "high",
+          "vulnerable_versions": ">=3.0.0 <3.15.1",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1138115,
+          "url": "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+          "title": "JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) \u2014 CVE-2026-59870 fix not backported",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <4.3.1",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1193726,
+          "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+          "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
+          "severity": "high",
+          "vulnerable_versions": ">=3.0.0 <3.15.2",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1193727,
+          "url": "https://github.com/advisories/GHSA-2883-xcg3-v3hh",
+          "title": "js-yaml: maxTotalMergeKeys does not limit CPU use for empty merge sources",
+          "severity": "high",
+          "vulnerable_versions": ">=4.0.0 <4.3.2",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "nanoid": [
+        {
+          "id": 1138811,
+          "url": "https://github.com/advisories/GHSA-28wg-ghj8-5hjv",
+          "title": "nanoid: non-secure generators can loop indefinitely with negative size",
+          "severity": "high",
+          "vulnerable_versions": "<3.3.16",
+          "cwe": [
+            "CWE-835"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1139427,
+          "url": "https://github.com/advisories/GHSA-2v37-7h3g-55p8",
+          "title": "nanoid: custom generators can loop indefinitely when size is zero",
+          "severity": "high",
+          "vulnerable_versions": "<3.3.18",
+          "cwe": [
+            "CWE-835"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1153189,
+          "url": "https://github.com/advisories/GHSA-xwg4-73v4-xw9w",
+          "title": "nanoid: Integer Overflow or Wraparound",
+          "severity": "high",
+          "vulnerable_versions": "<3.3.12",
+          "cwe": [
+            "CWE-190"
+          ],
+          "cvss": {
+            "score": 7.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N"
+          }
+        }
+      ],
+      "node-forge": [
+        {
+          "id": 1240912,
+          "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+          "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+          "severity": "high",
+          "vulnerable_versions": "<=1.4.0",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          }
+        }
+      ],
+      "postcss": [
+        {
+          "id": 1130709,
+          "url": "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp",
+          "title": "PostCSS: incomplete fix of GHSA-6g55-p6wh-862q \u2014 attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset",
+          "severity": "moderate",
+          "vulnerable_versions": "<=8.5.22",
+          "cwe": [
+            "CWE-22",
+            "CWE-200"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        },
+        {
+          "id": 1117015,
+          "url": "https://github.com/advisories/GHSA-qx2v-qp2m-jg93",
+          "title": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
+          "severity": "moderate",
+          "vulnerable_versions": "<8.5.10",
+          "cwe": [
+            "CWE-79"
+          ],
+          "cvss": {
+            "score": 6.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+          }
+        },
+        {
+          "id": 1124252,
+          "url": "https://github.com/advisories/GHSA-6g55-p6wh-862q",
+          "title": "PostCSS: Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments",
+          "severity": "high",
+          "vulnerable_versions": "<=8.5.11",
+          "cwe": [
+            "CWE-22",
+            "CWE-200"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          }
+        },
+        {
+          "id": 1139510,
+          "url": "https://github.com/advisories/GHSA-r28c-9q8g-f849",
+          "title": "PostCSS: Path Traversal in Previous Source Map Auto-Loading (sourceMappingURL) leads to Arbitrary .map File Disclosure",
+          "severity": "high",
+          "vulnerable_versions": "<=8.5.17",
+          "cwe": [
+            "CWE-22"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N"
+          }
+        }
+      ],
+      "postcss-selector-parser": [
+        {
+          "id": 1153170,
+          "url": "https://github.com/advisories/GHSA-w9m9-85wc-3x92",
+          "title": "postcss-selector-parser allows denial of service through uncontrolled AST recursion",
+          "severity": "low",
+          "vulnerable_versions": ">=6.1.0 <6.1.3",
+          "cwe": [
+            "CWE-404"
+          ],
+          "cvss": {
+            "score": 4.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:L"
+          }
+        },
+        {
+          "id": 1241232,
+          "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+          "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+          "severity": "moderate",
+          "vulnerable_versions": "<7.1.6",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "shell-quote": [
+        {
+          "id": 1120422,
+          "url": "https://github.com/advisories/GHSA-w7jw-789q-3m8p",
+          "title": "shell-quote quote() does not escape newlines in object .op values",
+          "severity": "critical",
+          "vulnerable_versions": ">=1.1.0 <=1.8.3",
+          "cwe": [
+            "CWE-77",
+            "CWE-78"
+          ],
+          "cvss": {
+            "score": 8.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+          }
+        },
+        {
+          "id": 1123944,
+          "url": "https://github.com/advisories/GHSA-395f-4hp3-45gv",
+          "title": "shell-quote: Quadratic-complexity Denial of Service in `parse()` (CWE-407)",
+          "severity": "high",
+          "vulnerable_versions": "<=1.8.4",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "source-map-js": [
+        {
+          "id": 1241209,
+          "url": "https://github.com/advisories/GHSA-68fv-2mgg-jv7q",
+          "title": "source-map-js allows event-loop denial of service through indexed source-map section offsets",
+          "severity": "high",
+          "vulnerable_versions": ">=1.0.0 <1.2.2",
+          "cwe": [
+            "CWE-1284"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ],
+      "uuid": [
+        {
+          "id": 1119441,
+          "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+          "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+          "severity": "moderate",
+          "vulnerable_versions": "<11.1.1",
+          "cwe": [
+            "CWE-787",
+            "CWE-1285"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          }
+        }
+      ],
+      "ws": [
+        {
+          "id": 1119108,
+          "url": "https://github.com/advisories/GHSA-58qx-3vcg-4xpx",
+          "title": "ws: Uninitialized memory disclosure",
+          "severity": "moderate",
+          "vulnerable_versions": ">=8.0.0 <8.20.1",
+          "cwe": [
+            "CWE-908"
+          ],
+          "cvss": {
+            "score": 4.4,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N"
+          }
+        },
+        {
+          "id": 1123259,
+          "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+          "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
+          "severity": "high",
+          "vulnerable_versions": ">=8.0.0 <8.21.0",
+          "cwe": [
+            "CWE-400",
+            "CWE-770",
+            "CWE-1050"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        },
+        {
+          "id": 1123260,
+          "url": "https://github.com/advisories/GHSA-96hv-2xvq-fx4p",
+          "title": "ws: Memory exhaustion DoS from tiny fragments and data chunks",
+          "severity": "high",
+          "vulnerable_versions": ">=7.0.0 <7.5.11",
+          "cwe": [
+            "CWE-400",
+            "CWE-770",
+            "CWE-1050"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "summary": {
+      "packageNames": 3,
+      "rawAdvisoryEntries": 3,
+      "distinctAdvisoryUrls": 3,
+      "severity": {
+        "moderate": 2,
+        "high": 1
+      }
+    },
+    "audit": {
+      "decode-uri-component": [
+        {
+          "id": 1147955,
+          "url": "https://github.com/advisories/GHSA-vcc3-ghjq-m6fr",
+          "title": "decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input",
+          "severity": "moderate",
+          "vulnerable_versions": "<=0.4.2",
+          "cwe": [
+            "CWE-400",
+            "CWE-405",
+            "CWE-407",
+            "CWE-1176"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          }
+        }
+      ],
+      "node-forge": [
+        {
+          "id": 1240912,
+          "url": "https://github.com/advisories/GHSA-86w9-cpqp-85rv",
+          "title": "node-forge RSA PKCS#1 v1.5 signature verification accepts extra nested DigestAlgorithm elements",
+          "severity": "high",
+          "vulnerable_versions": "<=1.4.0",
+          "cwe": [
+            "CWE-347"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          }
+        }
+      ],
+      "postcss-selector-parser": [
+        {
+          "id": 1241232,
+          "url": "https://github.com/advisories/GHSA-rj75-hqrm-r3gf",
+          "title": "PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion",
+          "severity": "moderate",
+          "vulnerable_versions": "<7.1.6",
+          "cwe": [
+            "CWE-400",
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 5.9,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          }
+        }
+      ]
+    }
+  },
+  "residualRegistry": [
+    {
+      "source": "https://registry.npmjs.org/node-forge",
+      "name": "node-forge",
+      "installed": "1.4.0",
+      "parentRange": "^1.3.3",
+      "newestWithinParentRange": "1.4.0",
+      "latest": "1.4.0"
+    },
+    {
+      "source": "https://registry.npmjs.org/decode-uri-component",
+      "name": "decode-uri-component",
+      "installed": "0.2.2",
+      "parentRange": "^0.2.2",
+      "newestWithinParentRange": "0.2.2",
+      "latest": "0.5.1"
+    },
+    {
+      "source": "https://registry.npmjs.org/postcss-selector-parser",
+      "name": "postcss-selector-parser",
+      "installed": "6.1.5",
+      "parentRange": "^6.1.2",
+      "newestWithinParentRange": "6.1.5",
+      "latest": "7.1.7"
+    }
+  ],
+  "packageVersionChanges": [
+    {
+      "name": "@alloc/quick-lru",
+      "before": [
+        "5.2.0"
+      ],
+      "after": [
+        "5.3.0"
+      ]
+    },
+    {
+      "name": "@babel/code-frame",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.10.4",
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/compat-data",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/core",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/generator",
+      "before": [
+        "7.29.1"
+      ],
+      "after": [
+        "7.29.8"
+      ]
+    },
+    {
+      "name": "@babel/helper-annotate-as-pure",
+      "before": [
+        "7.27.3"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-compilation-targets",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-create-class-features-plugin",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-create-regexp-features-plugin",
+      "before": [
+        "7.28.5"
+      ],
+      "after": [
+        "7.29.10"
+      ]
+    },
+    {
+      "name": "@babel/helper-globals",
+      "before": [
+        "7.28.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-member-expression-to-functions",
+      "before": [
+        "7.28.5"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-module-imports",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-module-transforms",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-optimise-call-expression",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-plugin-utils",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-remap-async-to-generator",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-replace-supers",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-skip-transparent-expression-wrappers",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-string-parser",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-validator-identifier",
+      "before": [
+        "7.28.5"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-validator-option",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helper-wrap-function",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/helpers",
+      "before": [
+        "7.29.2"
+      ],
+      "after": [
+        "7.29.10"
+      ]
+    },
+    {
+      "name": "@babel/highlight",
+      "before": [],
+      "after": [
+        "7.25.9"
+      ]
+    },
+    {
+      "name": "@babel/parser",
+      "before": [
+        "7.29.2"
+      ],
+      "after": [
+        "7.29.9"
+      ]
+    },
+    {
+      "name": "@babel/plugin-proposal-decorators",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-proposal-export-default-from",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-decorators",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-export-default-from",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-flow",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-import-attributes",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-jsx",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-syntax-typescript",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-async-generator-functions",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-async-to-generator",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-block-scoping",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-class-static-block",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-computed-properties",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-destructuring",
+      "before": [
+        "7.28.5"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-export-namespace-from",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-flow-strip-types",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-for-of",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-function-name",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-literals",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-logical-assignment-operators",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-modules-commonjs",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-named-capturing-groups-regex",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-numeric-separator",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-object-rest-spread",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-optional-catch-binding",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-parameters",
+      "before": [
+        "7.27.7"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-private-methods",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-private-property-in-object",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-display-name",
+      "before": [
+        "7.28.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-jsx",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-jsx-development",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-jsx-self",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-jsx-source",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-react-pure-annotations",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-regenerator",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.8"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-runtime",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-spread",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.8"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-sticky-regex",
+      "before": [
+        "7.27.1"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/plugin-transform-typescript",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.9"
+      ]
+    },
+    {
+      "name": "@babel/preset-react",
+      "before": [
+        "7.28.5"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/runtime",
+      "before": [
+        "7.29.2"
+      ],
+      "after": [
+        "7.29.10"
+      ]
+    },
+    {
+      "name": "@babel/template",
+      "before": [
+        "7.28.6"
+      ],
+      "after": [
+        "7.29.7"
+      ]
+    },
+    {
+      "name": "@babel/traverse",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.10"
+      ]
+    },
+    {
+      "name": "@babel/types",
+      "before": [
+        "7.29.0"
+      ],
+      "after": [
+        "7.29.8"
+      ]
+    },
+    {
+      "name": "@emnapi/core",
+      "before": [
+        "1.9.2"
+      ],
+      "after": [
+        "1.10.0"
+      ]
+    },
+    {
+      "name": "@emnapi/runtime",
+      "before": [
+        "1.9.2"
+      ],
+      "after": [
+        "1.10.0"
+      ]
+    },
+    {
+      "name": "@eslint-community/eslint-utils",
+      "before": [
+        "4.9.1"
+      ],
+      "after": [
+        "4.10.1"
+      ]
+    },
+    {
+      "name": "@eslint/eslintrc",
+      "before": [
+        "3.3.5"
+      ],
+      "after": [
+        "3.3.7"
+      ]
+    },
+    {
+      "name": "@eslint/js",
+      "before": [
+        "9.39.4"
+      ],
+      "after": [
+        "9.39.5"
+      ]
+    },
+    {
+      "name": "@expo-google-fonts/material-symbols",
+      "before": [
+        "0.4.29"
+      ],
+      "after": [
+        "0.4.51"
+      ]
+    },
+    {
+      "name": "@expo/cli",
+      "before": [
+        "55.0.22"
+      ],
+      "after": [
+        "55.0.37"
+      ]
+    },
+    {
+      "name": "@expo/config",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.21"
+      ]
+    },
+    {
+      "name": "@expo/config-plugins",
+      "before": [
+        "55.0.8"
+      ],
+      "after": [
+        "55.0.12"
+      ]
+    },
+    {
+      "name": "@expo/config-types",
+      "before": [
+        "55.0.5"
+      ],
+      "after": [
+        "55.0.6"
+      ]
+    },
+    {
+      "name": "@expo/devcert",
+      "before": [
+        "1.2.1"
+      ],
+      "after": [
+        "1.2.2"
+      ]
+    },
+    {
+      "name": "@expo/devtools",
+      "before": [
+        "55.0.2"
+      ],
+      "after": [
+        "55.0.3"
+      ]
+    },
+    {
+      "name": "@expo/dom-webview",
+      "before": [
+        "55.0.5"
+      ],
+      "after": [
+        "55.0.6"
+      ]
+    },
+    {
+      "name": "@expo/env",
+      "before": [
+        "2.1.1"
+      ],
+      "after": [
+        "2.1.3"
+      ]
+    },
+    {
+      "name": "@expo/fingerprint",
+      "before": [
+        "0.16.6"
+      ],
+      "after": [
+        "0.16.8"
+      ]
+    },
+    {
+      "name": "@expo/image-utils",
+      "before": [
+        "0.8.12"
+      ],
+      "after": [
+        "0.8.17"
+      ]
+    },
+    {
+      "name": "@expo/json-file",
+      "before": [
+        "10.0.13"
+      ],
+      "after": [
+        "10.0.16",
+        "10.2.0",
+        "11.2.1"
+      ]
+    },
+    {
+      "name": "@expo/local-build-cache-provider",
+      "before": [
+        "55.0.9"
+      ],
+      "after": [
+        "55.0.16"
+      ]
+    },
+    {
+      "name": "@expo/log-box",
+      "before": [
+        "55.0.10"
+      ],
+      "after": [
+        "55.0.13"
+      ]
+    },
+    {
+      "name": "@expo/metro",
+      "before": [
+        "55.0.0"
+      ],
+      "after": [
+        "55.1.2"
+      ]
+    },
+    {
+      "name": "@expo/metro-config",
+      "before": [
+        "55.0.14"
+      ],
+      "after": [
+        "55.0.27"
+      ]
+    },
+    {
+      "name": "@expo/metro-runtime",
+      "before": [
+        "55.0.9"
+      ],
+      "after": [
+        "55.0.12"
+      ]
+    },
+    {
+      "name": "@expo/osascript",
+      "before": [
+        "2.4.2"
+      ],
+      "after": [
+        "2.8.1"
+      ]
+    },
+    {
+      "name": "@expo/package-manager",
+      "before": [
+        "1.10.4"
+      ],
+      "after": [
+        "1.14.2"
+      ]
+    },
+    {
+      "name": "@expo/plist",
+      "before": [
+        "0.5.2"
+      ],
+      "after": [
+        "0.5.4"
+      ]
+    },
+    {
+      "name": "@expo/prebuild-config",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.22"
+      ]
+    },
+    {
+      "name": "@expo/require-utils",
+      "before": [
+        "55.0.3"
+      ],
+      "after": [
+        "55.0.8"
+      ]
+    },
+    {
+      "name": "@expo/router-server",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.19"
+      ]
+    },
+    {
+      "name": "@expo/schema-utils",
+      "before": [
+        "55.0.3"
+      ],
+      "after": [
+        "55.0.5"
+      ]
+    },
+    {
+      "name": "@expo/sdk-runtime-versions",
+      "before": [
+        "1.0.0"
+      ],
+      "after": [
+        "1.0.1"
+      ]
+    },
+    {
+      "name": "@expo/spawn-async",
+      "before": [
+        "1.7.2"
+      ],
+      "after": [
+        "1.8.0"
+      ]
+    },
+    {
+      "name": "@expo/xcpretty",
+      "before": [
+        "4.4.2"
+      ],
+      "after": [
+        "4.4.7"
+      ]
+    },
+    {
+      "name": "@humanfs/core",
+      "before": [
+        "0.19.1"
+      ],
+      "after": [
+        "0.19.2"
+      ]
+    },
+    {
+      "name": "@humanfs/node",
+      "before": [
+        "0.16.7"
+      ],
+      "after": [
+        "0.16.8"
+      ]
+    },
+    {
+      "name": "@humanfs/types",
+      "before": [],
+      "after": [
+        "0.15.0"
+      ]
+    },
+    {
+      "name": "@istanbuljs/schema",
+      "before": [
+        "0.1.3"
+      ],
+      "after": [
+        "0.1.6"
+      ]
+    },
+    {
+      "name": "@jridgewell/sourcemap-codec",
+      "before": [
+        "1.5.5"
+      ],
+      "after": [
+        "1.6.0"
+      ]
+    },
+    {
+      "name": "@napi-rs/wasm-runtime",
+      "before": [
+        "0.2.12"
+      ],
+      "after": [
+        "1.2.5"
+      ]
+    },
+    {
+      "name": "@radix-ui/primitive",
+      "before": [
+        "1.1.3"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-collection",
+      "before": [
+        "1.1.7"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-compose-refs",
+      "before": [
+        "1.1.2"
+      ],
+      "after": [
+        "1.1.5"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-context",
+      "before": [
+        "1.1.2"
+      ],
+      "after": [
+        "1.3.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-dialog",
+      "before": [
+        "1.1.15"
+      ],
+      "after": [
+        "1.3.1"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-direction",
+      "before": [
+        "1.1.1"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-dismissable-layer",
+      "before": [
+        "1.1.11"
+      ],
+      "after": [
+        "1.2.1"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-focus-guards",
+      "before": [
+        "1.1.3"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-focus-scope",
+      "before": [
+        "1.1.7"
+      ],
+      "after": [
+        "1.3.1"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-id",
+      "before": [
+        "1.1.1"
+      ],
+      "after": [
+        "1.1.4"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-portal",
+      "before": [
+        "1.1.9"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-presence",
+      "before": [
+        "1.1.5"
+      ],
+      "after": [
+        "1.1.11"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-primitive",
+      "before": [
+        "2.1.3"
+      ],
+      "after": [
+        "2.2.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-roving-focus",
+      "before": [
+        "1.1.11"
+      ],
+      "after": [
+        "1.2.1"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-slot",
+      "before": [
+        "1.2.3",
+        "1.2.4"
+      ],
+      "after": [
+        "1.5.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-tabs",
+      "before": [
+        "1.1.13"
+      ],
+      "after": [
+        "1.2.1"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-use-callback-ref",
+      "before": [
+        "1.1.1"
+      ],
+      "after": [
+        "1.1.5"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-use-controllable-state",
+      "before": [
+        "1.2.2"
+      ],
+      "after": [
+        "1.3.0"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-use-effect-event",
+      "before": [
+        "0.0.2"
+      ],
+      "after": [
+        "0.0.5"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-use-escape-keydown",
+      "before": [
+        "1.1.1"
+      ],
+      "after": []
+    },
+    {
+      "name": "@radix-ui/react-use-is-hydrated",
+      "before": [],
+      "after": [
+        "0.1.3"
+      ]
+    },
+    {
+      "name": "@radix-ui/react-use-layout-effect",
+      "before": [
+        "1.1.1"
+      ],
+      "after": [
+        "1.1.4"
+      ]
+    },
+    {
+      "name": "@react-native/assets-registry",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/babel-plugin-codegen",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/babel-preset",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/codegen",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/community-cli-plugin",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/debugger-frontend",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/debugger-shell",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/dev-middleware",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/gradle-plugin",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/js-polyfills",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/normalize-colors",
+      "before": [
+        "0.74.89",
+        "0.83.4"
+      ],
+      "after": [
+        "0.74.89",
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-native/virtualized-lists",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "@react-navigation/bottom-tabs",
+      "before": [
+        "7.15.9"
+      ],
+      "after": [
+        "7.21.0"
+      ]
+    },
+    {
+      "name": "@react-navigation/core",
+      "before": [
+        "7.17.2"
+      ],
+      "after": [
+        "7.24.0"
+      ]
+    },
+    {
+      "name": "@react-navigation/elements",
+      "before": [
+        "2.9.14"
+      ],
+      "after": [
+        "2.9.45"
+      ]
+    },
+    {
+      "name": "@react-navigation/native",
+      "before": [
+        "7.2.2"
+      ],
+      "after": [
+        "7.5.1"
+      ]
+    },
+    {
+      "name": "@react-navigation/native-stack",
+      "before": [
+        "7.14.10"
+      ],
+      "after": [
+        "7.21.0"
+      ]
+    },
+    {
+      "name": "@react-navigation/routers",
+      "before": [
+        "7.5.3"
+      ],
+      "after": [
+        "7.6.5"
+      ]
+    },
+    {
+      "name": "@sinclair/typebox",
+      "before": [
+        "0.27.10"
+      ],
+      "after": [
+        "0.27.12"
+      ]
+    },
+    {
+      "name": "@tybys/wasm-util",
+      "before": [
+        "0.10.1"
+      ],
+      "after": [
+        "0.10.4"
+      ]
+    },
+    {
+      "name": "@types/estree",
+      "before": [
+        "1.0.8"
+      ],
+      "after": [
+        "1.0.9"
+      ]
+    },
+    {
+      "name": "@types/node",
+      "before": [
+        "25.5.2"
+      ],
+      "after": [
+        "26.6.5"
+      ]
+    },
+    {
+      "name": "@types/react",
+      "before": [
+        "19.2.14"
+      ],
+      "after": [
+        "19.2.18"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/project-service",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/scope-manager",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/tsconfig-utils",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/type-utils",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/types",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/typescript-estree",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/utils",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@typescript-eslint/visitor-keys",
+      "before": [
+        "8.58.1"
+      ],
+      "after": [
+        "8.72.0"
+      ]
+    },
+    {
+      "name": "@ungap/structured-clone",
+      "before": [
+        "1.3.0"
+      ],
+      "after": [
+        "1.4.0"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-android-arm-eabi",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-android-arm64",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-darwin-arm64",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-darwin-x64",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-freebsd-x64",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-arm-gnueabihf",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-arm-musleabihf",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-arm64-gnu",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-arm64-musl",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-loong64-gnu",
+      "before": [],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-loong64-musl",
+      "before": [],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-ppc64-gnu",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-riscv64-gnu",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-riscv64-musl",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-s390x-gnu",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-x64-gnu",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-linux-x64-musl",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-openharmony-arm64",
+      "before": [],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-wasm32-wasi",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-win32-arm64-msvc",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-win32-ia32-msvc",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@unrs/resolver-binding-win32-x64-msvc",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "before": [
+        "0.8.12"
+      ],
+      "after": [
+        "0.8.15",
+        "0.9.12"
+      ]
+    },
+    {
+      "name": "acorn",
+      "before": [
+        "8.16.0"
+      ],
+      "after": [
+        "8.19.0"
+      ]
+    },
+    {
+      "name": "agent-cli-detector",
+      "before": [],
+      "after": [
+        "0.1.7"
+      ]
+    },
+    {
+      "name": "ajv",
+      "before": [
+        "6.14.0"
+      ],
+      "after": [
+        "6.15.0"
+      ]
+    },
+    {
+      "name": "array-includes",
+      "before": [
+        "3.1.9"
+      ],
+      "after": [
+        "3.2.0"
+      ]
+    },
+    {
+      "name": "babel-plugin-react-native-web",
+      "before": [
+        "0.21.2"
+      ],
+      "after": [
+        "0.21.4"
+      ]
+    },
+    {
+      "name": "babel-plugin-syntax-hermes-parser",
+      "before": [
+        "0.32.0",
+        "0.32.1"
+      ],
+      "after": [
+        "0.32.0"
+      ]
+    },
+    {
+      "name": "babel-preset-expo",
+      "before": [
+        "55.0.16"
+      ],
+      "after": [
+        "55.0.25"
+      ]
+    },
+    {
+      "name": "baseline-browser-mapping",
+      "before": [
+        "2.10.16"
+      ],
+      "after": [
+        "2.11.31"
+      ]
+    },
+    {
+      "name": "brace-expansion",
+      "before": [
+        "1.1.13",
+        "5.0.5"
+      ],
+      "after": [
+        "1.1.21",
+        "5.0.12"
+      ]
+    },
+    {
+      "name": "browserslist",
+      "before": [
+        "4.28.2"
+      ],
+      "after": [
+        "4.29.4"
+      ]
+    },
+    {
+      "name": "bser",
+      "before": [
+        "2.1.1"
+      ],
+      "after": [
+        "2.1.2"
+      ]
+    },
+    {
+      "name": "bufferutil",
+      "before": [
+        "4.1.0"
+      ],
+      "after": []
+    },
+    {
+      "name": "call-bind",
+      "before": [
+        "1.0.8"
+      ],
+      "after": [
+        "1.0.9"
+      ]
+    },
+    {
+      "name": "caniuse-lite",
+      "before": [
+        "1.0.30001787"
+      ],
+      "after": [
+        "1.0.30001819"
+      ]
+    },
+    {
+      "name": "compression",
+      "before": [
+        "1.8.1"
+      ],
+      "after": [
+        "1.8.2"
+      ]
+    },
+    {
+      "name": "content-type",
+      "before": [],
+      "after": [
+        "2.1.0"
+      ]
+    },
+    {
+      "name": "core-js-compat",
+      "before": [
+        "3.49.0"
+      ],
+      "after": [
+        "3.51.0"
+      ]
+    },
+    {
+      "name": "dnssd-advertise",
+      "before": [
+        "1.1.4"
+      ],
+      "after": [
+        "1.1.6"
+      ]
+    },
+    {
+      "name": "electron-to-chromium",
+      "before": [
+        "1.5.334"
+      ],
+      "after": [
+        "1.5.463"
+      ]
+    },
+    {
+      "name": "es-abstract-get",
+      "before": [],
+      "after": [
+        "1.0.0"
+      ]
+    },
+    {
+      "name": "es-iterator-helpers",
+      "before": [
+        "1.3.1"
+      ],
+      "after": [
+        "1.4.0"
+      ]
+    },
+    {
+      "name": "es-object-atoms",
+      "before": [
+        "1.1.1"
+      ],
+      "after": [
+        "1.1.2"
+      ]
+    },
+    {
+      "name": "es-to-primitive",
+      "before": [
+        "1.3.0"
+      ],
+      "after": [
+        "1.3.4"
+      ]
+    },
+    {
+      "name": "eslint",
+      "before": [
+        "9.39.4"
+      ],
+      "after": [
+        "9.39.5"
+      ]
+    },
+    {
+      "name": "eslint-config-expo",
+      "before": [
+        "55.0.0"
+      ],
+      "after": [
+        "55.0.1"
+      ]
+    },
+    {
+      "name": "eslint-module-utils",
+      "before": [
+        "2.12.1"
+      ],
+      "after": [
+        "2.14.0"
+      ]
+    },
+    {
+      "name": "eslint-plugin-expo",
+      "before": [
+        "1.0.0"
+      ],
+      "after": [
+        "1.2.1"
+      ]
+    },
+    {
+      "name": "expo",
+      "before": [
+        "55.0.12"
+      ],
+      "after": [
+        "55.0.32"
+      ]
+    },
+    {
+      "name": "expo-asset",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.20"
+      ]
+    },
+    {
+      "name": "expo-constants",
+      "before": [
+        "55.0.12"
+      ],
+      "after": [
+        "55.0.17"
+      ]
+    },
+    {
+      "name": "expo-device",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.21"
+      ]
+    },
+    {
+      "name": "expo-file-system",
+      "before": [
+        "55.0.15"
+      ],
+      "after": [
+        "55.0.26"
+      ]
+    },
+    {
+      "name": "expo-font",
+      "before": [
+        "55.0.6"
+      ],
+      "after": [
+        "55.0.8"
+      ]
+    },
+    {
+      "name": "expo-glass-effect",
+      "before": [
+        "55.0.10"
+      ],
+      "after": [
+        "55.0.11"
+      ]
+    },
+    {
+      "name": "expo-image",
+      "before": [
+        "55.0.8"
+      ],
+      "after": [
+        "55.0.11"
+      ]
+    },
+    {
+      "name": "expo-keep-awake",
+      "before": [
+        "55.0.6"
+      ],
+      "after": [
+        "55.0.8"
+      ]
+    },
+    {
+      "name": "expo-linking",
+      "before": [
+        "55.0.11"
+      ],
+      "after": [
+        "55.0.17"
+      ]
+    },
+    {
+      "name": "expo-modules-autolinking",
+      "before": [
+        "55.0.15"
+      ],
+      "after": [
+        "55.0.28"
+      ]
+    },
+    {
+      "name": "expo-modules-core",
+      "before": [
+        "55.0.21"
+      ],
+      "after": [
+        "55.0.27"
+      ]
+    },
+    {
+      "name": "expo-router",
+      "before": [
+        "55.0.11"
+      ],
+      "after": [
+        "55.0.18"
+      ]
+    },
+    {
+      "name": "expo-server",
+      "before": [
+        "55.0.7"
+      ],
+      "after": [
+        "55.0.12"
+      ]
+    },
+    {
+      "name": "expo-splash-screen",
+      "before": [
+        "55.0.16"
+      ],
+      "after": [
+        "55.0.25"
+      ]
+    },
+    {
+      "name": "expo-status-bar",
+      "before": [
+        "55.0.5"
+      ],
+      "after": [
+        "55.0.6"
+      ]
+    },
+    {
+      "name": "expo-symbols",
+      "before": [
+        "55.0.7"
+      ],
+      "after": [
+        "55.0.9"
+      ]
+    },
+    {
+      "name": "expo-system-ui",
+      "before": [
+        "55.0.14"
+      ],
+      "after": [
+        "55.0.22"
+      ]
+    },
+    {
+      "name": "expo-web-browser",
+      "before": [
+        "55.0.13"
+      ],
+      "after": [
+        "55.0.20"
+      ]
+    },
+    {
+      "name": "fastq",
+      "before": [
+        "1.20.1"
+      ],
+      "after": [
+        "1.20.3"
+      ]
+    },
+    {
+      "name": "fb-watchman",
+      "before": [
+        "2.0.2"
+      ],
+      "after": [
+        "2.0.4"
+      ]
+    },
+    {
+      "name": "flatted",
+      "before": [
+        "3.4.2"
+      ],
+      "after": [
+        "3.4.4"
+      ]
+    },
+    {
+      "name": "fsevents",
+      "before": [
+        "2.3.2",
+        "2.3.3"
+      ],
+      "after": [
+        "2.3.2"
+      ]
+    },
+    {
+      "name": "function.prototype.name",
+      "before": [
+        "1.1.8"
+      ],
+      "after": [
+        "1.2.0"
+      ]
+    },
+    {
+      "name": "get-tsconfig",
+      "before": [
+        "4.13.7"
+      ],
+      "after": [
+        "4.14.3"
+      ]
+    },
+    {
+      "name": "hasown",
+      "before": [
+        "2.0.2"
+      ],
+      "after": [
+        "2.0.4"
+      ]
+    },
+    {
+      "name": "hermes-estree",
+      "before": [
+        "0.32.0",
+        "0.32.1",
+        "0.33.3"
+      ],
+      "after": [
+        "0.32.0",
+        "0.35.0"
+      ]
+    },
+    {
+      "name": "hermes-parser",
+      "before": [
+        "0.32.0",
+        "0.32.1",
+        "0.33.3"
+      ],
+      "after": [
+        "0.32.0",
+        "0.35.0"
+      ]
+    },
+    {
+      "name": "ignore",
+      "before": [
+        "5.3.2",
+        "7.0.5"
+      ],
+      "after": [
+        "5.3.2",
+        "7.0.13"
+      ]
+    },
+    {
+      "name": "image-size",
+      "before": [
+        "1.2.1"
+      ],
+      "after": []
+    },
+    {
+      "name": "is-core-module",
+      "before": [
+        "2.16.1"
+      ],
+      "after": [
+        "2.17.0"
+      ]
+    },
+    {
+      "name": "is-document.all",
+      "before": [],
+      "after": [
+        "1.0.0"
+      ]
+    },
+    {
+      "name": "js-yaml",
+      "before": [
+        "3.14.2",
+        "4.1.1"
+      ],
+      "after": [
+        "3.15.2",
+        "4.3.2"
+      ]
+    },
+    {
+      "name": "lightningcss",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-android-arm64",
+      "before": [
+        "1.32.0"
+      ],
+      "after": [
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-darwin-arm64",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-darwin-x64",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-freebsd-x64",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-linux-arm64-gnu",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-linux-arm64-musl",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-linux-x64-gnu",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-linux-x64-musl",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-win32-arm64-msvc",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lightningcss-win32-x64-msvc",
+      "before": [
+        "1.27.0",
+        "1.32.0"
+      ],
+      "after": [
+        "1.27.0",
+        "1.33.0"
+      ]
+    },
+    {
+      "name": "lilconfig",
+      "before": [
+        "3.1.3"
+      ],
+      "after": [
+        "3.1.4"
+      ]
+    },
+    {
+      "name": "lru-cache",
+      "before": [
+        "10.4.3",
+        "11.3.3",
+        "5.1.1"
+      ],
+      "after": [
+        "10.4.3",
+        "11.5.3",
+        "5.1.1"
+      ]
+    },
+    {
+      "name": "metro",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-babel-transformer",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-cache",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-cache-key",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-config",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-core",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-file-map",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-minify-terser",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-resolver",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-runtime",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-source-map",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-symbolicate",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-transform-plugins",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "metro-transform-worker",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "minimatch",
+      "before": [
+        "10.2.5",
+        "3.1.5"
+      ],
+      "after": [
+        "10.2.6",
+        "3.1.5"
+      ]
+    },
+    {
+      "name": "multitars",
+      "before": [
+        "0.2.4"
+      ],
+      "after": [
+        "1.0.2"
+      ]
+    },
+    {
+      "name": "nanoid",
+      "before": [
+        "3.3.11"
+      ],
+      "after": [
+        "3.3.20"
+      ]
+    },
+    {
+      "name": "napi-postinstall",
+      "before": [
+        "0.3.4"
+      ],
+      "after": [
+        "0.3.7"
+      ]
+    },
+    {
+      "name": "nativewind",
+      "before": [
+        "4.2.3"
+      ],
+      "after": [
+        "4.2.7"
+      ]
+    },
+    {
+      "name": "negotiator",
+      "before": [
+        "0.6.3",
+        "0.6.4",
+        "1.0.0"
+      ],
+      "after": [
+        "0.6.3",
+        "0.6.4",
+        "1.1.0"
+      ]
+    },
+    {
+      "name": "node-exports-info",
+      "before": [
+        "1.6.0"
+      ],
+      "after": [
+        "1.6.2"
+      ]
+    },
+    {
+      "name": "node-gyp-build",
+      "before": [
+        "4.8.4"
+      ],
+      "after": []
+    },
+    {
+      "name": "node-releases",
+      "before": [
+        "2.0.37"
+      ],
+      "after": [
+        "2.0.60"
+      ]
+    },
+    {
+      "name": "ob1",
+      "before": [
+        "0.83.5"
+      ],
+      "after": [
+        "0.83.8"
+      ]
+    },
+    {
+      "name": "on-finished",
+      "before": [
+        "2.3.0",
+        "2.4.1"
+      ],
+      "after": [
+        "2.3.0",
+        "2.4.2"
+      ]
+    },
+    {
+      "name": "own-keys",
+      "before": [
+        "1.0.1"
+      ],
+      "after": [
+        "1.0.2"
+      ]
+    },
+    {
+      "name": "picomatch",
+      "before": [
+        "2.3.2",
+        "4.0.4"
+      ],
+      "after": [
+        "2.3.2",
+        "4.0.7"
+      ]
+    },
+    {
+      "name": "pify",
+      "before": [
+        "2.3.0"
+      ],
+      "after": []
+    },
+    {
+      "name": "plist",
+      "before": [
+        "3.1.0"
+      ],
+      "after": [
+        "3.1.1"
+      ]
+    },
+    {
+      "name": "postcss",
+      "before": [
+        "8.4.49"
+      ],
+      "after": [
+        "8.5.31"
+      ]
+    },
+    {
+      "name": "postcss-selector-parser",
+      "before": [
+        "6.1.2"
+      ],
+      "after": [
+        "6.1.5"
+      ]
+    },
+    {
+      "name": "prettier",
+      "before": [
+        "3.8.1"
+      ],
+      "after": [
+        "3.9.10"
+      ]
+    },
+    {
+      "name": "queue",
+      "before": [
+        "6.0.2"
+      ],
+      "after": []
+    },
+    {
+      "name": "react-is",
+      "before": [
+        "16.13.1",
+        "18.3.1",
+        "19.2.5"
+      ],
+      "after": [
+        "16.13.1",
+        "18.3.1",
+        "19.3.1"
+      ]
+    },
+    {
+      "name": "react-native",
+      "before": [
+        "0.83.4"
+      ],
+      "after": [
+        "0.83.10"
+      ]
+    },
+    {
+      "name": "react-native-css-interop",
+      "before": [
+        "0.2.3"
+      ],
+      "after": [
+        "0.2.7"
+      ]
+    },
+    {
+      "name": "react-native-is-edge-to-edge",
+      "before": [
+        "1.2.1",
+        "1.3.1"
+      ],
+      "after": [
+        "1.2.1"
+      ]
+    },
+    {
+      "name": "react-native-web",
+      "before": [
+        "0.21.2"
+      ],
+      "after": [
+        "0.21.4"
+      ]
+    },
+    {
+      "name": "react-native-worklets",
+      "before": [
+        "0.7.2"
+      ],
+      "after": [
+        "0.7.4"
+      ]
+    },
+    {
+      "name": "read-cache",
+      "before": [
+        "1.0.0"
+      ],
+      "after": [
+        "1.0.2"
+      ]
+    },
+    {
+      "name": "regenerate",
+      "before": [
+        "1.4.2"
+      ],
+      "after": [
+        "1.5.0"
+      ]
+    },
+    {
+      "name": "regenerate-unicode-properties",
+      "before": [
+        "10.2.2"
+      ],
+      "after": [
+        "10.3.0"
+      ]
+    },
+    {
+      "name": "regexpu-core",
+      "before": [
+        "6.4.0"
+      ],
+      "after": [
+        "6.5.3"
+      ]
+    },
+    {
+      "name": "regjsparser",
+      "before": [
+        "0.13.1"
+      ],
+      "after": [
+        "0.13.4"
+      ]
+    },
+    {
+      "name": "resolve",
+      "before": [
+        "1.22.11",
+        "2.0.0-next.6"
+      ],
+      "after": [
+        "1.22.13",
+        "2.0.0-next.7"
+      ]
+    },
+    {
+      "name": "safe-array-concat",
+      "before": [
+        "1.1.3"
+      ],
+      "after": [
+        "1.1.4"
+      ]
+    },
+    {
+      "name": "sax",
+      "before": [
+        "1.6.0"
+      ],
+      "after": [
+        "1.6.1"
+      ]
+    },
+    {
+      "name": "semver",
+      "before": [
+        "6.3.1",
+        "7.6.3",
+        "7.7.3"
+      ],
+      "after": [
+        "6.3.1",
+        "7.6.3",
+        "7.7.3",
+        "7.8.5"
+      ]
+    },
+    {
+      "name": "shell-quote",
+      "before": [
+        "1.8.3"
+      ],
+      "after": [
+        "1.12.0"
+      ]
+    },
+    {
+      "name": "side-channel",
+      "before": [
+        "1.1.0"
+      ],
+      "after": [
+        "1.1.1"
+      ]
+    },
+    {
+      "name": "source-map-js",
+      "before": [
+        "1.2.1"
+      ],
+      "after": [
+        "1.2.2"
+      ]
+    },
+    {
+      "name": "standard-navigation",
+      "before": [],
+      "after": [
+        "0.0.8"
+      ]
+    },
+    {
+      "name": "string.prototype.matchall",
+      "before": [
+        "4.0.12"
+      ],
+      "after": [
+        "4.1.0"
+      ]
+    },
+    {
+      "name": "string.prototype.trim",
+      "before": [
+        "1.2.10"
+      ],
+      "after": [
+        "1.2.11"
+      ]
+    },
+    {
+      "name": "string.prototype.trimend",
+      "before": [
+        "1.0.9"
+      ],
+      "after": [
+        "1.0.10"
+      ]
+    },
+    {
+      "name": "terser",
+      "before": [
+        "5.46.1"
+      ],
+      "after": [
+        "5.51.2"
+      ]
+    },
+    {
+      "name": "tinyglobby",
+      "before": [
+        "0.2.16"
+      ],
+      "after": [
+        "0.2.17"
+      ]
+    },
+    {
+      "name": "typed-array-byte-offset",
+      "before": [
+        "1.0.4"
+      ],
+      "after": [
+        "1.0.5"
+      ]
+    },
+    {
+      "name": "typed-array-length",
+      "before": [
+        "1.0.7"
+      ],
+      "after": [
+        "1.0.8"
+      ]
+    },
+    {
+      "name": "undici-types",
+      "before": [
+        "7.18.2"
+      ],
+      "after": [
+        "8.9.0"
+      ]
+    },
+    {
+      "name": "unrs-resolver",
+      "before": [
+        "1.11.1"
+      ],
+      "after": [
+        "1.12.2"
+      ]
+    },
+    {
+      "name": "update-browserslist-db",
+      "before": [
+        "1.2.3"
+      ],
+      "after": [
+        "1.3.4"
+      ]
+    },
+    {
+      "name": "use-sync-external-store",
+      "before": [
+        "1.6.0"
+      ],
+      "after": [
+        "1.7.0"
+      ]
+    },
+    {
+      "name": "utf-8-validate",
+      "before": [
+        "6.0.6"
+      ],
+      "after": []
+    },
+    {
+      "name": "uuid",
+      "before": [
+        "7.0.3"
+      ],
+      "after": []
+    },
+    {
+      "name": "whatwg-url-minimum",
+      "before": [
+        "0.1.1"
+      ],
+      "after": [
+        "0.1.2"
+      ]
+    },
+    {
+      "name": "which-typed-array",
+      "before": [
+        "1.1.20"
+      ],
+      "after": [
+        "1.1.24"
+      ]
+    },
+    {
+      "name": "ws",
+      "before": [
+        "7.5.10",
+        "8.20.0"
+      ],
+      "after": [
+        "7.5.13",
+        "8.22.0"
+      ]
+    },
+    {
+      "name": "xcode",
+      "before": [
+        "3.0.1"
+      ],
+      "after": [
+        "4.0.0"
+      ]
+    },
+    {
+      "name": "yaml",
+      "before": [
+        "2.8.3"
+      ],
+      "after": [
+        "2.9.1"
+      ]
+    },
+    {
+      "name": "yargs",
+      "before": [
+        "17.7.2"
+      ],
+      "after": [
+        "17.7.3"
+      ]
+    }
+  ],
+  "installedManifestValidation": {
+    "installedPackageManifests": 971,
+    "lockedActivePackageManifests": 963,
+    "staleUnusedPackageManifestsExcluded": 8,
+    "nodeEngineMismatches": {
+      "24.0.0": [
+        {
+          "name": "eslint-plugin-expo",
+          "version": "1.2.1",
+          "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+        }
+      ],
+      "24.2.0": [
+        {
+          "name": "eslint-plugin-expo",
+          "version": "1.2.1",
+          "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+        }
+      ],
+      "24.3.0": [],
+      "24.14.0": [],
+      "25.4.0": [
+        {
+          "name": "eslint-plugin-expo",
+          "version": "1.2.1",
+          "node": "^22.13.0 || ^24.3.0 || ^26.0.0 || >=27.0.0"
+        }
+      ]
+    },
+    "installedDependencyRangeMismatches": []
+  }
+}

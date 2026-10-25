@@ -8,6 +8,7 @@ import { scrollToSection } from '@/lib/scroll-to-section';
 interface SiteFrameProps {
   navigation: readonly { label: string; targetId: string }[];
   children?: ReactNode;
+  footer?: ReactNode;
 }
 
 function NavLink({ label, targetId }: { label: string; targetId: string }) {
@@ -17,7 +18,7 @@ function NavLink({ label, targetId }: { label: string; targetId: string }) {
     <Link href={href} asChild>
       <Pressable
         className="cursor-pointer rounded-md px-2 py-2 hover:bg-wash focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas active:opacity-70 md:px-3"
-        onPress={() => scrollToSection(targetId)}>
+        onPress={(event) => scrollToSection(targetId, event)}>
         <Text className="font-body-medium text-[13px] text-muted md:text-sm">
           {label}
         </Text>
@@ -26,17 +27,19 @@ function NavLink({ label, targetId }: { label: string; targetId: string }) {
   );
 }
 
-export function SiteFrame({ navigation, children }: SiteFrameProps) {
+export function SiteFrame({ navigation, children, footer }: SiteFrameProps) {
   return (
     <SafeAreaView className="flex-1 bg-canvas">
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className="mx-auto w-full max-w-6xl px-6 pb-20 pt-5 md:px-10 md:pt-8">
-          <View className="flex-row items-center justify-between gap-2 md:gap-4">
+          <View
+            role="banner"
+            className="flex-row flex-wrap items-center justify-between gap-2 md:gap-4">
             <Text className="shrink font-body-semibold text-xs text-ink tracking-tight md:text-sm">
               joseph tabalon
             </Text>
 
-            <View className="flex-row gap-0.5 md:gap-1">
+            <View role="navigation" className="max-w-full flex-row flex-wrap gap-0.5 md:gap-1">
               {navigation.map((item) => (
                 <NavLink
                   key={item.targetId}
@@ -47,7 +50,14 @@ export function SiteFrame({ navigation, children }: SiteFrameProps) {
             </View>
           </View>
 
-          <View className="mt-10 md:mt-14">{children}</View>
+          <View role="main" className="mt-10 md:mt-14">
+            {children}
+          </View>
+          {footer ? (
+            <View role="contentinfo" className="mt-20">
+              {footer}
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </SafeAreaView>
