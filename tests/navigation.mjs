@@ -9,11 +9,11 @@ const browserType = { chromium, firefox, webkit }[engine];
 assert(browserType, 'NAVIGATION_BROWSER must be chromium, firefox, or webkit');
 let browser;
 
-async function load(page, hash = '') {
+async function load(page, suffix = '') {
   // A direct fragment load starts a new document, rather than mutating the hash
   // of the previous scenario's already-hydrated route.
   await page.goto('about:blank');
-  await page.goto(`${server.url.href}${hash}`, { waitUntil: 'networkidle' });
+  await page.goto(`${server.url.href}${suffix}`, { waitUntil: 'networkidle' });
   assert.equal(await page.evaluate(() => document.fonts.status), 'loaded', 'Font requests have settled before navigation checks');
 }
 
@@ -41,12 +41,21 @@ async function checkDestination(page, id, nextLink, { keyboard = true } = {}) {
   assert(await heading.evaluate(el => el === document.activeElement), `${id}: destination heading receives focus`);
   assert.equal(await heading.getAttribute('tabindex'), '-1', `${id}: heading stays outside sequential Tab order`);
   const bounds = await heading.boundingBox();
-  assert(bounds && bounds.y >= 0 && bounds.y < page.viewportSize().height, `${id}: focused heading is visible`);
+  assert(bounds && bounds.y >= 0 && bounds.y + bounds.height <= page.viewportSize().height, `${id}: focused heading is fully visible`);
   if (keyboard) {
-    assert(await heading.evaluate(el => {
+    const focus = await heading.evaluate(el => {
       const css = getComputedStyle(el);
-      return css.outlineStyle !== 'none' && parseFloat(css.outlineWidth) >= 2;
-    }), `${id}: keyboard destination has a visible focus indicator`);
+      const bounds = el.getBoundingClientRect();
+      const inset = Math.max(0, parseFloat(css.outlineWidth) + parseFloat(css.outlineOffset));
+      return {
+        visible: css.outlineStyle !== 'none' && parseFloat(css.outlineWidth) >= 2,
+        top: bounds.top - inset,
+        bottom: bounds.bottom + inset,
+      };
+    });
+    assert(focus.visible, `${id}: keyboard destination has a visible focus indicator`);
+    assert(focus.top >= 0 && focus.bottom <= page.viewportSize().height,
+      `${id}: keyboard focus indicator fits the viewport`);
   }
   await page.keyboard.press('Tab');
   // Crossing a paint catches delayed navigation work that would otherwise steal
@@ -173,6 +182,145 @@ try {
         await page.close();
       }
     }
+  }
+
+  // Short CSS viewports reproduce the reading space available at high browser
+  // zoom. These remain viewport regressions, not genuine browser-zoom evidence.
+  for (const viewport of [{ width: 372, height: 245 }, { width: 320, height: 256 }]) {
+    const page = await browser.newPage({ viewport, reducedMotion: 'reduce' });
+    page.setDefaultTimeout(5000);
+    page.setDefaultNavigationTimeout(10000);
+    const applicationErrors = [];
+    page.on('pageerror', error => applicationErrors.push(error.message));
+    try {
+      for (const [label, id] of [['Work', 'work'], ['About', 'about'], ['Contact', 'contact'], ['Back to top', 'top']]) {
+        await load(page);
+        const source = page.getByRole('link', { name: label, exact: true });
+        await source.focus();
+        await page.keyboard.press('Enter');
+        const nextLink = id === 'work'
+          ? page.locator('#work').getByRole('link').first()
+          : page.locator(id === 'top' ? '#top' : '#contact').getByRole('link', { name: 'Email me', exact: true });
+        await checkDestination(page, id, nextLink);
+      }
+      assert.deepEqual(applicationErrors, [], 'Short-viewport navigation must not throw application errors');
+      console.log(`PASS navigation-short-${viewport.width}-${viewport.height}`);
+    } finally {
+      await page.close();
+    }
+  }
+
+  // Real link activation must leave section entries for browser Back/Forward,
+  // as native hash changes do. Each input mode gets a fresh browser context.
+  for (const activation of ['pointer', 'keyboard']) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 1000 }, reducedMotion: 'reduce' });
+    page.setDefaultTimeout(5000);
+    page.setDefaultNavigationTimeout(10000);
+    const applicationErrors = [];
+    page.on('pageerror', error => applicationErrors.push(error.message));
+    const nextLink = id => id === 'work'
+      ? page.locator('#work').getByRole('link').first()
+      : page.locator('#contact').getByRole('link', { name: 'Email me', exact: true });
+    try {
+      await load(page);
+      for (const [label, id] of [['Work', 'work'], ['About', 'about'], ['Contact', 'contact']]) {
+        const source = page.getByRole('navigation').getByRole('link', { name: label, exact: true });
+        if (activation === 'pointer') await source.click();
+        else {
+          await source.focus();
+          await page.keyboard.press('Enter');
+        }
+        await checkDestination(page, id, nextLink(id), { keyboard: activation === 'keyboard' });
+        assert.equal(page.url(), `${server.url.href}#${id}`);
+      }
+      for (const [direction, id] of [['back', 'about'], ['back', 'work'], ['forward', 'about'], ['forward', 'contact']]) {
+        if (direction === 'back') await page.goBack();
+        else await page.goForward();
+        await checkDestination(page, id, nextLink(id), { keyboard: activation === 'keyboard' });
+        assert.equal(page.url(), `${server.url.href}#${id}`, `${activation}: browser ${direction} returns to ${id}`);
+      }
+      assert.deepEqual(applicationErrors, [], 'Section link history must not throw application errors');
+      console.log(`PASS navigation-link-history-${activation}`);
+    } finally {
+      await page.close();
+    }
+  }
+
+  for (const scenario of [
+    { suffix: '?source=section-link', label: 'Work', id: 'work', keyboard: false },
+    { suffix: '?source=section-link#contact', label: 'Contact', id: 'contact', keyboard: true },
+  ]) {
+    const page = await browser.newPage({ viewport: { width: 390, height: 1000 }, reducedMotion: 'reduce' });
+    page.setDefaultTimeout(5000);
+    page.setDefaultNavigationTimeout(10000);
+    const applicationErrors = [];
+    page.on('pageerror', error => applicationErrors.push(error.message));
+    try {
+      await load(page, scenario.suffix);
+      const source = page.getByRole('navigation').getByRole('link', { name: scenario.label, exact: true });
+      assert.equal(await source.getAttribute('href'), `/#${scenario.id}`);
+      if (scenario.keyboard) {
+        await source.focus();
+        await page.keyboard.press('Enter');
+      } else await source.click();
+      const nextLink = scenario.id === 'work'
+        ? page.locator('#work').getByRole('link').first()
+        : page.locator('#contact').getByRole('link', { name: 'Email me', exact: true });
+      await checkDestination(page, scenario.id, nextLink, { keyboard: scenario.keyboard });
+      assert.equal(page.url(), `${server.url.href}#${scenario.id}`,
+        'Section activation follows its root href, including clearing a landing query');
+      assert.deepEqual(applicationErrors, [], 'Query landing navigation must not throw application errors');
+      console.log(`PASS navigation-query-${scenario.id}`);
+    } finally {
+      await page.close();
+    }
+  }
+
+  const arrivalPage = await browser.newPage({ viewport: { width: 390, height: 1000 }, reducedMotion: 'no-preference' });
+  arrivalPage.setDefaultTimeout(5000);
+  arrivalPage.setDefaultNavigationTimeout(10000);
+  const arrivalErrors = [];
+  arrivalPage.on('pageerror', error => arrivalErrors.push(error.message));
+  try {
+    await load(arrivalPage);
+    await arrivalPage.getByRole('navigation').getByRole('link', { name: 'Contact', exact: true }).click();
+    await checkDestination(arrivalPage, 'contact', arrivalPage.locator('#contact').getByRole('link', { name: 'Email me', exact: true }), { keyboard: false });
+    // Observe rendered opacity/translation across the route restoration. The
+    // first arrival has settled; Back to top must reveal settled reading content.
+    const sampling = arrivalPage.evaluate(() => new Promise((resolve, reject) => {
+      const samples = [];
+      const start = performance.now();
+      let focusedAt;
+      const sample = () => {
+        const hero = document.getElementById('top');
+        if (hero && location.hash === '#top') {
+          const css = getComputedStyle(hero);
+          samples.push({ opacity: Number(css.opacity),
+            translationY: css.transform === 'none' ? 0 : new DOMMatrixReadOnly(css.transform).m42 });
+          if (focusedAt === undefined && hero.querySelector('h1') === document.activeElement) focusedAt = performance.now();
+        }
+        if (focusedAt !== undefined && performance.now() - focusedAt >= 400) resolve(samples);
+        else if (performance.now() - start >= 5000) reject(new Error('Back to top must focus its heading during arrival sampling'));
+        else requestAnimationFrame(sample);
+      };
+      sample();
+    }));
+    let samples;
+    try {
+      await arrivalPage.getByRole('link', { name: 'Back to top', exact: true }).click();
+      await arrivalPage.waitForFunction(() => document.querySelector('#top h1') === document.activeElement);
+      await arrivalPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      await checkDestination(arrivalPage, 'top', arrivalPage.locator('#top').getByRole('link', { name: 'Email me', exact: true }), { keyboard: false });
+    } finally {
+      samples = await sampling;
+    }
+    assert(samples.length > 1, 'Back to top samples rendered content across multiple frames');
+    assert(samples.every(sample => sample.opacity === 1 && Math.abs(sample.translationY) < 0.01),
+      'Back to top must not replay the initial Hero fade or movement');
+    assert.deepEqual(arrivalErrors, [], 'Restoring the Hero must not throw application errors');
+    console.log('PASS navigation-one-time-arrival');
+  } finally {
+    await arrivalPage.close();
   }
 
   const noJS = await browser.newPage({ javaScriptEnabled: false, viewport: { width: 390, height: 1000 } });

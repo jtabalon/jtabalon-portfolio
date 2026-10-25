@@ -1,23 +1,16 @@
 import assert from 'node:assert/strict';
-import { mkdir, readdir } from 'node:fs/promises';
-import { resolve, sep } from 'node:path';
+import { readdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { chromium, firefox, webkit } from 'playwright';
 
+import { prepareArtifactDirectory } from './helpers/artifact-directory.mjs';
 import { serveExport } from './helpers/serve-export.mjs';
 
 const exportRoot = resolve('dist');
 const browserName = process.env.ERROR_BROWSER ?? 'chromium';
 const browserType = { chromium, firefox, webkit }[browserName];
 assert(browserType, 'ERROR_BROWSER must be chromium, firefox, or webkit');
-const artifactDirectory = process.env.BROWSER_ARTIFACT_DIR;
-if (artifactDirectory) {
-  for (const directory of ['dist', 'public']) {
-    const forbidden = resolve(directory);
-    assert(resolve(artifactDirectory) !== forbidden && !resolve(artifactDirectory).startsWith(forbidden + sep),
-      'Screenshots must stay outside dist/public');
-  }
-  await mkdir(artifactDirectory, { recursive: true });
-}
+const artifactDirectory = await prepareArtifactDirectory(process.env.BROWSER_ARTIFACT_DIR);
 
 // The local server exercises exported documents and links. Only a hosted run
 // establishes that the deployment returns these documents with the right status.

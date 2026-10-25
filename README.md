@@ -106,3 +106,5 @@ ERROR_BROWSER=webkit bun --no-env-file tests/errors.mjs
 
 Optionally set `BROWSER_ARTIFACT_DIR` to a private directory outside `dist` and
 `public` to capture each scenario. Screenshots are not part of the static export.
+The screenshot suites reject both paths inside those roots and symlink aliases
+that resolve into them; new directories and aliases to private locations work.

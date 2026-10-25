@@ -1,20 +1,12 @@
 import assert from 'node:assert/strict';
-import { mkdir } from 'node:fs/promises';
-import { resolve, sep } from 'node:path';
+import { resolve } from 'node:path';
 import { chromium } from 'playwright';
+import { prepareArtifactDirectory } from './helpers/artifact-directory.mjs';
 import { serveExport } from './helpers/serve-export.mjs';
 
 const root = resolve('dist');
 assert(await Bun.file(resolve(root, 'index.html')).exists(), 'Run bun run build:web first');
-const artifacts = process.env.BROWSER_ARTIFACT_DIR;
-if (artifacts) {
-  for (const directory of ['dist', 'public']) {
-    const forbidden = resolve(directory);
-    assert(resolve(artifacts) !== forbidden && !resolve(artifacts).startsWith(forbidden + sep),
-      'Screenshots must stay outside dist/public');
-  }
-  await mkdir(artifacts, { recursive: true });
-}
+const artifacts = await prepareArtifactDirectory(process.env.BROWSER_ARTIFACT_DIR);
 const server = serveExport();
 let browser;
 let failures = 0;

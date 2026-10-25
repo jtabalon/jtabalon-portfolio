@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useLocalSearchParams, type Href } from 'expo-router';
 import Head from 'expo-router/head';
 import { Platform, Pressable, Text, View } from 'react-native';
@@ -16,6 +16,10 @@ const externalLinkWebProps = Platform.select({
   web: { hrefAttrs: { target: '_blank', rel: 'noopener noreferrer' } },
   default: {},
 });
+
+// Route restoration may remount the homepage within the same document. Effects
+// never run during static rendering, so initial HTML and hydration still arrive.
+let hasShownHeroArrival = false;
 
 function PageSection({
   children,
@@ -83,7 +87,12 @@ function SiteFooter() {
 }
 
 export default function HomeRoute() {
+  const [showHeroArrival] = useState(() => !hasShownHeroArrival);
   const { '#': fragment } = useLocalSearchParams<{ '#': string }>();
+
+  useEffect(() => {
+    if (Platform.OS === 'web') hasShownHeroArrival = true;
+  }, []);
 
   useEffect(() => {
     if (Platform.OS !== 'web' || !fragment) return;
@@ -144,7 +153,7 @@ export default function HomeRoute() {
         <View className="gap-20">
           <View
             nativeID="top"
-            className="motion-hero-entrance gap-7 md:flex-row md:items-center md:justify-between md:gap-12">
+            className={`${showHeroArrival ? 'motion-hero-entrance ' : ''}gap-7 md:flex-row md:items-center md:justify-between md:gap-12`}>
             <View className="order-2 max-w-2xl gap-5 md:order-1 md:flex-1">
               <View className="gap-2">
                 <Text className="font-body-semibold text-base text-accent">

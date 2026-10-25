@@ -1,6 +1,6 @@
 # One-hour sprint reviewer handoff — 23 October 2026
 
-The subsequent [24 October reviewer refresh](2026-10-24-reviewer-refresh.md) records the narrow-screen text-reflow fix. The [continued release-check review](2026-10-24-release-check-review.md) adds public-PNG decoding, local-target and environment-loading checks, runtime enforcement and a consolidated production checklist. The revision boundaries below describe the original sprint and its five-suite follow-up; consult draft PR #18 for the latest hosted gate.
+The subsequent [24 October reviewer refresh](2026-10-24-reviewer-refresh.md) records the narrow-screen text-reflow fix. The [continued release-check review](2026-10-24-release-check-review.md) adds public-PNG decoding, local-target and environment-loading checks, runtime enforcement and a consolidated production checklist. The latest [zoom/navigation/artifact record](2026-10-24-zoom-navigation-artifacts.md) covers genuine desktop zoom, short-viewport focus, ordinary-link history, one-time arrival and screenshot-path containment; the [advisory follow-up](2026-10-24-advisory-followup.md) records four current reports. The revision boundaries below describe the original sprint and its five-suite follow-up; consult draft PR #18 for the latest hosted gate.
 
 This matrix maps the GitHub acceptance criteria for [#8–#15](https://github.com/jtabalon/jtabalon-portfolio/issues/8) to the sprint evidence. It is a review handoff, not an issue-closure record.
 

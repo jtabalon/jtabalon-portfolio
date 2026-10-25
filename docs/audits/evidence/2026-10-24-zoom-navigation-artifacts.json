@@ -1,0 +1,398 @@
+{
+  "baselineRevision": "df58408b81fa2d78c5a4d029ad7cfbb60ed6c3e8",
+  "team": {
+    "coordinator": 1,
+    "delegatedWorkers": 3,
+    "localVerificationSlots": 1
+  },
+  "runtime": {
+    "node": "24.22.1",
+    "bun": "1.3.10",
+    "playwright": "1.58.2",
+    "platform": "macOS"
+  },
+  "nativeChrome": {
+    "exactVersion": null,
+    "versionCapture": "Internal version URL blocked by browser policy; no workaround used",
+    "baseline": {
+      "width": 1488,
+      "height": 981,
+      "pixelRatio": 2
+    },
+    "zoom200": {
+      "nativePercentage": 200,
+      "metrics": {
+        "height": 490,
+        "pixelRatio": 4,
+        "width": 744
+      },
+      "topFocus": {
+        "bottom": 258,
+        "fullyVisibleWithOutline": true,
+        "href": null,
+        "inContact": false,
+        "inTop": true,
+        "outlineInset": 6,
+        "tag": "H1",
+        "text": "Joseph Tabalon",
+        "top": 210,
+        "viewportHeight": 490
+      },
+      "contactEmail": {
+        "bottom": 262,
+        "fullyVisibleWithOutline": true,
+        "href": "mailto:joseph@tabalon.io",
+        "inContact": true,
+        "inTop": false,
+        "outlineInset": 4,
+        "tag": "A",
+        "text": "Email me",
+        "top": 210,
+        "viewportHeight": 490
+      }
+    },
+    "zoom400": {
+      "metrics": {
+        "height": 245,
+        "pixelRatio": 8,
+        "width": 372
+      },
+      "sectionControlsChecked": 5,
+      "backToTopFocus": {
+        "bottom": 146.625,
+        "fullyVisibleWithOutline": true,
+        "href": null,
+        "inContact": false,
+        "inTop": true,
+        "outlineInset": 6,
+        "tag": "H1",
+        "text": "Joseph Tabalon",
+        "top": 98.625,
+        "viewportHeight": 245
+      },
+      "historyBack": {
+        "bottom": 57,
+        "fullyVisibleWithOutline": true,
+        "href": null,
+        "inContact": false,
+        "inTop": false,
+        "outlineInset": 6,
+        "tag": "H2",
+        "text": "About",
+        "top": 25,
+        "viewportHeight": 245
+      },
+      "historyForward": {
+        "bottom": 57,
+        "fullyVisibleWithOutline": true,
+        "href": null,
+        "inContact": true,
+        "inTop": false,
+        "outlineInset": 6,
+        "tag": "H2",
+        "text": "Contact",
+        "top": 25,
+        "viewportHeight": 245
+      },
+      "historyNextTab": {
+        "bottom": 148.625,
+        "fullyVisibleWithOutline": true,
+        "href": "mailto:joseph@tabalon.io",
+        "inContact": true,
+        "inTop": false,
+        "outlineInset": 4,
+        "tag": "A",
+        "text": "Email me",
+        "top": 96.625,
+        "viewportHeight": 245
+      },
+      "queryCleared": true
+    },
+    "restored100": {
+      "height": 981,
+      "pixelRatio": 2,
+      "width": 1488
+    }
+  },
+  "historyBefore": [
+    {
+      "mode": "pointer-link",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 2
+        },
+        {
+          "hash": "#about",
+          "historyLength": 2
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 2
+        }
+      ],
+      "returnsToAbout": false,
+      "afterBack": {
+        "url": "about:blank",
+        "hash": "",
+        "title": "",
+        "historyLength": 2
+      }
+    },
+    {
+      "mode": "keyboard-link",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 2
+        },
+        {
+          "hash": "#about",
+          "historyLength": 2
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 2
+        }
+      ],
+      "returnsToAbout": false,
+      "afterBack": {
+        "url": "about:blank",
+        "hash": "",
+        "title": "",
+        "historyLength": 2
+      }
+    },
+    {
+      "mode": "native-hash-control",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 3
+        },
+        {
+          "hash": "#about",
+          "historyLength": 4
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 5
+        }
+      ],
+      "returnsToAbout": true,
+      "afterBack": {
+        "url": "http://127.0.0.1:59018/#about",
+        "hash": "#about",
+        "title": "Joseph Tabalon | Senior Data Scientist",
+        "historyLength": 5
+      }
+    }
+  ],
+  "historyAfter": [
+    {
+      "mode": "pointer-link",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 3
+        },
+        {
+          "hash": "#about",
+          "historyLength": 4
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 5
+        }
+      ],
+      "returnsToAbout": true,
+      "afterBack": {
+        "url": "http://127.0.0.1:57092/#about",
+        "hash": "#about",
+        "title": "Joseph Tabalon | Senior Data Scientist",
+        "historyLength": 5
+      }
+    },
+    {
+      "mode": "keyboard-link",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 3
+        },
+        {
+          "hash": "#about",
+          "historyLength": 4
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 5
+        }
+      ],
+      "returnsToAbout": true,
+      "afterBack": {
+        "url": "http://127.0.0.1:57092/#about",
+        "hash": "#about",
+        "title": "Joseph Tabalon | Senior Data Scientist",
+        "historyLength": 5
+      }
+    },
+    {
+      "mode": "native-hash-control",
+      "observations": [
+        {
+          "hash": "",
+          "historyLength": 2
+        },
+        {
+          "hash": "#work",
+          "historyLength": 3
+        },
+        {
+          "hash": "#about",
+          "historyLength": 4
+        },
+        {
+          "hash": "#contact",
+          "historyLength": 5
+        }
+      ],
+      "returnsToAbout": true,
+      "afterBack": {
+        "url": "http://127.0.0.1:57092/#about",
+        "hash": "#about",
+        "title": "Joseph Tabalon | Senior Data Scientist",
+        "historyLength": 5
+      }
+    }
+  ],
+  "motionBeforeGuard": [
+    {
+      "phase": "initial",
+      "nodeIds": [
+        1
+      ],
+      "minimumOpacity": 0
+    },
+    {
+      "phase": "contact",
+      "nodeIds": [
+        1
+      ],
+      "minimumOpacity": 1
+    },
+    {
+      "phase": "back-to-top",
+      "nodeIds": [
+        1,
+        2
+      ],
+      "minimumOpacity": 0
+    },
+    {
+      "phase": "repeat-top",
+      "nodeIds": [
+        2
+      ],
+      "minimumOpacity": 1
+    }
+  ],
+  "motionAfterGuard": [
+    {
+      "phase": "initial",
+      "nodeIds": [
+        1
+      ],
+      "minimumOpacity": 0
+    },
+    {
+      "phase": "contact",
+      "nodeIds": [
+        1
+      ],
+      "minimumOpacity": 1
+    },
+    {
+      "phase": "back-to-top",
+      "nodeIds": [
+        1,
+        2
+      ],
+      "minimumOpacity": 1
+    },
+    {
+      "phase": "repeat-top",
+      "nodeIds": [
+        2
+      ],
+      "minimumOpacity": 1
+    }
+  ],
+  "artifactContract": {
+    "baseCases": 9,
+    "caseVariantCases": 2,
+    "allPass": true,
+    "actualPublicRootsMutated": false,
+    "privateContactScreenshots": 14,
+    "privateRecoveryScreenshots": 8
+  },
+  "releaseGate": {
+    "exitCode": 0,
+    "suites": 6,
+    "assetScenarios": 7,
+    "contactCases": 14,
+    "reflowCases": 4,
+    "navigationGroupsPerEngine": 15,
+    "navigationEngines": [
+      "Chromium",
+      "Firefox",
+      "WebKit"
+    ]
+  },
+  "sourceSha256": {
+    "src/lib/scroll-to-section.ts": "8f23f6d4ca4fa1af2d295da4ad2fab9f3d3bd29b51db74cf8b607f7a48262123",
+    "src/app/index.tsx": "ab9b57e7e60bb2776b38589b7d1f46700560897cdc7d37ce34f8e446d408a064",
+    "tests/navigation.mjs": "4a53768f394cc49db85e591992cb2ef8847f9e8ccdb0d1b233ef85ad967260f7",
+    "tests/contact.mjs": "25d7d23e1f6502fe1a9161a1ad9eda37ed372ab7053f3df8d1a9a8ebfdd734cd",
+    "tests/errors.mjs": "e29ee7dac655fc381eaf844b501273344c4b7813c2ba82be178f4b8400992e2a",
+    "tests/helpers/artifact-directory.mjs": "5c72f55a7b80ba84885af42ee68b8e31e14be6e6d1e15439abdbc01b682010d6"
+  },
+  "logSha256": {
+    "short-viewport-before.log": "2c57fb4e7634c19fc5f0c2aa75c763b3ee19c220908fcff787cd813d6f580a89",
+    "verified-final-release.log": "80fa624e426ef9c589b5603e623c561d85022b16baccaf3cf0daced100b0bbd3",
+    "navigation-firefox-final.log": "93fe9b373d64da2e3a5c2fb17aec19a6e4320be8ccf3e6c0edc750ed5f665711",
+    "navigation-webkit-final.log": "93fe9b373d64da2e3a5c2fb17aec19a6e4320be8ccf3e6c0edc750ed5f665711",
+    "link-history-before.log": "9afb44e020c9af45971a15d938493020b4781c4bddff6056f9f977eec86c910a",
+    "link-history-final.log": "0aaa64a35f7e12f38752895706b38811a8e0842be6599db87e5c71c0c3dd8883",
+    "motion-after.log": "9912f08faa4c5393815097a3879ae6742d2a99c684549fea599a41243f0fe7d8",
+    "motion-final.log": "45b41e48fe3f30359e2c4246851f1da463dfcc37836b081557245c8c2bbe05e3"
+  },
+  "pageOnlyScreenshotSha256": {
+    "2026-10-24-zoom-before.png": "944821d9ee8abe87020d39da0d3c630cc62d6ba67946a76f7516971ecf48fd49",
+    "2026-10-24-zoom-after.png": "eab1142af3e260e074315171e0fc6837507d66b45dd9c752faa8664162d90ac1"
+  },
+  "limits": [
+    "Local/native desktop zoom and Playwright engines do not establish physical-device or screen-reader validation.",
+    "Latest same-revision hosted gate is recorded on PR18; production publication and issue closure remain pending."
+  ]
+}
