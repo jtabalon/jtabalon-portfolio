@@ -20,6 +20,8 @@ async function assertReadingAndContact(page, name) {
 try {
   browser = await chromium.launch();
   for (const scenario of [
+    { name: 'mobile-standard-density', width: 390, deviceScaleFactor: 1,
+      expectedPortrait: '/portraits/joseph-tabalon-320.webp' },
     { name: 'mobile-high-density', width: 390, deviceScaleFactor: 3 },
     { name: 'desktop-high-density', width: 1440, deviceScaleFactor: 3 },
     { name: 'without-javascript', width: 390, deviceScaleFactor: 3, javaScriptEnabled: false },
@@ -28,7 +30,7 @@ try {
     { name: 'missing-portrait-without-javascript', width: 390, deviceScaleFactor: 3,
       javaScriptEnabled: false, missingPortrait: true },
   ]) {
-    const { name, width, deviceScaleFactor, javaScriptEnabled = true,
+    const { name, width, deviceScaleFactor, expectedPortrait, javaScriptEnabled = true,
       fontMode, missingPortrait = false } = scenario;
     const page = await browser.newPage({
       viewport: { width, height: 1000 }, deviceScaleFactor, javaScriptEnabled,
@@ -118,6 +120,10 @@ try {
       }
       assert.match(image.source, /^\/portraits\/joseph-tabalon-(320|640|960)\.webp$/,
         `${name}: the browser selects a compressed portrait`);
+      if (expectedPortrait) {
+        assert.equal(image.source, expectedPortrait,
+          `${name}: the browser selects the standard-density mobile resource`);
+      }
       assert(image.renderedWidth > 0 && image.renderedHeight > 0,
         `${name}: the portrait has a visible layout`);
       await assertReadingAndContact(page, name);

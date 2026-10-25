@@ -34,12 +34,12 @@ export function SiteFrame({ navigation, children, footer }: SiteFrameProps) {
         <View className="mx-auto w-full max-w-6xl px-6 pb-20 pt-5 md:px-10 md:pt-8">
           <View
             role="banner"
-            className="flex-row items-center justify-between gap-2 md:gap-4">
+            className="flex-row flex-wrap items-center justify-between gap-2 md:gap-4">
             <Text className="shrink font-body-semibold text-xs text-ink tracking-tight md:text-sm">
               joseph tabalon
             </Text>
 
-            <View role="navigation" className="flex-row gap-0.5 md:gap-1">
+            <View role="navigation" className="max-w-full flex-row flex-wrap gap-0.5 md:gap-1">
               {navigation.map((item) => (
                 <NavLink
                   key={item.targetId}

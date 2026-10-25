@@ -76,8 +76,12 @@ Contact text-reflow simulation, not browser zoom or a whole-site accessibility a
 The other suites cover responsive portrait selection, reading and contact while
 fonts are pending or fail, reserved portrait layout when its image is missing,
 JavaScript-disabled access, useful HTTP 404 recovery, page landmarks, and
-section focus through ordinary links, fragments, and browser history. External
-evidence links must open their declared isolated tabs without changing the portfolio;
+section focus through ordinary links, fragments, and browser history. A
+standard-density mobile case selects and decodes the 320-pixel portrait.
+Narrow-screen reflow checks double all rendered text and inspect text/link bounds,
+including clipping inside the page's scroll container; this remains a text-reflow
+simulation, not browser zoom. External evidence links must open their declared
+isolated tabs without changing the portfolio;
 the browser regression intercepts those destinations rather than depending on
 third-party service availability. Each suite
 fails on its captured application exceptions.
