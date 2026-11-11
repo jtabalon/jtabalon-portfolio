@@ -9,7 +9,11 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
-.claude/
+
+# Local Claude Code state. Repo-installed skills stay tracked.
+.claude/*
+!.claude/skills/
+!.claude/skills/**
 
 # Native
 .kotlin/
